@@ -1,18 +1,18 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #2d2d2d;
+    background-color: hsl(0, 26%, 96%);
   }
   
   .container {
     position: relative;
-    width: 100%;
+    width: 400%;
     height: 400px;
     overflow: hidden;
   }
   
   .wgh-slider {
     position: relative;
-    top: 50%;
+    top: 100%;
     width: 100%;
     transform: translateY(-50%);
   }
@@ -26,8 +26,8 @@ body {
     position: relative;
     perspective: 100vw;
     margin: 0 auto;
-    width: 33.3333333333%;
-    max-width: 280px;
+    width: 66.3333333333%;
+    max-width: 1000px;
     transform-style: preserve-3d;
     z-index: 0;
   }
