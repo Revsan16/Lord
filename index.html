@@ -755,7 +755,7 @@ F
         </div>
 
         <div class="col-lg-6 mt-4 mt-lg-0">
-          <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+          <form action="forms/contact.php" method="post" role="form" class="php-email-form" onsubmit="return sendmail();">
             <div class="row">
               <div class="col-md-6 form-group">
                 <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
@@ -847,6 +847,32 @@ F
         </div>
       </div>
     </div>
+    <script>
+      function sendMail() {
+  const name = document.getElementById("name").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const email = document.getElementById("subject").value.trim();
+  const message = document.getElementById("message").value.trim();
+
+  const phoneNumber = "919787111321";
+  const text = `Hi This is ${name}  ${email}%0A${subject}%0A${message}`;
+
+  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+  const appLink = `whatsapp://send?phone=${phoneNumber}&text=${text}`;
+  const webLink = `https://wa.me/${phoneNumber}?text=${text}`;
+
+  // If mobile, try to open WhatsApp app
+  if (isMobile) {
+    window.location.href = appLink;
+  } else {
+    // Fallback to web version
+    window.open(webLink, "_blank");
+  }
+
+  return false; // Prevent form submission
+}
+    </script>
 
     <div class="container">
       <div class="copyright">
