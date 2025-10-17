@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>As You Think You Become – Fifty Richful Thoughts</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Poppins:wght@500;600&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      background-image: url("https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1600&q=80");
+      background-size: cover;
+      background-attachment: fixed;
+      background-position: center;
+      font-family: 'Poppins', sans-serif;
+      color: #2b2b2b;
+    }
+
+    /* Transparent Navbar */
+    .navbar {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      transition: background-color 0.4s ease;
+    }
+
+    .navbar.scrolled {
+      background: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar-brand {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      color: #ffffff !important;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    }
+
+    .nav-link {
+      color: #f1f1f1 !important;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+
+    .nav-link:hover {
+      color: #ffd166 !important;
+    }
+
+    /* Header (Title Section) */
+    header {
+      text-align: center;
+      padding: 8rem 1rem 4rem;
+      color: black;
+      text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 800;
+      font-size: 3.2rem;           /* Increased size */
+      background: linear-gradient(90deg, #ffa99f, #ffa99f, #ff719a);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: 1px;
+      margin-bottom: 1rem;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: #f8f9fa;
+    }
+
+    /* Card Design */
+    .card {
+      background-color: rgba(255, 255, 255, 0.9);
+      border: none;
+      border-radius: 1rem;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .card-title {
+      font-weight: 700;
+      color: #1d3557;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .btn-read {
+      background-color: #457b9d;
+      border: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .btn-read:hover {
+      background-color: #1d3557;
+    }
+
+    .modal-content {
+      background: rgba(255, 255, 255, 0.97);
+      border-radius: 1rem;
+    }
+
+    .modal-header {
+      background-color: #f0f7fa;
+      border-bottom: none;
+    }
+
+    .modal-title {
+      color: #1d3557;
+      font-weight: 700;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .thought-verse {
+      color: #145a32;
+      font-weight: 600;
+      text-align: right;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">📘 As You Think You Become</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto text-center">
+          <li class="nav-item"><a class="nav-link" href="#thought1">God Reached Man</a></li>
+          <li class="nav-item"><a class="nav-link" href="#thought2">Agape Love</a></li>
+          <li class="nav-item"><a class="nav-link" href="#grid">All Thoughts</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header>
+    <h1>As You Think You Become</h1>
+    <p>Fifty Richful Thoughts to Inspire, Transform & Renew Your Mind 🌿</p>
+  </header>
+
+  <!-- Grid Section -->
+  <section class="container pb-5" id="grid">
+    <div class="row g-4">
+      <!-- Thought 1 -->
+      <div class="col-sm-6 col-lg-4" id="thought1">
+        <div class="card h-100 p-3">
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title">1. God Reached Man</h5>
+            <p>Man did nothing to reach God, but God did everything to reach man.</p>
+            <button
+              class="btn btn-read mt-auto text-white"
+              data-bs-toggle="modal"
+              data-bs-target="#modal1"
+            >
+              Read More
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Thought 2 -->
+      <div class="col-sm-6 col-lg-4" id="thought2">
+        <div class="card h-100 p-3">
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title">2. Agape Love</h5>
+            <p>Man’s sin cannot change God’s divine love, but His love can change man’s heart.</p>
+            <button
+              class="btn btn-read mt-auto text-white"
+              data-bs-toggle="modal"
+              data-bs-target="#modal2"
+            >
+              Read More
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Placeholder -->
+      <div class="col-sm-6 col-lg-4">
+        <div class="card h-100 p-3 text-center">
+          <div class="card-body d-flex flex-column justify-content-center">
+            <h5 class="card-title">More Thoughts Coming</h5>
+            <p class="text-muted">Each of the 50 thoughts will appear here in beautiful popups like these.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modals -->
+  <div class="modal fade" id="modal1" tabindex="-1" aria-labelledby="modal1Label" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modal1Label">1. God Reached Man</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p class="fst-italic text-primary">
+            “Man did nothing to reach God, but God did everything to reach man!”
+          </p>
+          <p>
+            Salvation is not a human plan. The relationship between God and man was disconnected because of sin.
+            God, through His unconditional love, reached man by giving Himself on the cross.
+            The Creator of the universe became man to redeem us from the power of sin and death.
+          </p>
+          <p class="thought-verse">Romans 5:5–10</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="modal2" tabindex="-1" aria-labelledby="modal2Label" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modal2Label">2. Agape Love</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p class="fst-italic text-primary">
+            “Man’s sin cannot change God’s divine love! But God’s divine love has the power to change the sins of the entire world.”
+          </p>
+          <p>
+            Many believe their sins affect God's love for them — but that is false. Sin affects man, not God.
+            His love transforms sinners, just as it did Peter when he denied Jesus. God’s love never changes,
+            and His grace renews us continually.
+          </p>
+          <p class="thought-verse">John 3:16–17</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Navbar Scroll Effect -->
+  <script>
+    window.addEventListener("scroll", function() {
+      const navbar = document.querySelector(".navbar");
+      if (window.scrollY > 50) {
+        navbar.classList.add("scrolled");
+      } else {
+        navbar.classList.remove("scrolled");
+      }
+    });
+  </script>
+</body>
+</html>
