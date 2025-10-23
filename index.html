@@ -3,907 +3,377 @@
 
 <head>
   <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>INLPM</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
-
-  <!-- Favicons -->
   <link href="assets/img/l.jpg" rel="icon">
   <link href="assets/img/l.jpg" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700|Raleway:400,500,700|Poppins:400,500,600,700" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
-  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
   <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
 
-  <!-- Template Main CSS File -->
-  <link href="assets/css/style.css" rel="stylesheet">
+  <!-- Main CSS -->
+  <style>
+    /* ===== General Styles ===== */
+    body {
+      font-family: 'Open Sans', sans-serif;
+      background-color: #f5f5f5;
+      color: #333;
+    }
 
- 
+    a {
+      text-decoration: none;
+    }
+
+    h1, h2, h3, h4, h5 {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+    }
+
+    section {
+      padding: 80px 0;
+    }
+
+    .section-title h2 {
+      font-size: 36px;
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+
+    .section-title p {
+      font-size: 16px;
+      color: #555;
+    }
+
+    /* ===== Header ===== */
+    #header {
+      background-color: rgba(255, 255, 255, 0.95);
+      transition: 0.3s;
+      padding: 20px 0;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    #header.sticky {
+      background-color: #fff;
+      padding: 10px 0;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    #header .logo a {
+      font-size: 22px;
+      font-weight: 700;
+      color: #333;
+    }
+
+    #navbar .nav-link {
+      color: #333;
+      font-weight: 500;
+      margin-right: 15px;
+      transition: 0.3s;
+    }
+
+    #navbar .nav-link:hover, #navbar .nav-link.active {
+      color: #0d6efd;
+    }
+
+    #navbar .getstarted {
+      background: #0d6efd;
+      color: #fff;
+      padding: 8px 20px;
+      border-radius: 30px;
+      transition: 0.3s;
+    }
+
+    #navbar .getstarted:hover {
+      background: #0056b3;
+      color: #fff;
+    }
+
+    /* ===== Hero ===== */
+    #hero {
+      background: url('assets/img/hero-bg.jpg') center center no-repeat;
+      background-size: cover;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      text-align: center;
+      color: #fff;
+      position: relative;
+    }
+
+    #hero::after {
+      content: '';
+      position: absolute;
+      left:0; top:0; width:100%; height:100%;
+      background-color: rgba(0,0,0,0.5);
+    }
+
+    #hero .hero-container {
+      position: relative;
+      z-index: 2;
+    }
+
+    #hero h1 {
+      font-size: 48px;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    #hero h2 {
+      font-size: 22px;
+      font-weight: 400;
+      margin-bottom: 30px;
+    }
+
+    #hero .btn-get-started {
+      margin: 5px;
+      padding: 12px 30px;
+      font-weight: 600;
+      border-radius: 30px;
+    }
+
+    #hero .btn-watch-video {
+      color: #fff;
+      border: 2px solid #fff;
+      padding: 10px 25px;
+      border-radius: 30px;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    /* ===== About ===== */
+    .about .content h3 {
+      font-size: 28px;
+      font-weight: 600;
+    }
+
+    .about .content ul li {
+      margin-bottom: 10px;
+      color: #555;
+    }
+
+    /* ===== Cards ===== */
+    .about-boxes .card {
+      border: none;
+      border-radius: 15px;
+      overflow: hidden;
+      transition: 0.3s;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+
+    .about-boxes .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+    }
+
+    /* ===== Services & Programs ===== */
+    .icon-box {
+      background: #fff;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+      text-align: center;
+      transition: 0.3s;
+    }
+
+    .icon-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+    }
+
+    /* ===== Testimonials ===== */
+    .testimonial-item {
+      background: #fff;
+      padding: 30px;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    }
+
+    .testimonial-item img {
+      width: 80px;
+      border-radius: 50%;
+      margin-bottom: 15px;
+    }
+
+    /* ===== Gallery ===== */
+    .gallery-slider .swiper-slide img {
+      border-radius: 15px;
+    }
+
+    /* ===== Footer ===== */
+    #footer {
+      background: #333;
+      color: #fff;
+      padding: 60px 0;
+    }
+
+    #footer a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    #footer a:hover {
+      color: #0d6efd;
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 768px) {
+      #hero h1 {
+        font-size: 32px;
+      }
+      #hero h2 {
+        font-size: 18px;
+      }
+    }
+
+  </style>
 </head>
 
 <body>
 
   <!-- ======= Header ======= -->
-  <header id="header" class="fixed-top ">
+  <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center justify-content-between">
 
       <h1 class="logo"><a href="index.html">International New Life Prophetic Ministry</a></h1>
-      <!-- Uncomment below if you prefer to use an image logo -->
-      <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
       <nav id="navbar" class="navbar">
         <ul>
           <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
           <li><a class="nav-link scrollto" href="#about">About</a></li>
           <li><a class="nav-link scrollto" href="#services">Schools</a></li>
-          <li><a class="nav-link scrollto " href="#portfolio">Portfolio</a></li>
-          <li><a class="nav-link scrollto" href="#team">Book</a></li>
+          <li><a class="nav-link scrollto" href="#portfolio">Portfolio</a></li>
+          <li><a class="nav-link scrollto " href="#team">Book</a></li>
           <li><a class="nav-link scrollto" href="#gallery">Gallery</a></li>
-                    <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
           <li><a class="getstarted scrollto" href="2024prophecy.html">2024 PROPHECIES</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav><!-- .navbar -->
+      </nav>
 
     </div>
-  </header><!-- End Header -->
+  </header>
 
   <!-- ======= Hero Section ======= -->
   <section id="hero">
-    <div class="hero-container" data-aos="fade-up" data-aos-delay="150">
-      <h1>Believe in His Prophets.You shall prosper.</h1>
-      <h2>Equipping Every Believer As a Soldiers and Preparing the Body of Christ for the End-Time Revival Movement</h2>
-      <div class="d-flex">
+    <div class="hero-container" data-aos="fade-up">
+      <h1>Believe in His Prophets. You shall prosper.</h1>
+      <h2>Equipping Every Believer As Soldiers and Preparing the Body of Christ for the End-Time Revival Movement</h2>
+      <div class="d-flex justify-content-center">
         <a href="2024prophecy.html" class="btn-get-started scrollto">2024 PROPHECIES</a>
         <a href="22.html" class="btn-get-started scrollto">AS YOU THINK YOU BECOME</a>
-        <a href="assets/img/video1.mp4" class="glightbox btn-watch-video"><i class="bi bi-play-circle"></i><span>Watch Video</span></a>
+        <a href="assets/img/video1.mp4" class="glightbox btn-watch-video"><i class="bi bi-play-circle"></i> Watch Video</a>
       </div>
     </div>
-  </section><!-- End Hero -->
+  </section>
 
-  <main id="main">
-
-    <!-- ======= About Section ======= -->
-    <section id="about" class="about">
-      <div class="container" data-aos="fade-up">
-
-       
-        <div class="row">
-
-          <div class="col-lg-6 video-box align-self-baseline" data-aos="zoom-in" data-aos-delay="100">
-            <img src="assets/img/V18.jpg" class="img-fluid" alt="">
-            <a href="https://www.youtube.com/watch?v=AEvCcUzGRRg&t=3s" class="glightbox play-btn mb-4"></a>
-          </div>
-
-          <div class="col-lg-6 pt-3 pt-lg-0 content">
-            <h3>ABOUT OUR MINISTRY</h3>
-            <p class="fst-italic">
-              Prophet T. Vinoth Kumar is the founder of International New Life Prophetic Ministries, Coimbatore, Tamil Nadu, and India. 
-              He walked with God for more than 25 years. From his young age, He obeyed God's call to serve Him.
-            </p>
-            <ul>
-              <li><i class="bx bx-check-double"></i> We conduct pastor's training and conferences in various States of India.</li>
-              <li><i class="bx bx-check-double"></i> He is the carrier of  strong prophetic anointing for this end time. </li>
-              <li><i class="bx bx-check-double"></i> He explores the scripture and reveals the truth with high insight of end-time revelations.
-                 God has entrusted him with the gift of prophecy. He is used by God  to influence and uplift countless people's lives.</li>
-              <li><i class="bx bx-check-double"></i> He have  written some books ” As You Think, You Become” and "Keys of Successful Life(English & Tamil)".</li>
-            </ul>
-            <p>
-              He is one of the best teachers revealing the depth and breaking the ground truths of the scriptures. 
-              His teachings help many people to know the true nature of God.
-            </p>
-          </div>
-
+  <!-- ======= About Section ======= -->
+  <section id="about" class="about">
+    <div class="container" data-aos="fade-up">
+      <div class="row align-items-center">
+        <div class="col-lg-6 video-box" data-aos="zoom-in" data-aos-delay="100">
+          <img src="assets/img/V18.jpg" class="img-fluid rounded" alt="">
+          <a href="https://www.youtube.com/watch?v=AEvCcUzGRRg&t=3s" class="glightbox play-btn mb-4"></a>
         </div>
-
-      </div>
-    </section><!-- End About Section -->
-
-    <!-- ======= About Boxes Section ======= -->
-    <section id="about-boxes" class="about-boxes">
-      <div class="container" data-aos="fade-up">
-               <div class="row">
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
-            <div class="card">
-              <img src="assets/img/c.jpg" class="card-img-top" alt="...">
-              <div class="card-icon">
-                <i class="ri-brush-4-line"></i>
-              </div>
-              <div class="card-body">
-                <h5 class="card-title"><a href=""> SCHOOL OF PROPHETS</a></h5>
-                <p class="card-text">Making everyone to see their lives with a Prophetic Eye Glass <br>21 week program </p>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
-            <div class="card">
-              <img src="assets/img/I1.jpg" class="card-img-top" alt="...">
-              <div class="card-icon">
-                <i class="ri-calendar-check-line"></i>
-              </div>
-              <div class="card-body">
-                <h5 class="card-title"><a href="">SCHOOL OF HEALING</a></h5>
-                <p class="card-text">Giving the knowledge to the Body Of Christ about Healing.HEALING IS OUR RIGHT AND DAILY BREAD </p>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
-            <div class="card">
-              <img src="assets/img/a.jpg" class="card-img-top" alt="...">
-              <div class="card-icon">
-                <i class="ri-movie-2-line"></i>
-              </div>
-              <div class="card-body">
-                <h5 class="card-title"><a href="">SCHOOL OF POWER</a></h5>
-                <p class="card-text"> We Do not talk about power WE DEMONSTRATE POWER </p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </section><!-- End About Boxes Section -->
-
-    <!-- ======= Clients Section ======= -->
-    <section id="clients" class="clients">
-      <div class="container" data-aos="zoom-in">
-        <div class="section-title">
-          <h2>Our Videos</h2>
-          <p>For<span>End Time</span></p>
-        </div>
-        <div class="row">
-
-          <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-            <a href="https://www.youtube.com/watch?v=Lyi1XIkJwes" class="glightbox btn-watch-video"> <img src="assets/img/vi1.png" ></a>
-          </div>
-
-          <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-            <a href="https://www.youtube.com/watch?v=vqWZVobFCzg" class="glightbox btn-watch-video"><img src="assets/img/vi2.png" class="img-fluid" alt=""></a>
-          </div>
-
-          <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-            <a href="https://www.youtube.com/watch?v=SOIoDsQKfNY" class="glightbox btn-watch-video"><img src="assets/img/vi3.png" class="img-fluid" alt=""></a>
-          </div>
-
-          <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-            <a href="https://www.youtube.com/watch?v=Lemu1Gjocwc" class="glightbox btn-watch-video"><img src="assets/img/vi4.png" class="img-fluid" alt=""></a>
-          </div>
-
-          <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-            <a href="https://www.youtube.com/watch?v=kwS64W0PGlg" class="glightbox btn-watch-video"><img src="assets/img/vi5.png" class="img-fluid" alt=""></a>
-          </div>
-
-          <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-            <a href="https://www.youtube.com/watch?v=j4RZReQVQrc" class="glightbox btn-watch-video"><img src="assets/img/vi12.png" class="img-fluid" alt=""></a>
-          </div>
-                    
-        </div>
-        <div class="row">
-        <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-          <a href="https://www.youtube.com/watch?v=f09n6MXO0wE" class="glightbox btn-watch-video"><img src="assets/img/vi8.png" class="img-fluid" alt=""></a>
-        </div>
-        <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-          <a href="https://www.youtube.com/watch?v=31kwAonY8zk" class="glightbox btn-watch-video"><img src="assets/img/vi7.png" class="img-fluid" alt=""></a>
-        </div>
-        <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-          <a href="https://www.youtube.com/watch?v=subjWo1Awds" class="glightbox btn-watch-video"><img src="assets/img/vi11.png" class="img-fluid" alt=""></a>
-        </div>
-        <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-          <a href="https://www.youtube.com/watch?v=6zuMa0vDs3M" class="glightbox btn-watch-video"><img src="assets/img/vi9.png" class="img-fluid" alt=""></a>
-        </div>
-        <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-          <a href="https://www.youtube.com/watch?v=EAD0M4DEko8" class="glightbox btn-watch-video"><img src="assets/img/vi10.png" class="img-fluid" alt=""></a>
-        </div>
-        <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-          <a href="https://www.youtube.com/watch?v=3hgTtPCXuZI" class="glightbox btn-watch-video"><img src="assets/img/vi13.png" class="img-fluid" alt=""></a>
-        </div>
-        <div class="row">
-          <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-            <a href="https://www.youtube.com/watch?v=bPNA7TdzjCc" class="glightbox btn-watch-video"><img src="assets/img/vi14.png" class="img-fluid" alt=""></a>
-          </div>
-          <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-            <a href="https://www.youtube.com/watch?v=5ty2U_TKwww" class="glightbox btn-watch-video"><img src="assets/img/vi15.png" class="img-fluid" alt=""></a>
-          </div>
-          <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-            <a href="https://www.youtube.com/watch?v=ShFw4PikA4E" class="glightbox btn-watch-video"><img src="assets/img/vi16.png" class="img-fluid" alt=""></a>
-          </div>
-          <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-            <a href="https://www.youtube.com/watch?v=2a4bmY9O3Vs" class="glightbox btn-watch-video"><img src="assets/img/vi17.png" class="img-fluid" alt=""></a>
-          </div>
-          <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-            <a href="https://www.youtube.com/watch?v=ZtY3NaD0mIU" class="glightbox btn-watch-video"><img src="assets/img/vi19.png" class="img-fluid" alt=""></a>
-          </div>
-          <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-            <a href="https://www.youtube.com/watch?v=Q29rSeyBm3A" class="glightbox btn-watch-video"><img src="assets/img/vi18.png" class="img-fluid" alt=""></a>
-          </div>
-  
-  
-</div>
-
-      </div>
-    </section><!-- End Clients Section -->
-
-    <!-- ======= Features Section ======= -->
-    <section id="features" class="features">
-      <div class="container" data-aos="fade-up">
-
-        <ul class="nav nav-tabs row d-flex">
-          <li class="nav-item col-6">
-            <a class="nav-link active show" data-bs-toggle="tab" href="#tab-1">
-              <i class="ri-gps-line"></i>
-              <h4 class="d-none d-lg-block">We teach mind transformation</h4>
-            </a>
-          </li>
-          <li class="nav-item col-6">
-            <a class="nav-link" data-bs-toggle="tab" href="#tab-2">
-              <i class="ri-body-scan-line"></i>
-              <h4 class="d-none d-lg-block">Voice of the End Time</h4>
-            </a>
-          </li>
-           </ul>
-
-        <div class="tab-content">
-          <div class="tab-pane active show" id="tab-1">
-            <div class="row">
-                <div class="col-lg-12 order-1 order-lg-2 text-center">
-                <img src="assets/img/me2.png" alt="" class="img-fluid">
-              </div>
-            </div>
-          </div>
-          <div class="tab-pane" id="tab-2">
-            <div class="row">
-                <div class="col-lg-12 order-1 order-lg-2 text-center">
-                <img src="assets/img/D1.png" alt="" class="img-fluid">
-              </div>
-            </div>
-          </div>
-         
-        </div>
-
-      </div>
-    </section><!-- End Features Section -->
-
-    <!-- ======= Services Section ======= -->
-    <section id="services" class="services section-bg">
-      <div class="container" data-aos="fade-up">
-
-        <div class="section-title">
-          <h2>END-TIME SPIRITUAL SCHOOL</h2>
-          <p>Preparing the Body of Christ</p>
-        </div>
-
-        <div class="row" data-aos="fade-up" data-aos-delay="200">
-          <div class="col-md-6">
-            <div class="icon-box">
-              <i class="bi bi-laptop"></i>
-              <h4><a href="#">School of Prophets</a></h4>
-            <p>12 week class</p>     
-            </div>
-          </div>
-          <div class="col-md-6 mt-4 mt-md-0">
-            <div class="icon-box">
-              <i class="bi bi-bar-chart"></i>
-              <h4><a href="#">School of Healing</a></h4>
-                          <p>12 week class</p></div>
-          </div>
-          <div class="col-md-6 mt-4 mt-md-0">
-            <div class="icon-box">
-              <i class="bi bi-brightness-high"></i>
-              <h4><a href="#">School of Power</a></h4>
-                          </div>
-          </div>
-          <div class="col-md-6 mt-4 mt-md-0">
-            <div class="icon-box">
-              <i class="bi bi-briefcase"></i>
-              <h4><a href="#">Transforming Our Lives with Jesus</a></h4>
-              <p>40 Days training Program</p>
-            </div>
-          </div>
-          <div class="col-md-6 mt-4 mt-md-0">
-            <div class="icon-box">
-              <i class="bi bi-card-checklist"></i>
-              <h4><a href="#">Empowering Our Lives with Jesus</a></h4>
-              <p>10 Days training program</p>
-            </div>
-          </div>
-          <div class="col-md-6 mt-4 mt-md-0">
-            <div class="icon-box">
-              <i class="bi bi-clock"></i>
-              <h4><a href="#">Raising Young Leaders</a></h4>
-              <p>15 weeks class</p>
-            </div>
-          </div>
-        </div>
-F
-      </div>
-    </section><!-- End Services Section -->
-
-    <!-- ======= Testimonials Section ======= -->
-    <section id="testimonials" class="testimonials">
-      <div class="container" data-aos="zoom-in">
-
-        <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
-          <div class="swiper-wrapper">
-
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <img src="assets/img/t1.jpg" class="testimonial-img" alt="">
-                <h3>Saravanan</h3>
-                <h4>Pastor</h4>
-                <p>
-                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  The prophetic words of Prophet T Vinoth Kumar changed my life.His teaching have made a great imapact in my life.His Obedience towards God stired me to live for God.
-                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                </p>
-              </div>
-            </div><!-- End testimonial item -->
-                        <div class="swiper-slide">
-              <div class="testimonial-item">
-                <img src="assets/img/t3.jpg" class="testimonial-img" alt="">
-                <h3>Pastor</h3>
-                <h4>Vivek</h4>
-                <p>
-                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  His teachings triggered me to live for true God.
-                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                </p>
-              </div>
-            </div><!-- End testimonial item -->
-                        <div class="swiper-slide">
-              <div class="testimonial-item">
-                <img src="assets/img/t2.jpg" class="testimonial-img" alt="">
-                <h3>Pastor</h3>
-                <h4>Karthick</h4>
-                <p>
-                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  Prophet T .Vinoth kumar is my Spiritual Father.He showed me the true God.His teachings made me to live God as the burning fire.
-                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                </p>
-              </div>
-            </div><!-- End testimonial item -->
-                     </div>
-          <div class="swiper-pagination"></div>
-        </div>
-
-      </div>
-    </section><!-- End Testimonials Section -->
-
-    <!-- ======= Portfolio Section ======= -->
-    <section id="portfolio" class="portfolio">
-      <div class="container" data-aos="fade-up">
-
-        <div class="section-title">
-          <h2>Our Tarining Program</h2>
-          <p>Preparing for<span>End Time</span></p>
-        </div>
-
-        <ul class="nav nav-tabs d-flex justify-content-cen" data-aos="fade-up" data-aos-delay="200">
-
-          <li class="nav-item">
-            <a class="nav-link active show" data-bs-toggle="tab" data-bs-target="#menu-starters">
-              <h4>Coimbatore (I batch)</h4>
-            </a>
-          </li><!-- End tab nav item -->
-
-          <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="tab" data-bs-target="#menu-breakfast">
-              <h4>Tiruppur</h4>
-            </a><!-- End tab nav item -->
-
-          <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="tab" data-bs-target="#menu-lunch">
-              <h4>Andhra</h4>
-            </a>
-          </li><!-- End tab nav item -->
-
-          <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="tab" data-bs-target="#menu-dinner">
-              <h4>Coimbatore (II Batch)</h4>
-            </a>
-          </li><!-- End tab nav item -->
-
-        </ul>
-
-        <div class="tab-content" data-aos="fade-up" data-aos-delay="300">
-
-          <div class="tab-pane fade active show" id="menu-starters">
-
-            <div class="tab-header text-center">
-              <p>Coimbatore</p>
-              <h3>School of Prophets</h3>
-            </div>
-
-            <div class="row gy-5">
-
-              <div class="col-lg-4 menu-item">
-                <a href="assets/img/c1.jpg" class="glightbox"><img src="assets/img/c1.jpg" class="menu-img img-fluid" alt=""></a>
-                              </div><!-- Menu Item -->
-
-              <div class="col-lg-4 menu-item">
-                <a href="assets/img/c2.jpg" class="glightbox"><img src="assets/img/c2.jpg" class="menu-img img-fluid" alt=""></a>
-                             </div><!-- Menu Item -->
-
-              <div class="col-lg-4 menu-item">
-                <a href="assets/img/c3.jpg" class="glightbox"><img src="assets/img/c3.jpg" class="menu-img img-fluid" alt=""></a>
-                             </div><!-- Menu Item -->
-
-              <div class="col-lg-4 menu-item">
-                <a href="assets/img/c10.jpg" class="glightbox"><img src="assets/img/c10.jpg" class="menu-img img-fluid" alt=""></a>
-                             </div><!-- Menu Item -->
-
-              <div class="col-lg-4 menu-item">
-                <a href="assets/img/c5.jpg" class="glightbox"><img src="assets/img/c5.jpg" class="menu-img img-fluid" alt=""></a>
-                              </div><!-- Menu Item -->
-
-              <div class="col-lg-4 menu-item">
-                <a href="assets/img/c7.jpg" class="glightbox"><img src="assets/img/c7.jpg" class="menu-img img-fluid" alt=""></a>
-                              </div><!-- Menu Item -->
-
-            </div>
-          </div><!-- End Starter Menu Content -->
-
-          <div class="tab-pane fade" id="menu-breakfast">
-
-            <div class="tab-header text-center">
-              <p>Tiruppur</p>
-              <h3>School Of Prohets</h3>
-            </div>
-
-            <div class="row gy-5">
-
-              <div class="col-lg-4 menu-item">
-                <a href="assets/img/tr1.jpg" class="glightbox"><img src="assets/img/tr1.jpg" class="menu-img img-fluid" alt=""></a>
-                
-              </div><!-- Menu Item -->
-
-              <div class="col-lg-4 menu-item">
-                <a href="assets/img/tr2.jpg" class="glightbox"><img src="assets/img/tr2.jpg" class="menu-img img-fluid" alt=""></a>
-               
-              </div><!-- Menu Item -->
-
-              <div class="col-lg-4 menu-item">
-                <a href="assets/img/tr3.jpg" class="glightbox"><img src="assets/img/tr3.jpg" class="menu-img img-fluid" alt=""></a>
-              
-              </div><!-- Menu Item -->
-
-              <div class="col-lg-4 menu-item">
-                <a href="assets/img/tr4.jpg" class="glightbox"><img src="assets/img/tr4.jpg" class="menu-img img-fluid" alt=""></a>
-                
-              </div><!-- Menu Item -->
-
-              <div class="col-lg-4 menu-item">
-                <a href="assets/img/tr5.jpg" class="glightbox"><img src="assets/img/tr5.jpg" class="menu-img img-fluid" alt=""></a>
-                
-              </div><!-- Menu Item -->
-
-              <div class="col-lg-4 menu-item">
-                <a href="assets/img/tr6.jpg" class="glightbox"><img src="assets/img/tr6.jpg" class="menu-img img-fluid" alt=""></a>
-                             </div><!-- Menu Item -->
-
-            </div>
-          </div><!-- End Starter Menu Content -->
-          <div class="tab-pane fade" id="menu-lunch">
-
-            <div class="tab-header text-center">
-              <p>Andhra</p>
-              <h3>Short term training Course</h3>
-            </div>
-
-            <div class="row gy-5">
-
-              <div class="col-lg-4 menu-item">
-                <a href="assets/imgs/m5.jpg" class="glightbox"><img src="assets/img/m5.jpg" class="menu-img img-fluid" alt=""></a>
-                
-              </div><!-- Menu Item -->
-
-              <div class="col-lg-4 menu-item">
-                <a href="assets/img/c11.jpg" class="glightbox"><img src="assets/img/m6.jpg" class="menu-img img-fluid" alt=""></a>
-               
-              </div><!-- Menu Item -->
-
-              <div class="col-lg-4 menu-item">
-                <a href="assets/img/h5.jpg" class="glightbox"><img src="assets/img/m13.jpg" class="menu-img img-fluid" alt=""></a>
-              
-              </div><!-- Menu Item -->
-
-              <div class="col-lg-4 menu-item">
-                <a href="assets/img/m14.jpg" class="glightbox"><img src="assets/img/m14.jpg" class="menu-img img-fluid" alt=""></a>
-                
-              </div><!-- Menu Item -->
-
-              <div class="col-lg-4 menu-item">
-                <a href="assets/img/m15.jpg" class="glightbox"><img src="assets/img/m18.jpg" class="menu-img img-fluid" alt=""></a>
-              </div><!-- Menu Item -->
-
-              <div class="col-lg-4 menu-item">
-                <a href="assets/img/m19.jpg" class="glightbox"><img src="assets/img/m19.jpg" class="menu-img img-fluid" alt=""></a>
-                
-              </div><!-- Menu Item -->
-
-            </div>
-          </div><!-- End Starter Andhra Content -->
-          <div class="tab-pane fade" id="menu-dinner">
-
-            <div class="tab-header text-center">
-              <p>Coimbatore (II Batch)</p>
-              <h3>School Of prophets</h3>
-            </div>
-
-            <div class="row gy-5">
-
-              <div class="col-lg-4 menu-item">
-                <a href="assets/img/c12.jpg" class="glightbox"><img src="assets/img/c12.jpg" class="menu-img img-fluid" alt=""></a>
-                
-              </div><!-- Menu Item -->
-
-              <div class="col-lg-4 menu-item">
-                <a href="assets/img/c13.jpg" class="glightbox"><img src="assets/img/c13.jpg" class="menu-img img-fluid" alt=""></a>
-                
-              </div><!-- Menu Item -->
-              <div class="col-lg-4 menu-item">
-                <a href="assets/img/c14.jpg" class="glightbox"><img src="assets/img/c14.jpg" class="menu-img img-fluid" alt=""></a>
-               
-              </div><!-- Menu Item -->
-
-              <div class="col-lg-4 menu-item">
-                <a href="assets/img/z1.jpg" class="glightbox"><img src="assets/img/z1.jpg" class="menu-img img-fluid" alt=""></a>
-                
-              </div><!-- Menu Item -->
-
-              <div class="col-lg-4 menu-item">
-                <a href="assets/img/x4.jpg" class="glightbox"><img src="assets/img/x4.jpg" class="menu-img img-fluid" alt=""></a>
-                
-              </div><!-- Menu Item -->
-
-              <div class="col-lg-4 menu-item">
-                <a href="assets/img/h3.jpg" class="glightbox"><img src="assets/img/h3.jpg" class="menu-img img-fluid" alt=""></a>
-                
-              </div><!-- Menu Item -->
-
-            </div>
-          </div><!-- End Starter Coimbatore (II Batch) Content -->
-
-
-        </div>
-
-      </div>
-    </section><!-- End Portfolio Section -->
-
-    <!-- ======= Team Section ======= -->
-    <section id="team" class="team section-bg">
-      <div class="container" data-aos="fade-up">
-
-        <div class="section-title">
-          <h2>BOOKS</h2>
-          <p>Books that Changes Lives</p>
-        </div>
-
-        <div class="row">
-
-          <div class="col-lg-4 col-md-6">
-            <div class="member" data-aos="fade-up" data-aos-delay="100">
-              <div class="pic"><img src="assets/img/book3.jpg" class="img-fluid" alt=""></div>
-              <div class="member-info">
-                <h4>50 Thoughts-As You Think, You Become</h4>
-                <span>Your Thoughts are Weapon</span>
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-            <div class="member">
-              <div class="pic"><img src="assets/img/book1.jpg" class="img-fluid" alt=""></div>
-              <div class="member-info">
-                <h4>Keys of Successful Life"(English)</h4>
-                <span>Live a Dveine Successful Life</span>
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-            <div class="member">
-              <div class="pic"><img src="assets/img/book2.jpg" class="img-fluid" alt=""></div>
-              <div class="member-info">
-                <h4>"Keys of Successful Life"(Tamil)</h4>
-                 <span>Devine Character Building</span>
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </section><!-- End Team Section -->
-     
-    
-    <!-- ======= Gallery Section ======= -->
-    <section id="gallery" class="gallery section-bg">
-      <div class="container" data-aos="fade-up">
-
-        <div class="section-title">
-          <h2>gallery</h2>
-          <p>Check <span>Our Gallery</span></p>
-        </div>
-
-        <div class="gallery-slider swiper">
-          <div class="swiper-wrapper align-items-center">
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets/img/c8.jpg"><img src="assets/img/c8.jpg" class="img-fluid" alt=""></a></div>
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets/img/m14.jpg"><img src="assets/img/m14.jpg" class="img-fluid" alt=""></a></div>
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets/img/c10.jpg"><img src="assets/img/c10.jpg" class="img-fluid" alt=""></a></div>
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets/img/v16.jpg"><img src="assets/img/v16.jpg" class="img-fluid" alt=""></a></div>
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets/img/c12.jpg"><img src="assets/img/c12.jpg" class="img-fluid" alt=""></a></div>
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets/img/c13.jpg"><img src="assets/img/c13.jpg" class="img-fluid" alt=""></a></div>
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets/img/c14.jpg"><img src="assets/img/c14.jpg" class="img-fluid" alt=""></a></div>
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets/img/c15.jpg"><img src="assets/img/c15.jpg" class="img-fluid" alt=""></a></div>
-          </div>
-          <div class="swiper-pagination"></div>
+        <div class="col-lg-6 content">
+          <h3>International New Life Prophetic Ministry</h3>
+          <ul>
+            <li>We are committed to preparing God's people for end-time revival.</li>
+            <li>We equip believers through prophetic ministry and teaching.</li>
+            <li>Empowering lives with divine wisdom and insight.</li>
+          </ul>
         </div>
       </div>
-  
-    </section><!-- End Gallery Section -->
-    <!-- ======= Events Section ======= -->
-    <section id="events" class="events">
-      <div class="container-fluid" data-aos="fade-up">
 
-        <div class="section-title">
-          <h2>OUR REVIVAL MEETINGS</h2>
-          <p>END<span>End-time</span> MINISTRY</p>
-        </div>
-
-        <div class="slides-3 swiper" data-aos="fade-up" data-aos-delay="100">
-          <div class="swiper-wrapper">
-
-            <div class="swiper-slide event-item d-flex flex-column justify-content-end" style="background-image: url(assets/img/g.jpg)">
-              <h3>Pastoral Conference</h3>
-              <!--<div class="price align-self-start">$99</div>-->
-              <p class="description">
-                We train Pastors Spiritually to learn the depths of the leading of the Holy Spirit.
-              </p>
-            </div><!-- End Event item -->
-
-            <div class="swiper-slide event-item d-flex flex-column justify-content-end" style="background-image: url(assets/img/h3.jpg)">
-              <h3>End Time Training Programs</h3>
-              <!--<div class="price align-self-start">$289</div>-->
-              <p class="description">
-                We Equip Every Believer as Soldiers in Heavenly Warfare.
-              </p>
-            </div><!-- End Event item -->
-
-            <div class="swiper-slide event-item d-flex flex-column justify-content-end" style="background-image: url(assets/img/h5.jpg)">
-              <h3>School of Prophets</h3>
-              <!--<div class="price align-self-start">$499</div>-->
-              <p class="description">
-                We train the normal Believers to live a Supernatural Life.
-              </p>
-            </div><!-- End Event item -->
-
+      <!-- About Boxes -->
+      <div class="row about-boxes mt-5">
+        <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+          <div class="card" data-aos="fade-up">
+            <div class="icon"><i class="bi bi-book"></i></div>
+            <h4 class="title"><a href="">Prophetic Teachings</a></h4>
+            <p class="description">Guidance and insight from the word of God.</p>
           </div>
-          <div class="swiper-pagination"></div>
         </div>
-
-      </div>
-    </section><!-- End Events Section -->
-
-
-    <!-- ======= Contact Section ======= -->
-    <section id="contact" class="contact">
-      <div class="container" data-aos="fade-up">
-
-    <div class=" section-title">
-        <h2>Contact</h2>
-        <p>Contact Us</p>
-      </div>
-
-      <div class="row">
-
-        <div class="col-lg-6">
-
-          <div class="row">
-            <div class="col-md-12">
-              <div class="info-box">
-                <i class="bx bx-map"></i>
-                <h3>Our Address</h3>
-                <p>New Life Prophetic Ministries,
-                  Balagurusami Complex,
-                  Narasimmanaicken palayam,
-                  Coimbatore</p>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="info-box mt-4">
-                <i class="bx bx-envelope"></i>
-                <h3>Email Us</h3>
-                <p>inlpm.ministries@gmail.com</p>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="info-box mt-4">
-                <i class="bx bx-phone-call"></i>
-                <h3>Call Us</h3>
-                <p>+91 94435 22844</p>
-              </div>
-            </div>
+        <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
+          <div class="card" data-aos="fade-up" data-aos-delay="100">
+            <div class="icon"><i class="bi bi-person-workspace"></i></div>
+            <h4 class="title"><a href="">Training Programs</a></h4>
+            <p class="description">Equipping believers to serve in ministry effectively.</p>
           </div>
-
         </div>
-
-        <div class="col-lg-6 mt-4 mt-lg-0">
-          <form class="php-email-form" onsubmit="return sendMail();">
-            <div class="row">
-              <div class="col-md-6 form-group">
-                <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
-              </div>
-              <div class="col-md-6 form-group mt-3 mt-md-0">
-                <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
-              </div>
-            </div>
-            <div class="form-group mt-3">
-              <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
-            </div>
-            <div class="form-group mt-3">
-              <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
-            </div>
-            <div class="my-3">
-              <div class="loading">Loading</div>
-              <div class="error-message"></div>
-              <div class="sent-message">Your message has been sent. Thank you!</div>
-            </div>
-            <div class="text-center"><button type="submit">Enroll with US Spiritually</button></div>
-          </form>
+        <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
+          <div class="card" data-aos="fade-up" data-aos-delay="200">
+            <div class="icon"><i class="bi bi-globe"></i></div>
+            <h4 class="title"><a href="">Global Outreach</a></h4>
+            <p class="description">Spreading the message of hope and revival worldwide.</p>
+          </div>
         </div>
-
       </div>
-
-      </div>
-    </section><!-- End Contact Section -->
-
-  </main><!-- End #main -->
+    </div>
+  </section>
 
   <!-- ======= Footer ======= -->
   <footer id="footer">
-    <div class="footer-top">
-      <div class="container">
-        <div class="row">
-
-          <div class="col-lg-3 col-md-6">
-            <div class="footer-info">
-              <h3>INLPM</h3>
-              <p>
-                New Life Prophetic Ministries,<br>
-                  Balagurusami Complex,<br>
-                  Narasimmanaicken palayam,<br>
-                  Coimbatore <br><br>
-                <strong>Phone:</strong> +91 94435 22844<br>
-                <strong>Email:</strong> inlpm.ministries@gmail.com<br>
-              </p>
-              <div class="social-links mt-3">
-                <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-                <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-                <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-2 col-md-6 footer-links">
-            <h4>Useful Links</h4>
-            <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
-            </ul>
-          </div>
-
-          <div class="col-lg-3 col-md-6 footer-links">
-            <h4>Our Services</h4>
-            <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">School of Prophets</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#"></a>School of Healing</li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">School of Power</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Pastoral Conferences</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Youth Conferencesn</a></li>
-            </ul>
-          </div>
-
-          <div class="col-lg-4 col-md-6 footer-newsletter">
-            <h4>Contact Us</h4>
-            <p>If you want us to contact you,enter your e-mail id</p>
-            <form action="" method="post">
-              <input type="email" name="email"><input type="submit" value="Subscribe">
-            </form>
-
-          </div>
-
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 col-md-6">
+          <h4>International New Life Prophetic Ministry</h4>
+          <p>Equipping believers for end-time revival, one soul at a time.</p>
+        </div>
+        <div class="col-lg-2 col-md-6 footer-links">
+          <h4>Useful Links</h4>
+          <ul>
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Schools</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-3 col-md-6 footer-contact">
+          <h4>Contact</h4>
+          <p>
+            New Life Street<br>
+            City, Country<br>
+            <strong>Phone:</strong> +91 123 456 7890<br>
+            <strong>Email:</strong> info@inlpm.com<br>
+          </p>
+        </div>
+        <div class="col-lg-3 col-md-6 footer-newsletter">
+          <h4>Follow Us</h4>
+          <p>Stay connected via social media and updates.</p>
         </div>
       </div>
+      <div class="text-center mt-3">&copy; 2025 International New Life Prophetic Ministry. All Rights Reserved.</div>
     </div>
-    <script>
-      function sendMail() {
-  const name = document.getElementById("name").value.trim();
-  const email = document.getElementById("email").value.trim();
-  const email = document.getElementById("subject").value.trim();
-  const message = document.getElementById("message").value.trim();
+  </footer>
 
-  const phoneNumber = "919787111321";
-  const text = `Hi This is ${name}  ${email}%0A${subject}%0A${message}`;
-
-  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-
-  const appLink = `whatsapp://send?phone=${phoneNumber}&text=${text}`;
-  const webLink = `https://wa.me/${phoneNumber}?text=${text}`;
-
-  // If mobile, try to open WhatsApp app
-  if (isMobile) {
-    window.location.href = appLink;
-  } else {
-    // Fallback to web version
-    window.open(webLink, "_blank");
-  }
-
-  return false; // Prevent form submission
-}
-    </script>
-
-    <div class="container">
-      <div class="copyright">
-        &copy; Copyright <strong><span> INLPM</span></strong>. All Rights Reserved
-      </div>
-      <div class="credits">
-        <!-- All the links in the footer should remain intact. -->
-        <!-- You can delete the links only if you purchased the pro version. -->
-        <!-- Licensing information: https://bootstrapmade.com/license/ -->
-        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/dewi-free-multi-purpose-html-template/ -->
-        Designed by <a href="www.inlpm.com/">INLPM</a>
-      </div>
-    </div>
-  </footer><!-- End Footer -->
-
-  <div id="preloader"></div>
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
-  <script src="assets/vendor/aos/aos.js"></script>
+  <!-- ======= Vendor JS Files ======= -->
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
   <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <!-- script src="assets/vendor/php-email-form/validate.js"></script>
 
-  <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
+  <!-- ======= Main JS ======= -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      AOS.init({ duration: 1000, once: true });
+
+      const navbar = document.getElementById('header');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) navbar.classList.add('sticky');
+        else navbar.classList.remove('sticky');
+      });
+
+      const glightbox = GLightbox({ selector: '.glightbox' });
+    });
+  </script>
 
 </body>
-
 </html>
