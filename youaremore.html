@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>You Are More Than a Human</title>
+
+  <!-- Bootstrap & Fonts -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Lora:ital,wght@0,400;1,600&display=swap" rel="stylesheet"/>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/turn.js@4/turn.min.js"></script>
+
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb') no-repeat center center fixed;
+      background-size: cover;
+      color: #2c2c2c;
+      overflow-x: hidden;
+    }
+
+    .navbar {
+      background-color: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .navbar-brand {
+      font-weight: 700;
+      font-size: 1.6rem;
+      color: #b30000 !important;
+    }
+
+    #book {
+      width: 90%;
+      max-width: 900px;
+      height: 600px;
+      margin: 2rem auto;
+      background: rgba(255, 255, 255, 0.93);
+      border-radius: 10px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+    }
+
+    .page {
+      background-color: #fff;
+      border-radius: 10px;
+      padding: 2rem;
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #333;
+      font-family: 'Lora', serif;
+    }
+
+    .page h2 {
+      color: #b30000;
+      font-weight: 600;
+      font-family: 'Poppins', sans-serif;
+      margin-bottom: 1rem;
+    }
+
+    .quote {
+      font-family: 'Lora', serif;
+      font-style: italic;
+      color: #c0392b;
+      font-size: 1.2rem;
+      text-align: center;
+      margin-top: 0.5rem;
+    }
+
+    .author-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #b30000;
+      color: #fff;
+      text-align: center;
+      padding: 0.5rem;
+      font-size: 0.9rem;
+    }
+
+    .nav-btn {
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      background: #b30000;
+      color: #fff;
+      border: none;
+      padding: 0.6rem 1rem;
+      border-radius: 50%;
+      font-size: 1.3rem;
+      z-index: 999;
+      cursor: pointer;
+    }
+    #prev { left: 3%; }
+    #next { right: 3%; }
+
+    @media (max-width: 768px) {
+      #book { height: 450px; }
+      .page { padding: 1rem; font-size: 0.9rem; }
+      .nav-btn { display: none; } /* Hide arrows on mobile */
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">📖 You Are More Than a Human</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#chapters-nav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="chapters-nav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link fw-semibold" href="#" data-chapter="intro.html">Introduction</a></li>
+          <li class="nav-item"><a class="nav-link fw-semibold" href="#" data-chapter="supernatural-knowledge.html">Supernatural Knowledge</a></li>
+          <li class="nav-item"><a class="nav-link fw-semibold" href="#" data-chapter="christianity-deeper.html">Christianity is Deeper</a></li>
+          <li class="nav-item"><a class="nav-link fw-semibold" href="#" data-chapter="seeking-eternal-solutions.html">Seeking Eternal Solutions</a></li>
+          <li class="nav-item"><a class="nav-link fw-semibold" href="#" data-chapter="supernatural-prayer.html">Supernatural Prayer</a></li>
+          <li class="nav-item"><a class="nav-link fw-semibold" href="#" data-chapter="life-beyond-senses.html">Life Beyond Five Senses</a></li>
+          <li class="nav-item"><a class="nav-link fw-semibold" href="#" data-chapter="overcoming-systems.html">Overcoming the Systems</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Quote -->
+  <div class="quote">“It is a crime to live an ordinary life as a Christian.”</div>
+
+  <!-- Flipbook -->
+  <div id="book"></div>
+
+  <!-- Navigation arrows -->
+  <button id="prev" class="nav-btn">⬅️</button>
+  <button id="next" class="nav-btn">➡️</button>
+
+  <!-- Author bar -->
+  <div class="author-bar">
+    <strong>Author:</strong> Prophet Vinoth Kumar | International New Life Prophetic Ministries – Coimbatore
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const $book = $("#book").turn({
+      width: 900,
+      height: 600,
+      autoCenter: true,
+      gradients: true,
+      acceleration: true,
+      display: "double",
+      elevation: 50
+    });
+
+    // Load initial chapter
+    loadChapter("chapters/intro.html");
+
+    // Load chapter content dynamically
+    function loadChapter(file) {
+      $("#book").turn("destroy").html("");
+      $.get(file, function(data) {
+        const pages = data.split("<!--page-break-->");
+        pages.forEach(p => $("#book").append(`<div class='page'>${p}</div>`));
+        $("#book").turn({
+          width: 900,
+          height: 600,
+          autoCenter: true,
+          gradients: true,
+          display: "double",
+          elevation: 50
+        });
+      });
+    }
+
+    // Navbar link click
+    $(".nav-link").on("click", function(e) {
+      e.preventDefault();
+      const chapter = "chapters/" + $(this).data("chapter");
+      loadChapter(chapter);
+    });
+
+    // Arrows
+    $("#next").click(()=>$("#book").turn("next"));
+    $("#prev").click(()=>$("#book").turn("previous"));
+  </script>
+</body>
+</html>
