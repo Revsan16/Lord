@@ -19,33 +19,42 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,400..900&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..800,0..100,0..1&family=Karla:wght@300..800&display=swap" rel="stylesheet">
 
   <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
 
-  <link href="assets/css/inlpm.css?v=6" rel="stylesheet">
+  <link href="assets/css/inlpm.css?v=12" rel="stylesheet">
 </head>
 
 <body>
 
-  <header class="site-header is-scrolled">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header header-solid">
     <div class="wrap">
-      <div class="brand">
-        <p class="brand-mark"><a href="index.html">INLPM</a></p>
-        <span class="brand-sub">International New Life Prophetic Ministry</span>
-      </div>
+      <a class="brand" href="index.html" aria-label="INLPM home">
+        <svg class="brand-emblem" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+          <path d="M20 3c0 6-6 8-6 14a6 6 0 0 0 12 0c0-6-6-8-6-14Z" stroke="#e0a93c" stroke-width="1.6" stroke-linejoin="round"/>
+          <path d="M20 37V19" stroke="#e0a93c" stroke-width="1.6" stroke-linecap="round"/>
+          <path d="M12 24h16" stroke="#c2410c" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+        <span class="brand-text">
+          <span class="brand-mark">INLPM</span>
+          <span class="brand-sub">New Life Prophetic Ministry</span>
+        </span>
+      </a>
     </div>
   </header>
 
   <main id="main">
     <section class="section" style="padding-top: calc(var(--header-h) + 6rem);">
       <div class="wrap-narrow">
-        <p class="eyebrow">You Are More Than a Human</p>
+        <p class="kicker">You Are More Than a Human</p>
         <h1 class="display-md">This page has moved</h1>
         <p class="lede">The book now has a proper home.</p>
         <div class="btn-row" style="margin-top: 2rem;">
           <a href="landc.html" class="btn btn-primary">Go to the book <i class="bi bi-arrow-right"></i></a>
-          <a href="index.html" class="btn btn-ghost">Back to home</a>
+          <a href="index.html" class="btn btn-outline">Back to home</a>
         </div>
       </div>
     </section>
@@ -53,12 +62,69 @@
 
   <footer class="site-footer">
     <div class="wrap">
+      <div class="footer-grid">
+
+        <div class="footer-col">
+          <p class="brand-mark" style="color:var(--on-dark);font-size:1.6rem;margin-bottom:.75rem">INLPM</p>
+          <p>New Life Prophetic Ministries,<br>Balagurusami Complex,<br>Narasimmanaicken Palayam,<br>Coimbatore, Tamil Nadu</p>
+          <p style="margin-top:.75rem">
+            <a href="tel:+919443522844">+91 94435 22844</a><br>
+            <a href="mailto:inlpm.ministries@gmail.com">inlpm.ministries@gmail.com</a>
+          </p>
+          <div class="social">
+            <a href="https://www.youtube.com/@inlpm" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+            <a href="https://wa.me/919787111321" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+            <a href="mailto:inlpm.ministries@gmail.com" aria-label="Email"><i class="bi bi-envelope"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h3>Visit</h3>
+          <ul>
+            <li><a href="index.html#visit">Plan your visit</a></li>
+            <li><a href="index.html#expect">What to expect</a></li>
+            <li><a href="index.html#prayer">Prayer request</a></li>
+            <li><a href="index.html#gallery">Gallery</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3>Grow</h3>
+          <ul>
+            <li><a href="index.html#schools">School of Prophets</a></li>
+            <li><a href="index.html#schools">School of Healing</a></li>
+            <li><a href="index.html#schools">School of Power</a></li>
+            <li><a href="index.html#training">Training programmes</a></li>
+            <li><a href="2024prophecy.html">2024 Prophecies</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3>Read &amp; watch</h3>
+          <ul>
+            <li><a href="22.html">As You Think, You Become</a></li>
+            <li><a href="landc.html">You Are More Than a Human</a></li>
+            <li><a href="index.html#messages">Messages</a></li>
+            <li><a href="index.html#about">About the pastor</a></li>
+          </ul>
+        </div>
+
+      </div>
+
       <div class="footer-bottom">
         <span>&copy; <span id="year">2026</span> INLPM. All rights reserved.</span>
         <span>International New Life Prophetic Ministry, Coimbatore</span>
       </div>
     </div>
   </footer>
+
+  <nav class="action-bar" aria-label="Quick actions">
+    <ul>
+      <li><a href="tel:+919443522844"><i class="bi bi-telephone-fill"></i>Call</a></li>
+      <li><a class="is-primary" href="index.html#visit"><i class="bi bi-calendar-check-fill"></i>Visit</a></li>
+      <li><a href="https://wa.me/919787111321" target="_blank" rel="noopener"><i class="bi bi-whatsapp"></i>WhatsApp</a></li>
+    </ul>
+  </nav>
 
   <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
 
