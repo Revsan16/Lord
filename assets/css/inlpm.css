@@ -2137,3 +2137,71 @@ p:last-child {
   display: inline-block;
   padding-block: 0.3rem;
 }
+
+/* -------------------------------------------------------------
+   Messages — a featured latest message above the grid.
+   Titles matter: eighteen bare thumbnails told a visitor nothing
+   about what they were about to watch.
+   ------------------------------------------------------------- */
+.feature-message {
+  display: grid;
+  gap: clamp(1.25rem, 1rem + 2vw, 2.5rem);
+  align-items: center;
+  background: var(--paper);
+  border: 1px solid var(--rule-light);
+  border-radius: var(--radius);
+  padding: clamp(1rem, 0.75rem + 1.5vw, 1.5rem);
+  box-shadow: var(--lift);
+  margin-bottom: clamp(2rem, 1.5rem + 2vw, 3rem);
+}
+
+.feature-message .video-card {
+  margin: 0;
+}
+
+.feature-message h3 {
+  font-size: clamp(1.25rem, 1.05rem + 1vw, 1.85rem);
+  margin: 0 0 0.5rem;
+}
+
+.message-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.message-card .video-card {
+  flex-shrink: 0;
+}
+
+.message-title {
+  font-family: var(--body);
+  font-size: 0.975rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--on-light);
+  margin: 0;
+  /* Keep the grid even when titles run long */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.message-card a:hover .message-title {
+  color: var(--ember);
+}
+
+.message-meta {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--on-light-dim);
+}
+
+@media (min-width: 48em) {
+  .feature-message {
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  }
+}
