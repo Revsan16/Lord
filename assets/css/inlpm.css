@@ -2440,3 +2440,36 @@ p:last-child {
     overflow: auto;
   }
 }
+
+/* -------------------------------------------------------------
+   Bronze crest. It is a relief render rather than a flat mark, so it
+   is given more room than a line logo would need, and the header keeps
+   its natural landscape proportion instead of sitting in a square box.
+   ------------------------------------------------------------- */
+.brand-emblem {
+  width: auto;
+  height: 2.9rem;
+  object-fit: contain;
+}
+
+.footer-crest {
+  width: 6.5rem;
+  height: auto;
+  margin-bottom: 1rem;
+}
+
+.intro-mark {
+  width: 7.5rem;
+  height: auto;
+  margin-bottom: 1.5rem;
+}
+
+@media (max-width: 30em) {
+  .brand-emblem {
+    height: 2.5rem;
+  }
+
+  .intro-mark {
+    width: 5.5rem;
+  }
+}
