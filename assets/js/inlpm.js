@@ -43,6 +43,119 @@
     }
   }
 
+
+  /* --- Intro ------------------------------------------------------------
+     The sword is drawn, then the commission appears. Runs once per session.
+     .has-intro is set by an inline script in <head>, so without JavaScript
+     the overlay never exists and the site is served whole.
+
+     On sound: browsers refuse to play audio before the visitor has
+     interacted with the page, so this cannot make noise on a cold load no
+     matter how it is written. The control below is honest about that — it
+     is off by default, remembers the choice, and the sound is synthesised
+     with the Web Audio API rather than downloaded, so it costs nothing and
+     licenses nothing. */
+  var intro = $(".intro");
+  if (intro && document.documentElement.classList.contains("has-intro")) {
+    var SOUND_KEY = "inlpm-sound";
+    var soundBtn = $(".intro-sound", intro);
+    var skipBtn = $(".intro-skip", intro);
+    var wantsSound = false;
+    try { wantsSound = localStorage.getItem(SOUND_KEY) === "on"; } catch (e) {}
+
+    var setSoundLabel = function () {
+      if (!soundBtn) return;
+      soundBtn.innerHTML =
+        '<i class="bi bi-volume-' + (wantsSound ? "up" : "mute") + '-fill"></i>' +
+        "<span>Sound " + (wantsSound ? "on" : "off") + "</span>";
+      soundBtn.setAttribute("aria-pressed", String(wantsSound));
+    };
+    setSoundLabel();
+
+    /* A blade leaving a scabbard: a bright metallic scrape that rises and
+       falls away, over a low swell for weight. */
+    var playSword = function () {
+      var Ctx = window.AudioContext || window.webkitAudioContext;
+      if (!Ctx) return;
+      var ctx = new Ctx();
+      if (ctx.state === "suspended" && ctx.resume) ctx.resume();
+      var t = ctx.currentTime + 0.02;
+
+      // Metallic scrape — filtered noise with a sweeping resonant band
+      var len = Math.floor(ctx.sampleRate * 0.9);
+      var buf = ctx.createBuffer(1, len, ctx.sampleRate);
+      var d = buf.getChannelData(0);
+      for (var i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * (1 - i / len);
+
+      var noise = ctx.createBufferSource();
+      noise.buffer = buf;
+
+      var band = ctx.createBiquadFilter();
+      band.type = "bandpass";
+      band.Q.value = 7;
+      band.frequency.setValueAtTime(900, t);
+      band.frequency.exponentialRampToValueAtTime(5200, t + 0.22);
+      band.frequency.exponentialRampToValueAtTime(1400, t + 0.75);
+
+      var ring = ctx.createBiquadFilter();
+      ring.type = "peaking";
+      ring.frequency.value = 3200;
+      ring.gain.value = 9;
+
+      var ng = ctx.createGain();
+      ng.gain.setValueAtTime(0.0001, t);
+      ng.gain.exponentialRampToValueAtTime(0.32, t + 0.05);
+      ng.gain.exponentialRampToValueAtTime(0.0001, t + 0.85);
+
+      noise.connect(band); band.connect(ring); ring.connect(ng); ng.connect(ctx.destination);
+
+      // Low swell underneath
+      var sub = ctx.createOscillator();
+      sub.type = "sine";
+      sub.frequency.setValueAtTime(48, t);
+      sub.frequency.exponentialRampToValueAtTime(32, t + 1.2);
+      var sg = ctx.createGain();
+      sg.gain.setValueAtTime(0.0001, t);
+      sg.gain.exponentialRampToValueAtTime(0.16, t + 0.3);
+      sg.gain.exponentialRampToValueAtTime(0.0001, t + 1.4);
+      sub.connect(sg); sg.connect(ctx.destination);
+
+      noise.start(t); noise.stop(t + 0.95);
+      sub.start(t); sub.stop(t + 1.45);
+      setTimeout(function () { if (ctx.close) ctx.close(); }, 2200);
+    };
+
+    var dismiss = function () {
+      document.documentElement.classList.remove("has-intro");
+      intro.remove();
+      try { sessionStorage.setItem("inlpm-intro", "seen"); } catch (e) {}
+    };
+
+    if (soundBtn) {
+      soundBtn.addEventListener("click", function () {
+        wantsSound = !wantsSound;
+        try { localStorage.setItem(SOUND_KEY, wantsSound ? "on" : "off"); } catch (e) {}
+        setSoundLabel();
+        // The click itself is the gesture that unlocks audio
+        if (wantsSound) playSword();
+      });
+    }
+
+    if (skipBtn) skipBtn.addEventListener("click", dismiss);
+    document.addEventListener("keydown", function onEsc(e) {
+      if (e.key === "Escape" && document.body.contains(intro)) {
+        dismiss();
+        document.removeEventListener("keydown", onEsc);
+      }
+    });
+
+    // Timed to land with the glint
+    if (wantsSound) setTimeout(playSword, 800);
+
+    // Matches the CSS fade-out, plus a beat
+    setTimeout(dismiss, 4400);
+  }
+
   /* --- Header state ----------------------------------------------------- */
   var header = $(".site-header");
   if (header && !header.classList.contains("header-solid")) {

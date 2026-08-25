@@ -25,7 +25,7 @@
 
   <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
   <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="assets/css/inlpm.css?v=20" rel="stylesheet">
+  <link href="assets/css/inlpm.css?v=22" rel="stylesheet">
 
   <script type="application/ld+json">
   {
@@ -52,9 +52,44 @@
     "founder": { "@type": "Person", "name": "Prophet T. Vinoth Kumar" }
   }
   </script>
+
+  <!-- Arms the intro before first paint so it never flashes, and never
+       appears at all without JavaScript or when reduced motion is asked for. -->
+  <script>
+    try {
+      if (!sessionStorage.getItem("inlpm-intro") &&
+          !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        document.documentElement.className += " has-intro";
+      }
+    } catch (e) {}
+  </script>
 </head>
 
 <body>
+
+  <!-- ======= Intro ======= -->
+  <div class="intro" role="dialog" aria-label="Welcome to INLPM">
+    <div class="intro-blade">
+      <img src="assets/img/hero-sword.jpg" alt="" width="1760" height="668" fetchpriority="high">
+      <span class="intro-glint" aria-hidden="true"></span>
+    </div>
+
+    <div class="intro-copy">
+      <img class="intro-mark" src="assets/img/logo.png" alt="" width="512" height="512">
+      <p class="intro-verse">
+        <span>Equipping every believer as a soldier,</span>
+        <span>and preparing the body of Christ</span>
+        <span>for the end-time revival movement.</span>
+      </p>
+      <div class="intro-rule" aria-hidden="true"></div>
+      <span class="intro-cite">International New Life Prophetic Ministry</span>
+    </div>
+
+    <button class="intro-sound" type="button" aria-pressed="false" aria-label="Toggle sound">
+      <i class="bi bi-volume-mute-fill"></i><span>Sound off</span>
+    </button>
+    <button class="intro-skip" type="button">Skip <i class="bi bi-arrow-right"></i></button>
+  </div>
 
   <a class="skip-link" href="#main">Skip to content</a>
 
@@ -912,7 +947,7 @@
   <a href="#hero" class="to-top" aria-label="Back to top"><i class="bi bi-arrow-up-short"></i></a>
 
   <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/js/inlpm.js?v=20"></script>
+  <script src="assets/js/inlpm.js?v=22"></script>
   <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
 
 </body>
