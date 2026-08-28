@@ -273,9 +273,29 @@
       });
     });
 
-    select(buttons.filter(function (b) {
-      return b.getAttribute("aria-selected") === "true";
-    })[0] || buttons[0]);
+    /* A link like gallery.html#g-tir should open that tab, not the first
+       one — the homepage place cards deep-link straight into a location. */
+    var fromHash = null;
+    if (window.location.hash) {
+      var wanted = window.location.hash.slice(1);
+      fromHash = buttons.filter(function (b) { return b.id === wanted; })[0] || null;
+    }
+
+    select(
+      fromHash ||
+      buttons.filter(function (b) {
+        return b.getAttribute("aria-selected") === "true";
+      })[0] ||
+      buttons[0]
+    );
+
+    if (fromHash) {
+      // Bring the panel into view under the fixed header
+      setTimeout(function () {
+        var top = group.getBoundingClientRect().top + window.scrollY - headerH() - 16;
+        window.scrollTo({ top: top, behavior: reduceMotion ? "auto" : "smooth" });
+      }, 60);
+    }
   });
 
   /* --- Commitment ladder: grow the bars when they scroll in ------------- */
