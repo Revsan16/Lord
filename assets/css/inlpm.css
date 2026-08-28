@@ -21,11 +21,12 @@
   --parchment-deep: #efe8da;
   --paper: #fffdf8;
 
-  /* Dark ground — sanctuary at night, blue-black not neutral-black */
-  --ink: #0e1626;
+  /* Dark ground — taken from the crest's own shadow bronze, hue ~33deg,
+     so the darks sit in the same warm band as the logo */
+  --ink: #140f09;
   --ink-2: #16203353;
-  --ink-solid: #162033;
-  --ink-3: #1f2b42;
+  --ink-solid: #211a11;
+  --ink-3: #2e2418;
 
   /* Accents */
   --brass: #8a5a0b;        /* gold, on light grounds — passes AA */
@@ -38,10 +39,10 @@
   --on-light: #16202f;
   --on-light-dim: #55606f;
   --on-dark: #f2ede3;
-  --on-dark-dim: #a9b2c2;
+  --on-dark-dim: #b3a996;
 
   /* Lines */
-  --rule-light: rgba(22, 32, 47, 0.14);
+  --rule-light: rgba(32, 24, 15, 0.14);
   --rule-dark: rgba(242, 237, 227, 0.16);
 
   /* Type */
@@ -60,8 +61,8 @@
   --reveal: 700ms;
 
   /* Elevation */
-  --lift: 0 1px 2px rgba(22, 32, 47, 0.05), 0 8px 28px rgba(22, 32, 47, 0.07);
-  --lift-hi: 0 2px 4px rgba(22, 32, 47, 0.06), 0 18px 44px rgba(22, 32, 47, 0.12);
+  --lift: 0 1px 2px rgba(32, 24, 15, 0.05), 0 8px 28px rgba(32, 24, 15, 0.07);
+  --lift-hi: 0 2px 4px rgba(32, 24, 15, 0.06), 0 18px 44px rgba(32, 24, 15, 0.12);
 
   /* z-index scale */
   --z-sticky: 30;
@@ -484,7 +485,7 @@ p:last-child {
   background: rgba(255, 253, 248, 0.96);
   backdrop-filter: blur(12px);
   border-bottom-color: var(--rule-light);
-  box-shadow: 0 1px 20px rgba(22, 32, 47, 0.06);
+  box-shadow: 0 1px 20px rgba(32, 24, 15, 0.06);
 }
 
 .site-header .wrap {
@@ -695,11 +696,11 @@ p:last-child {
   background: linear-gradient(
       to right,
       var(--ink) 0%,
-      rgba(14, 22, 38, 0.92) 42%,
-      rgba(14, 22, 38, 0.55) 72%,
-      rgba(14, 22, 38, 0.8) 100%
+      rgba(20, 15, 9, 0.92) 42%,
+      rgba(20, 15, 9, 0.55) 72%,
+      rgba(20, 15, 9, 0.8) 100%
     ),
-    linear-gradient(to top, var(--ink) 1%, rgba(14, 22, 38, 0) 40%);
+    linear-gradient(to top, var(--ink) 1%, rgba(20, 15, 9, 0) 40%);
 }
 
 .hero .wrap {
@@ -1192,7 +1193,7 @@ p:last-child {
   place-items: center;
   font-size: 2.5rem;
   color: #fff;
-  background: rgba(14, 22, 38, 0.35);
+  background: rgba(20, 15, 9, 0.35);
   opacity: 0;
   transition: opacity var(--micro) var(--ease);
 }
@@ -1541,7 +1542,7 @@ p:last-child {
   border-top: 1px solid var(--rule-light);
   padding: 0.5rem max(0.5rem, env(safe-area-inset-left))
     max(0.5rem, env(safe-area-inset-bottom)) max(0.5rem, env(safe-area-inset-right));
-  box-shadow: 0 -2px 20px rgba(22, 32, 47, 0.1);
+  box-shadow: 0 -2px 20px rgba(32, 24, 15, 0.1);
 }
 
 .action-bar ul {
@@ -1682,7 +1683,7 @@ p:last-child {
   font-size: 3.5rem;
   font-weight: 700;
   line-height: 1;
-  color: rgba(22, 32, 47, 0.06);
+  color: rgba(32, 24, 15, 0.06);
   pointer-events: none;
 }
 
@@ -2004,7 +2005,7 @@ p:last-child {
     gap: 0;
     background: var(--paper);
     border-bottom: 1px solid var(--rule-light);
-    box-shadow: 0 12px 28px rgba(22, 32, 47, 0.12);
+    box-shadow: 0 12px 28px rgba(32, 24, 15, 0.12);
     padding: 0.5rem var(--gutter) 1.5rem;
     max-height: calc(100svh - var(--header-h));
     overflow-y: auto;
