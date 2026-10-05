@@ -16,34 +16,36 @@
    1. Tokens
    ------------------------------------------------------------- */
 :root {
-  /* Light ground — warm parchment, the paper of a hymn book */
-  --parchment: #f7f3ea;
-  --parchment-deep: #efe8da;
-  --paper: #fffdf8;
+  /* Main ground — deep rich green. The same family as the Vybhav site's
+     green-black, carried further into colour. Bronze sits on green the way
+     it sits on a leather binding. */
+  --parchment: #0e2a22;        /* the page */
+  --parchment-deep: #09231c;   /* recesses, tracks, empty frames */
+  --paper: #143429;            /* the lifted band, was white */
 
-  /* Dark ground — taken from the crest's own shadow bronze, hue ~33deg,
-     so the darks sit in the same warm band as the logo */
-  --ink: #140f09;
-  --ink-2: #16203353;
-  --ink-solid: #211a11;
-  --ink-3: #2e2418;
+  /* Deeper greens for the bands that used to be near-black */
+  --ink: #071a15;
+  --ink-2: #0b221c53;
+  --ink-solid: #0b221c;
+  --ink-3: #15362b;
 
   /* Accents */
-  --brass: #8a5a0b;        /* gold, on light grounds — passes AA */
-  --brass-lit: #e0a93c;    /* gold, on dark grounds */
+  --brass: #e0a93c;        /* gold as TEXT — 7.2:1 on the green ground */
+  --brass-lit: #e0a93c;
   --brass-soft: #d9b96a;
-  --ember: #c2410c;        /* the ministry's fire, secondary */
-  --ember-lit: #f0703a;
+  --ember: #c2410c;        /* ember as a FILL, keeps white text at 5.2:1 */
+  --ember-lit: #f0703a;    /* ember as TEXT on green */
 
-  /* Text */
-  --on-light: #16202f;
-  --on-light-dim: #55606f;
-  --on-dark: #f2ede3;
-  --on-dark-dim: #b3a996;
+  /* Text. Everything sits on green now, so both pairs are light — the
+     -light / -dark names refer to which band, not to the colour. */
+  --on-light: #eef2ea;         /* on the main and lifted greens */
+  --on-light-dim: #a8bdb0;
+  --on-dark: #eef2ea;          /* on the deepest greens */
+  --on-dark-dim: #a8bdb0;
 
-  /* Lines */
-  --rule-light: rgba(32, 24, 15, 0.14);
-  --rule-dark: rgba(242, 237, 227, 0.16);
+  /* Lines — now light hairlines on green, not dark ones on paper */
+  --rule-light: rgba(238, 242, 234, 0.14);
+  --rule-dark: rgba(238, 242, 234, 0.16);
 
   /* Type */
   --display: "Fraunces", Georgia, "Times New Roman", serif;
@@ -61,8 +63,8 @@
   --reveal: 700ms;
 
   /* Elevation */
-  --lift: 0 1px 2px rgba(32, 24, 15, 0.05), 0 8px 28px rgba(32, 24, 15, 0.07);
-  --lift-hi: 0 2px 4px rgba(32, 24, 15, 0.06), 0 18px 44px rgba(32, 24, 15, 0.12);
+  --lift: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 28px rgba(0, 0, 0, 0.28);
+  --lift-hi: 0 2px 4px rgba(0, 0, 0, 0.35), 0 18px 44px rgba(0, 0, 0, 0.45);
 
   /* z-index scale */
   --z-sticky: 30;
@@ -109,7 +111,7 @@ a {
 }
 
 a:hover {
-  color: var(--ember);
+  color: var(--ember-lit);
 }
 
 /* 3px focus ring, visible on both grounds */
@@ -125,7 +127,7 @@ a:hover {
 
 ::selection {
   background: var(--brass-soft);
-  color: var(--on-light);
+  color: var(--ink);
 }
 
 .skip-link {
@@ -302,9 +304,10 @@ p:last-child {
   color: var(--ember-lit);
 }
 
-/* Slightly lifted light band */
+/* The alternating band. It sits slightly deeper than the page, so cards —
+   which use --paper — lift off both it and the main ground. */
 .on-paper {
-  background: var(--paper);
+  background: var(--parchment-deep);
 }
 
 .section-head {
@@ -400,13 +403,13 @@ p:last-child {
 
 .btn-gold {
   background: var(--brass);
-  color: #fff;
+  color: var(--ink);
   box-shadow: var(--lift);
 }
 
 .btn-gold:hover {
-  background: #6f480a;
-  color: #fff;
+  background: #eec069;
+  color: var(--ink);
   box-shadow: var(--lift-hi);
 }
 
@@ -419,7 +422,7 @@ p:last-child {
 .btn-outline:hover {
   color: var(--ember);
   border-color: var(--ember);
-  background: rgba(194, 65, 12, 0.05);
+  background: rgba(240, 112, 58, 0.08);
 }
 
 .on-dark .btn-outline {
@@ -482,10 +485,10 @@ p:last-child {
 }
 
 .site-header.is-scrolled {
-  background: rgba(255, 253, 248, 0.96);
+  background: rgba(14, 42, 34, 0.94);
   backdrop-filter: blur(12px);
   border-bottom-color: var(--rule-light);
-  box-shadow: 0 1px 20px rgba(32, 24, 15, 0.06);
+  box-shadow: 0 1px 20px rgba(0, 0, 0, 0.35);
 }
 
 .site-header .wrap {
@@ -649,7 +652,7 @@ p:last-child {
 
 /* Inner pages have a light header from the start */
 .site-header.header-solid {
-  background: rgba(255, 253, 248, 0.96);
+  background: rgba(14, 42, 34, 0.94);
   backdrop-filter: blur(12px);
   border-bottom-color: var(--rule-light);
 }
@@ -1272,7 +1275,9 @@ p:last-child {
 }
 
 .tab-btn[aria-selected="true"] {
-  color: #fff;
+  /* Dark green on gold. White was fine on the old darker brass but only
+     reaches 2.1:1 on this one. */
+  color: var(--ink);
   background: var(--brass);
   border-color: var(--brass);
 }
@@ -1537,12 +1542,12 @@ p:last-child {
   inset: auto 0 0 0;
   z-index: var(--z-sticky);
   display: none;
-  background: rgba(255, 253, 248, 0.97);
+  background: rgba(14, 42, 34, 0.96);
   backdrop-filter: blur(12px);
   border-top: 1px solid var(--rule-light);
   padding: 0.5rem max(0.5rem, env(safe-area-inset-left))
     max(0.5rem, env(safe-area-inset-bottom)) max(0.5rem, env(safe-area-inset-right));
-  box-shadow: 0 -2px 20px rgba(32, 24, 15, 0.1);
+  box-shadow: 0 -2px 20px rgba(0, 0, 0, 0.4);
 }
 
 .action-bar ul {
@@ -1683,7 +1688,7 @@ p:last-child {
   font-size: 3.5rem;
   font-weight: 700;
   line-height: 1;
-  color: rgba(32, 24, 15, 0.06);
+  color: rgba(238, 242, 234, 0.07);
   pointer-events: none;
 }
 
@@ -1861,13 +1866,13 @@ p:last-child {
 
 .reader-nav button:hover {
   color: var(--on-light);
-  background: rgba(138, 90, 11, 0.06);
+  background: rgba(224, 169, 60, 0.08);
 }
 
 .reader-nav button[aria-current="true"] {
   color: var(--on-light);
   border-left-color: var(--ember);
-  background: rgba(194, 65, 12, 0.07);
+  background: rgba(240, 112, 58, 0.1);
 }
 
 .reader-nav .n {
@@ -2005,7 +2010,7 @@ p:last-child {
     gap: 0;
     background: var(--paper);
     border-bottom: 1px solid var(--rule-light);
-    box-shadow: 0 12px 28px rgba(32, 24, 15, 0.12);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
     padding: 0.5rem var(--gutter) 1.5rem;
     max-height: calc(100svh - var(--header-h));
     overflow-y: auto;
