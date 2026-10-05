@@ -25,7 +25,7 @@
 
   <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
   <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="assets/css/inlpm.css?v=28" rel="stylesheet">
+  <link href="assets/css/inlpm.css?v=29" rel="stylesheet">
 
   <script type="application/ld+json">
   {
@@ -34,7 +34,7 @@
     "name": "International New Life Prophetic Ministry",
     "alternateName": "INLPM",
     "url": "https://www.inlpm.com/",
-    "telephone": "+91-94435-22844",
+    "telephone": "+91-77089-15274",
     "email": "inlpm.ministries@gmail.com",
     "address": {
       "@type": "PostalAddress",
@@ -357,13 +357,19 @@
     <section class="section on-dark" id="prayer">
       <div class="wrap-narrow">
         <div class="section-head" data-reveal>
-          <p class="kicker">Prayer request</p>
+          <p class="kicker">El Shama &middot; The God who hears</p>
           <h2 class="display-lg">Tell us what to pray for.</h2>
-          <p class="lede">Send it now and the ministry team will pray over it. You do not have to give your full name.</p>
+          <p class="lede">The prayer team reads every request and prays over it. You do not have to give your full name.</p>
         </div>
 
-        <form class="form" novalidate data-whatsapp="919787111321"
+        <!-- data-endpoint is empty until the Worker is live. While it is empty
+             the form falls back to opening WhatsApp, exactly as before, so the
+             page keeps working at every stage of the move. -->
+        <form class="form js-prayer" novalidate
+              data-endpoint=""
+              data-whatsapp="917708915274"
               data-intro="Prayer request from the INLPM website:" data-reveal>
+
           <div class="form-row">
             <div class="field">
               <label for="p-name">Your name</label>
@@ -372,23 +378,51 @@
             </div>
             <div class="field">
               <label for="p-phone">Phone or WhatsApp</label>
-              <input type="tel" id="p-phone" name="phone" placeholder="So we can reply" required>
+              <input type="tel" id="p-phone" name="phone" placeholder="So the team can reply" required>
               <span class="field-error" aria-live="polite"></span>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="field">
+              <label for="p-about">What is it about</label>
+              <select id="p-about" name="about">
+                <option>Healing</option>
+                <option>Family</option>
+                <option>Work or finances</option>
+                <option>Guidance</option>
+                <option>Salvation of someone</option>
+                <option>Thanksgiving</option>
+                <option>Something else</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="p-when">How soon</label>
+              <select id="p-when" name="when">
+                <option>Whenever the team can</option>
+                <option>This week</option>
+                <option>Urgent &mdash; today</option>
+              </select>
             </div>
           </div>
 
           <div class="field">
             <label for="p-need">What should we pray for</label>
-            <textarea id="p-need" name="need" rows="4" placeholder="Write as much or as little as you want" required></textarea>
+            <textarea id="p-need" name="need" rows="5" placeholder="Write in Tamil or English, as much or as little as you want" required></textarea>
             <span class="field-error" aria-live="polite"></span>
           </div>
 
+          <label class="check">
+            <input type="checkbox" id="p-private" name="private" value="Yes">
+            <span>Keep my name private &mdash; share the request with the team without it</span>
+          </label>
+
           <div class="btn-row">
             <button type="submit" class="btn btn-primary">
-              <i class="bi bi-whatsapp"></i> Send prayer request
+              <i class="bi bi-send-fill"></i> Send prayer request
             </button>
           </div>
-          <p class="form-note">This opens WhatsApp with your request ready to send. Nothing is stored on this website.</p>
+          <p class="form-note js-prayer-note">This opens WhatsApp with your request ready to send.</p>
         </form>
       </div>
     </section>
@@ -799,7 +833,7 @@
 
             <ul class="tick-list" style="margin-top:1.75rem">
               <li><i class="bi bi-geo-alt-fill"></i><span>Second Floor, Murugan Bajaj Showroom, Vadamadurai, Coimbatore, Tamil Nadu</span></li>
-              <li><i class="bi bi-telephone-fill"></i><span><a href="tel:+919443522844">+91 94435 22844</a></span></li>
+              <li><i class="bi bi-telephone-fill"></i><span><a href="tel:+917708915274">+91 77089 15274</a></span></li>
               <li><i class="bi bi-envelope-fill"></i><span><a href="mailto:inlpm.ministries@gmail.com">inlpm.ministries@gmail.com</a></span></li>
             </ul>
 
@@ -811,7 +845,7 @@
             </div>
           </div>
 
-          <form class="form" novalidate data-whatsapp="919787111321"
+          <form class="form" novalidate data-whatsapp="917708915274"
                 data-intro="Planning a visit — from the INLPM website:" data-reveal data-reveal-delay="100">
             <div class="form-row">
               <div class="field">
@@ -869,12 +903,12 @@
           <p class="brand-mark" style="color:var(--on-dark);font-size:1.6rem;margin-bottom:.75rem">INLPM</p>
           <p>New Life Prophetic Ministries,<br>Second Floor, Murugan Bajaj Showroom,<br>Vadamadurai,<br>Coimbatore, Tamil Nadu</p>
           <p style="margin-top:.75rem">
-            <a href="tel:+919443522844">+91 94435 22844</a><br>
+            <a href="tel:+917708915274">+91 77089 15274</a><br>
             <a href="mailto:inlpm.ministries@gmail.com">inlpm.ministries@gmail.com</a>
           </p>
           <div class="social">
             <a href="https://www.youtube.com/@prophetvinothkumar" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
-            <a href="https://wa.me/919787111321" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+            <a href="https://wa.me/917708915274" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
             <a href="mailto:inlpm.ministries@gmail.com" aria-label="Email"><i class="bi bi-envelope"></i></a>
           </div>
         </div>
@@ -923,16 +957,16 @@
   <!-- ======= Sticky action bar, mobile ======= -->
   <nav class="action-bar" aria-label="Quick actions">
     <ul>
-      <li><a href="tel:+919443522844"><i class="bi bi-telephone-fill"></i>Call</a></li>
+      <li><a href="tel:+917708915274"><i class="bi bi-telephone-fill"></i>Call</a></li>
       <li><a class="is-primary" href="#visit"><i class="bi bi-calendar-check-fill"></i>Visit</a></li>
-      <li><a href="https://wa.me/919787111321" target="_blank" rel="noopener"><i class="bi bi-whatsapp"></i>WhatsApp</a></li>
+      <li><a href="https://wa.me/917708915274" target="_blank" rel="noopener"><i class="bi bi-whatsapp"></i>WhatsApp</a></li>
     </ul>
   </nav>
 
   <a href="#hero" class="to-top" aria-label="Back to top"><i class="bi bi-arrow-up-short"></i></a>
 
   <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/js/inlpm.js?v=28"></script>
+  <script src="assets/js/inlpm.js?v=29"></script>
   <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
 
 </body>

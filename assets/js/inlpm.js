@@ -424,7 +424,9 @@
     return true;
   };
 
-  $$("form[data-whatsapp]").forEach(function (form) {
+  /* The prayer form has data-whatsapp too, for its fallback, but it owns its
+     own submit handler below — binding this one as well would send twice. */
+  $$("form[data-whatsapp]:not(.js-prayer)").forEach(function (form) {
     var fields = $$(".field", form);
 
     fields.forEach(function (field) {
@@ -490,6 +492,132 @@
       }, 2500);
     });
   });
+
+  /* --- Prayer request ---------------------------------------------------
+     Two modes, chosen by data-endpoint:
+
+       empty  -> compose a WhatsApp message, exactly as the other forms do.
+                 This is the fallback, so the form keeps working before the
+                 Worker exists and if it ever goes down.
+       set    -> POST to the Worker, which relays into the team's Telegram
+                 group. The visitor needs no app at all.
+
+     The endpoint is read from the markup rather than hard-coded so the
+     switch is a one-line HTML change, not a JS edit. */
+  var prayer = $("form.js-prayer");
+  if (prayer) {
+    var endpoint = (prayer.getAttribute("data-endpoint") || "").trim();
+    var note = $(".js-prayer-note", prayer);
+
+    if (endpoint && note) {
+      note.textContent =
+        "The prayer team is notified straight away. Nothing is shown publicly.";
+    }
+
+    var fields = $$(".field", prayer);
+
+    var gather = function () {
+      var data = new FormData(prayer);
+      var val = function (k) { return String(data.get(k) || "").trim(); };
+      var anon = val("private") === "Yes";
+      return {
+        name: anon ? "(name withheld)" : val("name"),
+        phone: val("phone"),
+        about: val("about"),
+        when: val("when"),
+        need: val("need"),
+        anonymous: anon
+      };
+    };
+
+    var showSent = function () {
+      var box = document.createElement("div");
+      box.className = "form-sent";
+      box.setAttribute("role", "status");
+      box.innerHTML =
+        '<i class="bi bi-check2-circle"></i>' +
+        "<h3>Your request has reached the team</h3>" +
+        "<p>They will pray over it, and someone will reply to you. " +
+        "If it is urgent, you can also call the ministry.</p>";
+      prayer.replaceWith(box);
+      box.scrollIntoView({ block: "center", behavior: reduceMotion ? "auto" : "smooth" });
+    };
+
+    prayer.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      var ok = true, firstBad = null;
+      fields.forEach(function (f) {
+        if (!validate(f)) {
+          ok = false;
+          if (!firstBad) firstBad = $("input, textarea, select", f);
+        }
+      });
+      if (!ok) { if (firstBad) firstBad.focus(); return; }
+
+      var button = $('button[type="submit"]', prayer);
+      var restore = function () {
+        if (!button) return;
+        button.disabled = false;
+        button.innerHTML = button.dataset.label;
+      };
+      if (button) {
+        button.dataset.label = button.innerHTML;
+        button.disabled = true;
+        button.innerHTML = "Sending…";
+      }
+
+      var req = gather();
+
+      if (!endpoint) {
+        // WhatsApp fallback
+        var lines = [
+          prayer.getAttribute("data-intro") || "Prayer request:",
+          "Name: " + req.name,
+          "Phone: " + req.phone,
+          "About: " + req.about,
+          "How soon: " + req.when,
+          "",
+          req.need
+        ];
+        var phone = prayer.getAttribute("data-whatsapp");
+        var text = encodeURIComponent(lines.join("\n"));
+        var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        if (isMobile) window.location.href = "whatsapp://send?phone=" + phone + "&text=" + text;
+        else window.open("https://wa.me/" + phone + "?text=" + text, "_blank", "noopener");
+        setTimeout(restore, 2500);
+        return;
+      }
+
+      fetch(endpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(req)
+      })
+        .then(function (res) {
+          if (!res.ok) throw new Error(String(res.status));
+          showSent();
+        })
+        .catch(function () {
+          // Never lose a request because the relay is down — hand it to WhatsApp
+          restore();
+          if (note) {
+            note.textContent =
+              "We could not reach the team automatically. Opening WhatsApp so your request still gets through.";
+          }
+          var fb = [
+            "Prayer request from the INLPM website:",
+            "Name: " + req.name, "Phone: " + req.phone,
+            "About: " + req.about, "How soon: " + req.when, "", req.need
+          ].join("\n");
+          window.open(
+            "https://wa.me/" + prayer.getAttribute("data-whatsapp") +
+            "?text=" + encodeURIComponent(fb),
+            "_blank", "noopener"
+          );
+        });
+    });
+  }
 
   /* --- Lightbox --------------------------------------------------------- */
   if (typeof GLightbox === "function") {
