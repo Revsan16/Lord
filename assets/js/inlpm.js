@@ -619,6 +619,190 @@
     });
   }
 
+  /* --- Simeon ------------------------------------------------------------
+     A scripted assistant for the questions that have one correct answer:
+     when we meet, where we are, how long a school runs. Deliberately not
+     generative — a model could get the service time wrong, and this cannot.
+
+     Anything pastoral is not answered here. It is handed to the prayer
+     form or to a person on WhatsApp.
+
+     Injects itself, so it appears on every page that loads this file. */
+  (function () {
+    if (document.querySelector(".simeon-launch")) return;
+
+    var WA = "917708915274";
+    var home = /\/(index\.html)?$/.test(location.pathname) ? "" : "index.html";
+
+    var FACTS = {
+      service:
+        "<b>Sunday worship is 9:00 – 11:00 AM.</b><br>" +
+        "The prayer meeting day is still being arranged, and the next School of " +
+        "Prophets intake is not fixed yet — ask on WhatsApp and the office will tell you.",
+      where:
+        "We meet at <b>Second Floor, Murugan Bajaj Showroom, Vadamadurai, Coimbatore</b>." +
+        '<br><a href="https://www.google.com/maps/search/?api=1&query=Murugan+Bajaj+Showroom+Vadamadurai+Coimbatore" target="_blank" rel="noopener">Open in Maps</a>',
+      first:
+        "Come a few minutes early and somebody will show you where to sit. " +
+        "There is no dress code. Most of the meeting is in Tamil, with English alongside. " +
+        "At the end you can come forward for prayer or stay in your seat — both are normal." +
+        '<br><a href="' + home + '#expect">What to expect</a>',
+      schools:
+        "<b>School of Prophets</b> — 12 weeks<br>" +
+        "<b>School of Healing</b> — 12 weeks<br>" +
+        "<b>School of Power</b> — ongoing<br>" +
+        "<b>Raising Young Leaders</b> — 15 weeks<br>" +
+        "<b>Transforming Our Lives with Jesus</b> — 40 days<br>" +
+        "<b>Empowering Our Lives with Jesus</b> — 10 days" +
+        '<br><br><a href="' + home + '#schools">See the schools</a>',
+      books:
+        '<a href="22.html">As You Think, You Become</a> — fifty thoughts, free to read here.<br>' +
+        '<a href="landc.html">You Are More Than a Human</a><br>' +
+        "<i>Keys of Successful Life</i> — Tamil and English.",
+      messages:
+        "There are twenty-one messages on the site, and more on the channel." +
+        '<br><a href="' + home + '#messages">Watch here</a> &middot; ' +
+        '<a href="https://www.youtube.com/@prophetvinothkumar" target="_blank" rel="noopener">YouTube</a>',
+      contact:
+        "Phone or WhatsApp <b>+91 77089 15274</b>" +
+        '<br><a href="https://wa.me/' + WA + '" target="_blank" rel="noopener">Message on WhatsApp</a>' +
+        '<br><a href="mailto:inlpm.ministries@gmail.com">inlpm.ministries@gmail.com</a>',
+      prayer:
+        "I don't answer prayer requests myself — the prayer team reads every one " +
+        "and prays over it, and somebody replies to you personally." +
+        '<br><br><a href="' + home + '#prayer">Send a prayer request</a>'
+    };
+
+    var CHIPS = [
+      ["When do you meet?", "service"],
+      ["Where are you?", "where"],
+      ["My first visit", "first"],
+      ["The schools", "schools"],
+      ["Books", "books"],
+      ["Messages", "messages"],
+      ["Prayer request", "prayer"],
+      ["Talk to someone", "contact"]
+    ];
+
+    // Keyword matching, longest intent first so "prayer meeting" beats "prayer"
+    var MATCH = [
+      ["service", /\b(service|sunday|time|timing|when|worship|meeting time|what time|hours)\b/i],
+      ["where",   /\b(where|address|location|direction|map|reach|place|how to come)\b/i],
+      ["first",   /\b(first|new|visit|expect|dress|wear|language|tamil|english)\b/i],
+      ["schools", /\b(school|class|course|training|prophet|healing|power|join|enrol|enroll|admission|intake)\b/i],
+      ["books",   /\b(book|read|think|become|human|keys)\b/i],
+      ["messages",/\b(message|sermon|video|youtube|watch|preach)\b/i],
+      ["prayer",  /\b(pray|prayer|request|need|sick|healing for|help me)\b/i],
+      ["contact", /\b(contact|phone|call|number|whatsapp|email|talk|speak|someone)\b/i]
+    ];
+
+    var launch = document.createElement("button");
+    launch.className = "simeon-launch";
+    launch.type = "button";
+    launch.setAttribute("aria-expanded", "false");
+    launch.innerHTML = '<i class="bi bi-chat-heart-fill"></i> Ask Simeon';
+
+    var panel = document.createElement("div");
+    panel.className = "simeon-panel";
+    panel.hidden = true;
+    panel.setAttribute("role", "dialog");
+    panel.setAttribute("aria-label", "Ask Simeon");
+    panel.innerHTML =
+      '<div class="simeon-head">' +
+        '<img src="assets/img/brand/crest-mark.png?v=25" alt="">' +
+        "<span><strong>Simeon</strong><span>INLPM &middot; here to help you find things</span></span>" +
+        '<button class="simeon-close" type="button" aria-label="Close"><i class="bi bi-x-lg"></i></button>' +
+      "</div>" +
+      '<div class="simeon-log" role="log" aria-live="polite"></div>' +
+      '<div class="simeon-chips"></div>' +
+      '<form class="simeon-form">' +
+        '<input type="text" aria-label="Ask a question" placeholder="Ask about times, place, schools…">' +
+        '<button type="submit" aria-label="Send"><i class="bi bi-arrow-right"></i></button>' +
+      "</form>";
+
+    document.body.appendChild(launch);
+    document.body.appendChild(panel);
+
+    var log = $(".simeon-log", panel);
+    var chips = $(".simeon-chips", panel);
+    var form = $(".simeon-form", panel);
+    var input = $("input", form);
+
+    var say = function (html, who) {
+      var m = document.createElement("div");
+      m.className = "simeon-msg from-" + who;
+      m.innerHTML = html;
+      log.appendChild(m);
+      log.scrollTop = log.scrollHeight;
+    };
+
+    CHIPS.forEach(function (c) {
+      var b = document.createElement("button");
+      b.className = "simeon-chip";
+      b.type = "button";
+      b.textContent = c[0];
+      b.addEventListener("click", function () {
+        say(c[0], "you");
+        setTimeout(function () { say(FACTS[c[1]], "bot"); }, 220);
+      });
+      chips.appendChild(b);
+    });
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var q = input.value.trim();
+      if (!q) return;
+      say(q.replace(/[<>]/g, ""), "you");
+      input.value = "";
+
+      var key = null;
+      for (var i = 0; i < MATCH.length; i++) {
+        if (MATCH[i][1].test(q)) { key = MATCH[i][0]; break; }
+      }
+      setTimeout(function () {
+        if (key) {
+          say(FACTS[key], "bot");
+        } else {
+          say(
+            "I only know the practical things — when we meet, where we are, the " +
+            "schools, the books. For anything else the office will answer properly." +
+            '<br><a href="https://wa.me/' + WA + '?text=' +
+            encodeURIComponent(q) + '" target="_blank" rel="noopener">Ask on WhatsApp</a>',
+            "bot"
+          );
+        }
+      }, 220);
+    });
+
+    var open = function () {
+      panel.hidden = false;
+      launch.setAttribute("aria-expanded", "true");
+      launch.style.display = "none";
+      if (!log.children.length) {
+        say(
+          "Peace to you. I'm Simeon. I can tell you when we meet, where to find " +
+          "us, and what the schools involve.<br><br>For prayer, I'll pass you " +
+          "to the team — they read every request themselves.",
+          "bot"
+        );
+      }
+      input.focus();
+    };
+
+    var close = function () {
+      panel.hidden = true;
+      launch.style.display = "";
+      launch.setAttribute("aria-expanded", "false");
+      launch.focus();
+    };
+
+    launch.addEventListener("click", open);
+    $(".simeon-close", panel).addEventListener("click", close);
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && !panel.hidden) close();
+    });
+  })();
+
   /* --- Lightbox --------------------------------------------------------- */
   if (typeof GLightbox === "function") {
     GLightbox({ selector: ".glightbox" });
