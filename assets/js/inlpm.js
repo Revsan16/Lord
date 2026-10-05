@@ -645,8 +645,7 @@
       first:
         "Come a few minutes early and somebody will show you where to sit. " +
         "There is no dress code. Most of the meeting is in Tamil, with English alongside. " +
-        "At the end you can come forward for prayer or stay in your seat — both are normal." +
-        '<br><a href="' + home + '#expect">What to expect</a>',
+        "At the end you can come forward for prayer or stay in your seat — both are normal.",
       schools:
         "<b>School of Prophets</b> — 12 weeks<br>" +
         "<b>School of Healing</b> — 12 weeks<br>" +
