@@ -2821,3 +2821,17 @@ p:last-child {
   color: var(--brass);
   margin: 0 0 0.45rem;
 }
+
+/* A school tile with no artwork of its own — same frame as the others,
+   carrying an icon instead of a logo, so the grid stays one family. */
+.school-art.is-icon {
+  aspect-ratio: 4 / 3;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(160deg, var(--ink-3), var(--parchment-deep));
+}
+
+.school-art.is-icon i {
+  font-size: 2.75rem;
+  color: var(--brass);
+}
