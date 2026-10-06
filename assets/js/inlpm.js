@@ -631,7 +631,9 @@
   (function () {
     if (document.querySelector(".simeon-launch")) return;
 
-    var WA = "917708915274";
+    // Simeon's own WhatsApp links go to this number. The rest of the site —
+    // the Call button, the footer, the prayer form — stays on 7708915274.
+    var WA = "919787111321";
     var home = /\/(index\.html)?$/.test(location.pathname) ? "" : "index.html";
 
     var FACTS = {
