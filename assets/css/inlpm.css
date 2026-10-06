@@ -2811,3 +2811,13 @@ p:last-child {
     bottom: 9.75rem;
   }
 }
+
+/* Which languages a book is published in */
+.book-langs {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--brass);
+  margin: 0 0 0.45rem;
+}
