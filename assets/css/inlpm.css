@@ -1,0 +1,3097 @@
+/* =============================================================
+   INLPM — International New Life Prophetic Ministry, Coimbatore
+   Design system v2 — built for conversion.
+
+   House style carried over from the other two sites in this family
+   (Vybhav Associates, Zionie Bake House): gold accent, serif display,
+   warm off-white ground, mono uppercase kickers, hairline rules with a
+   centred label, gentle scroll reveals, WhatsApp-driven forms.
+
+   What is new here: the page is light-dominant. A church has to be
+   legible and welcoming before it is atmospheric, so the fire lives in
+   the hero and in dark bands that punctuate a warm parchment ground.
+   ============================================================= */
+
+/* -------------------------------------------------------------
+   1. Tokens
+   ------------------------------------------------------------- */
+:root {
+  /* Main ground — deep rich green. The same family as the Vybhav site's
+     green-black, carried further into colour. Bronze sits on green the way
+     it sits on a leather binding. */
+  --parchment: #0e2a22;        /* the page */
+  --parchment-deep: #09231c;   /* recesses, tracks, empty frames */
+  --paper: #143429;            /* the lifted band, was white */
+
+  /* Deeper greens for the bands that used to be near-black */
+  --ink: #071a15;
+  --ink-2: #0b221c53;
+  --ink-solid: #0b221c;
+  --ink-3: #15362b;
+
+  /* Accents */
+  --brass: #e0a93c;        /* gold as TEXT — 7.2:1 on the green ground */
+  --brass-lit: #e0a93c;
+  --brass-soft: #d9b96a;
+  --ember: #c2410c;        /* ember as a FILL, keeps white text at 5.2:1 */
+  --ember-lit: #f0703a;    /* ember as TEXT on green */
+
+  /* Text. Everything sits on green now, so both pairs are light — the
+     -light / -dark names refer to which band, not to the colour. */
+  --on-light: #eef2ea;         /* on the main and lifted greens */
+  --on-light-dim: #a8bdb0;
+  --on-dark: #eef2ea;          /* on the deepest greens */
+  --on-dark-dim: #a8bdb0;
+
+  /* Lines — now light hairlines on green, not dark ones on paper */
+  --rule-light: rgba(238, 242, 234, 0.14);
+  --rule-dark: rgba(238, 242, 234, 0.16);
+
+  /* Type */
+  --display: "Fraunces", Georgia, "Times New Roman", serif;
+  --body: "Karla", "Helvetica Neue", Arial, sans-serif;
+  --mono: "DM Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  /* Rhythm */
+  --gutter: 1.25rem;
+  --header-h: 4.5rem;
+  --radius: 4px;
+
+  /* Motion */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --micro: 200ms;
+  --reveal: 700ms;
+
+  /* Elevation */
+  --lift: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 28px rgba(0, 0, 0, 0.28);
+  --lift-hi: 0 2px 4px rgba(0, 0, 0, 0.35), 0 18px 44px rgba(0, 0, 0, 0.45);
+
+  /* z-index scale */
+  --z-sticky: 30;
+  --z-header: 40;
+  --z-overlay: 50;
+}
+
+/* -------------------------------------------------------------
+   2. Base
+   ------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--parchment);
+  color: var(--on-light);
+  font-family: var(--body);
+  /* Never below 16px on mobile */
+  font-size: clamp(1rem, 0.97rem + 0.15vw, 1.0625rem);
+  line-height: 1.65;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: var(--brass);
+  text-decoration: none;
+  transition: color var(--micro) var(--ease);
+}
+
+a:hover {
+  color: var(--ember-lit);
+}
+
+/* 3px focus ring, visible on both grounds */
+:focus-visible {
+  outline: 3px solid var(--ember);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.on-dark :focus-visible {
+  outline-color: var(--brass-lit);
+}
+
+::selection {
+  background: var(--brass-soft);
+  color: var(--ink);
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: var(--z-overlay);
+  background: var(--ink);
+  color: var(--on-dark);
+  padding: 0.9rem 1.25rem;
+  font-family: var(--mono);
+  font-size: 0.8125rem;
+}
+
+.skip-link:focus {
+  left: 0;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* -------------------------------------------------------------
+   3. Typography
+   ------------------------------------------------------------- */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--display);
+  font-weight: 600;
+  font-variation-settings: "SOFT" 20, "WONK" 0;
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  margin: 0 0 0.5em;
+  text-wrap: balance;
+}
+
+p {
+  margin: 0 0 1em;
+  /* 65-75 characters */
+  max-width: 68ch;
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+.display-xl {
+  font-size: clamp(2.5rem, 1.6rem + 3.6vw, 4.5rem);
+  font-weight: 600;
+  font-variation-settings: "SOFT" 30, "WONK" 1;
+}
+
+.display-lg {
+  font-size: clamp(2rem, 1.4rem + 2.6vw, 3.25rem);
+}
+
+.display-md {
+  font-size: clamp(1.5rem, 1.25rem + 1.3vw, 2.125rem);
+}
+
+/* Mono uppercase kicker — the motif carried from the Vybhav site */
+.kicker {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--brass);
+  line-height: 1.4;
+  margin: 0 0 1rem;
+}
+
+.on-dark .kicker {
+  color: var(--brass-lit);
+}
+
+.lede {
+  font-size: clamp(1.0625rem, 1rem + 0.45vw, 1.3125rem);
+  line-height: 1.6;
+  max-width: 60ch;
+}
+
+.dim {
+  color: var(--on-light-dim);
+}
+
+.on-dark .dim {
+  color: var(--on-dark-dim);
+}
+
+/* Scripture */
+.verse {
+  font-family: var(--display);
+  font-style: italic;
+  font-size: clamp(1.0625rem, 1rem + 0.4vw, 1.3rem);
+  font-variation-settings: "SOFT" 40, "WONK" 1;
+  line-height: 1.5;
+  color: var(--brass);
+  max-width: 46ch;
+  margin: 0;
+  padding-left: 1.25rem;
+  border-left: 2px solid var(--brass);
+}
+
+.on-dark .verse {
+  color: var(--brass-lit);
+  border-left-color: var(--ember-lit);
+}
+
+.verse cite {
+  display: block;
+  margin-top: 0.5rem;
+  font-family: var(--mono);
+  font-style: normal;
+  font-size: 0.6875rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--on-light-dim);
+}
+
+.on-dark .verse cite {
+  color: var(--on-dark-dim);
+}
+
+/* -------------------------------------------------------------
+   4. Layout
+   ------------------------------------------------------------- */
+.wrap {
+  width: min(1180px, 100% - (2 * var(--gutter)));
+  margin-inline: auto;
+}
+
+.wrap-narrow {
+  width: min(760px, 100% - (2 * var(--gutter)));
+  margin-inline: auto;
+}
+
+.section {
+  padding-block: clamp(3.5rem, 2.5rem + 5vw, 7rem);
+  position: relative;
+}
+
+.section-tight {
+  padding-block: clamp(2.25rem, 1.75rem + 2.5vw, 3.75rem);
+}
+
+/* Dark band */
+.on-dark {
+  background: var(--ink);
+  color: var(--on-dark);
+}
+
+.on-dark h1,
+.on-dark h2,
+.on-dark h3,
+.on-dark h4 {
+  color: var(--on-dark);
+}
+
+.on-dark a {
+  color: var(--brass-lit);
+}
+
+.on-dark a:hover {
+  color: var(--ember-lit);
+}
+
+/* The alternating band. It sits slightly deeper than the page, so cards —
+   which use --paper — lift off both it and the main ground. */
+.on-paper {
+  background: var(--parchment-deep);
+}
+
+.section-head {
+  margin-bottom: clamp(2.25rem, 1.75rem + 2vw, 3.5rem);
+}
+
+.section-head h2 {
+  margin-bottom: 0.35em;
+}
+
+.section-head .lede {
+  color: var(--on-light-dim);
+  margin: 0;
+}
+
+.on-dark .section-head .lede {
+  color: var(--on-dark-dim);
+}
+
+.grid {
+  display: grid;
+  gap: clamp(1rem, 0.6rem + 1.2vw, 1.75rem);
+}
+
+/* Hairline rule with a centred mono label — Vybhav motif */
+.rule {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 1.25rem;
+  margin-block: clamp(2.5rem, 2rem + 2vw, 4rem);
+}
+
+.rule::before,
+.rule::after {
+  content: "";
+  height: 1px;
+  background: var(--rule-light);
+}
+
+.on-dark .rule::before,
+.on-dark .rule::after {
+  background: var(--rule-dark);
+}
+
+.rule span {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--on-light-dim);
+  white-space: nowrap;
+}
+
+.on-dark .rule span {
+  color: var(--on-dark-dim);
+}
+
+/* -------------------------------------------------------------
+   5. Buttons — all at least 44px tall
+   ------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  min-height: 48px;
+  padding: 0.85rem 1.5rem;
+  font-family: var(--mono);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  cursor: pointer;
+  text-align: center;
+  transition: background var(--micro) var(--ease), color var(--micro) var(--ease),
+    border-color var(--micro) var(--ease), box-shadow var(--micro) var(--ease);
+}
+
+.btn-primary {
+  background: var(--ember);
+  color: #fff;
+  box-shadow: var(--lift);
+}
+
+.btn-primary:hover {
+  background: #a5340a;
+  color: #fff;
+  box-shadow: var(--lift-hi);
+}
+
+.btn-gold {
+  background: var(--brass);
+  color: var(--ink);
+  box-shadow: var(--lift);
+}
+
+.btn-gold:hover {
+  background: #eec069;
+  color: var(--ink);
+  box-shadow: var(--lift-hi);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--on-light);
+  border-color: var(--rule-light);
+}
+
+.btn-outline:hover {
+  color: var(--ember);
+  border-color: var(--ember);
+  background: rgba(240, 112, 58, 0.08);
+}
+
+.on-dark .btn-outline {
+  color: var(--on-dark);
+  border-color: var(--rule-dark);
+}
+
+.on-dark .btn-outline:hover {
+  color: var(--brass-lit);
+  border-color: var(--brass-lit);
+  background: rgba(224, 169, 60, 0.1);
+}
+
+.btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+}
+
+.btn-block {
+  width: 100%;
+}
+
+/* Play link */
+.btn-play {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  min-height: 48px;
+  font-family: var(--mono);
+  font-size: 0.8125rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.btn-play i {
+  font-size: 1.9rem;
+  transition: transform var(--micro) var(--ease);
+}
+
+.btn-play:hover i {
+  transform: scale(1.1);
+}
+
+/* -------------------------------------------------------------
+   6. Header
+   ------------------------------------------------------------- */
+.site-header {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: var(--z-header);
+  min-height: var(--header-h);
+  display: flex;
+  align-items: center;
+  background: transparent;
+  border-bottom: 1px solid transparent;
+  transition: background var(--micro) var(--ease), border-color var(--micro) var(--ease),
+    box-shadow var(--micro) var(--ease);
+}
+
+.site-header.is-scrolled {
+  background: rgba(14, 42, 34, 0.94);
+  backdrop-filter: blur(12px);
+  border-bottom-color: var(--rule-light);
+  box-shadow: 0 1px 20px rgba(0, 0, 0, 0.35);
+}
+
+.site-header .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  min-width: 0;
+}
+
+.brand-emblem {
+  width: 2.6rem;
+  height: 2.6rem;
+  flex-shrink: 0;
+  object-fit: contain;
+}
+
+.brand-text {
+  min-width: 0;
+}
+
+.brand-mark {
+  font-family: var(--display);
+  font-size: 1.3rem;
+  font-weight: 700;
+  font-variation-settings: "SOFT" 20, "WONK" 1;
+  letter-spacing: -0.01em;
+  line-height: 1;
+  margin: 0;
+  color: var(--on-dark);
+  transition: color var(--micro) var(--ease);
+}
+
+.is-scrolled .brand-mark {
+  color: var(--on-light);
+}
+
+.brand-mark a {
+  color: inherit;
+}
+
+.brand-sub {
+  display: block;
+  font-family: var(--mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--on-dark-dim);
+  white-space: nowrap;
+  margin-top: 0.2rem;
+  transition: color var(--micro) var(--ease);
+}
+
+.is-scrolled .brand-sub {
+  color: var(--on-light-dim);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.nav ul {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.85rem, 0.2rem + 0.9vw, 1.5rem);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav > ul > li > a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--on-dark);
+  white-space: nowrap;
+  position: relative;
+}
+
+.is-scrolled .nav > ul > li > a {
+  color: var(--on-light);
+}
+
+.nav > ul > li > a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0.6rem;
+  height: 2px;
+  width: 0;
+  background: var(--ember);
+  transition: width var(--micro) var(--ease);
+}
+
+.nav > ul > li > a:hover,
+.nav > ul > li > a.active {
+  color: var(--ember-lit);
+}
+
+.is-scrolled .nav > ul > li > a:hover,
+.is-scrolled .nav > ul > li > a.active {
+  color: var(--ember);
+}
+
+.nav > ul > li > a:hover::after,
+.nav > ul > li > a.active::after {
+  width: 100%;
+}
+
+/* The single header call to action */
+.nav .nav-cta {
+  background: var(--ember);
+  color: #fff;
+  padding: 0.7rem 1.1rem;
+  border-radius: var(--radius);
+  min-height: 44px;
+}
+
+.nav .nav-cta::after {
+  display: none;
+}
+
+.nav .nav-cta:hover {
+  background: #a5340a;
+  color: #fff;
+}
+
+.is-scrolled .nav .nav-cta {
+  color: #fff;
+}
+
+.nav-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: none;
+  border: 0;
+  color: var(--on-dark);
+  font-size: 1.75rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.is-scrolled .nav-toggle {
+  color: var(--on-light);
+}
+
+/* Inner pages have a light header from the start */
+.site-header.header-solid {
+  background: rgba(14, 42, 34, 0.94);
+  backdrop-filter: blur(12px);
+  border-bottom-color: var(--rule-light);
+}
+
+.header-solid .brand-mark,
+.header-solid .nav > ul > li > a,
+.header-solid .nav-toggle {
+  color: var(--on-light);
+}
+
+.header-solid .brand-sub {
+  color: var(--on-light-dim);
+}
+
+/* -------------------------------------------------------------
+   7. Hero
+   ------------------------------------------------------------- */
+.hero {
+  position: relative;
+  background: var(--ink);
+  color: var(--on-dark);
+  padding-block: calc(var(--header-h) + 3rem) clamp(3rem, 2rem + 4vw, 5rem);
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hero-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 60% center;
+  opacity: 0.55;
+}
+
+.hero-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+      to right,
+      var(--ink) 0%,
+      rgba(20, 15, 9, 0.92) 42%,
+      rgba(20, 15, 9, 0.55) 72%,
+      rgba(20, 15, 9, 0.8) 100%
+    ),
+    linear-gradient(to top, var(--ink) 1%, rgba(20, 15, 9, 0) 40%);
+}
+
+.hero .wrap {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-grid {
+  display: grid;
+  gap: clamp(2.5rem, 2rem + 3vw, 4rem);
+  align-items: center;
+}
+
+.hero-copy {
+  max-width: 36rem;
+}
+
+.hero h1 {
+  margin-bottom: 0.45em;
+}
+
+.hero .lede {
+  color: var(--on-dark);
+  margin-bottom: 1.75rem;
+}
+
+.hero .btn-row {
+  margin-top: 2rem;
+}
+
+/* -------------------------------------------------------------
+   8. Service card — the answer to "when can I come?"
+   Sits in the hero because it is the single most-wanted fact.
+   ------------------------------------------------------------- */
+.service-card {
+  background: rgba(255, 253, 248, 0.06);
+  border: 1px solid var(--rule-dark);
+  border-radius: var(--radius);
+  padding: clamp(1.5rem, 1.15rem + 1.5vw, 2rem);
+  backdrop-filter: blur(6px);
+}
+
+.service-card h2 {
+  font-size: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.service-list {
+  list-style: none;
+  margin: 0 0 1.5rem;
+  padding: 0;
+}
+
+.service-list li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.5rem 1rem;
+  align-items: baseline;
+  padding-block: 0.85rem;
+  border-bottom: 1px solid var(--rule-dark);
+}
+
+.service-list li:last-child {
+  border-bottom: 0;
+}
+
+.service-name {
+  font-family: var(--display);
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: var(--on-dark);
+}
+
+.service-when {
+  font-family: var(--mono);
+  font-size: 0.8125rem;
+  color: var(--brass-lit);
+  text-align: right;
+  white-space: nowrap;
+}
+
+.service-where {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--rule-dark);
+  font-size: 0.9375rem;
+  color: var(--on-dark-dim);
+}
+
+.service-where i {
+  color: var(--brass-lit);
+  font-size: 1.1rem;
+  margin-top: 0.15rem;
+}
+
+/* Anything the ministry still has to confirm is shown bracketed,
+   the same convention the Vybhav site uses for unverified facts. */
+.tbc {
+  font-style: normal;
+  color: var(--brass-lit);
+  border-bottom: 1px dashed currentColor;
+}
+
+.on-light .tbc,
+.section:not(.on-dark) .tbc {
+  color: var(--brass);
+}
+
+/* -------------------------------------------------------------
+   9. Stat band — count-up on scroll
+   ------------------------------------------------------------- */
+.stat-band {
+  background: var(--ink-solid);
+  color: var(--on-dark);
+  border-top: 1px solid var(--rule-dark);
+}
+
+.stat-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  text-align: center;
+}
+
+.stat-n {
+  font-family: var(--display);
+  font-size: clamp(2rem, 1.5rem + 2vw, 3rem);
+  font-weight: 600;
+  font-variation-settings: "SOFT" 20, "WONK" 1;
+  line-height: 1;
+  color: var(--brass-lit);
+  display: block;
+  font-variant-numeric: tabular-nums;
+}
+
+.stat-label {
+  display: block;
+  margin-top: 0.6rem;
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--on-dark-dim);
+}
+
+/* -------------------------------------------------------------
+   10. Cards
+   ------------------------------------------------------------- */
+.card {
+  background: var(--paper);
+  border: 1px solid var(--rule-light);
+  border-radius: var(--radius);
+  padding: clamp(1.5rem, 1.2rem + 1vw, 2rem);
+  box-shadow: var(--lift);
+  transition: box-shadow var(--micro) var(--ease), border-color var(--micro) var(--ease);
+}
+
+.card:hover {
+  box-shadow: var(--lift-hi);
+  border-color: var(--brass-soft);
+}
+
+.card h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.card p {
+  color: var(--on-light-dim);
+  margin: 0;
+  font-size: 0.975rem;
+}
+
+.card-icon {
+  width: 3rem;
+  height: 3rem;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(138, 90, 11, 0.1);
+  color: var(--brass);
+  font-size: 1.35rem;
+  margin-bottom: 1.25rem;
+}
+
+.cards-3 {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+}
+
+/* Numbered step card — a real sequence, so it is numbered */
+.step {
+  position: relative;
+  padding-top: 2.75rem;
+}
+
+.step-n {
+  position: absolute;
+  top: 1.5rem;
+  left: clamp(1.5rem, 1.2rem + 1vw, 2rem);
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.18em;
+  color: var(--brass);
+}
+
+/* -------------------------------------------------------------
+   11. About
+   ------------------------------------------------------------- */
+.about-grid {
+  display: grid;
+  gap: clamp(2rem, 1.5rem + 3vw, 4rem);
+  align-items: center;
+}
+
+.portrait {
+  position: relative;
+}
+
+.portrait img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: var(--radius);
+  box-shadow: var(--lift-hi);
+}
+
+.portrait::before {
+  content: "";
+  position: absolute;
+  inset: -0.85rem -0.85rem 0.85rem 0.85rem;
+  border: 1px solid var(--brass);
+  border-radius: var(--radius);
+  z-index: -1;
+}
+
+.play-badge {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+}
+
+.play-badge span {
+  width: 4.5rem;
+  height: 4.5rem;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--ember);
+  color: #fff;
+  font-size: 1.8rem;
+  box-shadow: var(--lift-hi);
+  transition: transform var(--micro) var(--ease);
+}
+
+.play-badge:hover span {
+  transform: scale(1.08);
+}
+
+.tick-list {
+  list-style: none;
+  margin: 1.5rem 0;
+  padding: 0;
+  display: grid;
+  gap: 0.9rem;
+}
+
+.tick-list li {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.8rem;
+  align-items: start;
+  color: var(--on-light-dim);
+}
+
+.tick-list i {
+  color: var(--brass);
+  font-size: 1.05rem;
+  margin-top: 0.3rem;
+}
+
+.on-dark .tick-list li {
+  color: var(--on-dark-dim);
+}
+
+.on-dark .tick-list i {
+  color: var(--brass-lit);
+}
+
+/* -------------------------------------------------------------
+   12. Commitment ladder — bar length is the programme's length
+   ------------------------------------------------------------- */
+.ladder {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--rule-light);
+}
+
+.ladder-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.6rem 1.75rem;
+  padding-block: 1.35rem;
+  border-bottom: 1px solid var(--rule-light);
+}
+
+.ladder-name {
+  font-family: var(--display);
+  font-size: clamp(1.0625rem, 1rem + 0.5vw, 1.3rem);
+  font-weight: 600;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.ladder-track {
+  position: relative;
+  height: 0.5rem;
+  background: var(--parchment-deep);
+  border-radius: 999px;
+  overflow: hidden;
+  align-self: center;
+}
+
+.ladder-bar {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: calc(var(--days) / var(--days-max) * 100%);
+  background: linear-gradient(90deg, var(--ember) 0%, var(--brass-soft) 100%);
+  border-radius: 999px;
+  transform-origin: left center;
+  transform: scaleX(0);
+  transition: transform 1s var(--ease);
+}
+
+.ladder.is-revealed .ladder-bar {
+  transform: scaleX(1);
+}
+
+.ladder-len {
+  font-family: var(--mono);
+  font-size: 0.8125rem;
+  color: var(--brass);
+  align-self: center;
+  white-space: nowrap;
+}
+
+.ladder-row.is-open .ladder-track {
+  background: transparent;
+  border-top: 1px dashed var(--rule-light);
+  height: 1px;
+  border-radius: 0;
+}
+
+.ladder-row.is-open .ladder-len {
+  color: var(--on-light-dim);
+}
+
+.ladder-key {
+  margin-top: 1.25rem;
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--on-light-dim);
+}
+
+/* -------------------------------------------------------------
+   13. Forms
+   ------------------------------------------------------------- */
+.form {
+  display: grid;
+  gap: 1rem;
+}
+
+.form-row {
+  display: grid;
+  gap: 1rem;
+}
+
+.field label {
+  display: block;
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--on-light-dim);
+  margin-bottom: 0.5rem;
+}
+
+.field input,
+.field textarea,
+.field select {
+  width: 100%;
+  min-height: 48px;
+  font-family: var(--body);
+  font-size: 1rem;
+  color: var(--on-light);
+  background: var(--paper);
+  border: 1px solid var(--rule-light);
+  border-radius: var(--radius);
+  padding: 0.8rem 0.95rem;
+  transition: border-color var(--micro) var(--ease), box-shadow var(--micro) var(--ease);
+}
+
+.field textarea {
+  resize: vertical;
+  min-height: 7.5rem;
+}
+
+.field input:focus,
+.field textarea:focus,
+.field select:focus {
+  outline: none;
+  border-color: var(--ember);
+  box-shadow: 0 0 0 3px rgba(194, 65, 12, 0.16);
+}
+
+.field input[aria-invalid="true"],
+.field textarea[aria-invalid="true"] {
+  border-color: #b3261e;
+}
+
+.field-error {
+  display: block;
+  margin-top: 0.4rem;
+  font-size: 0.8125rem;
+  color: #b3261e;
+  min-height: 1.2em;
+}
+
+.form-note {
+  font-size: 0.875rem;
+  color: var(--on-light-dim);
+  margin: 0;
+}
+
+.on-dark .field label {
+  color: var(--on-dark-dim);
+}
+
+.on-dark .field input,
+.on-dark .field textarea,
+.on-dark .field select {
+  background: rgba(255, 253, 248, 0.06);
+  border-color: var(--rule-dark);
+  color: var(--on-dark);
+}
+
+.on-dark .field input::placeholder,
+.on-dark .field textarea::placeholder {
+  color: var(--on-dark-dim);
+}
+
+.on-dark .form-note {
+  color: var(--on-dark-dim);
+}
+
+/* -------------------------------------------------------------
+   14. Media grids
+   ------------------------------------------------------------- */
+.video-grid {
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 15rem), 1fr));
+}
+
+.video-card {
+  position: relative;
+  display: block;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: var(--parchment-deep);
+  border: 1px solid var(--rule-light);
+  box-shadow: var(--lift);
+  transition: box-shadow var(--micro) var(--ease), border-color var(--micro) var(--ease);
+}
+
+.video-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.video-card::after {
+  content: "\F4F3";
+  font-family: "bootstrap-icons";
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: 2.5rem;
+  color: #fff;
+  background: rgba(20, 15, 9, 0.35);
+  opacity: 0;
+  transition: opacity var(--micro) var(--ease);
+}
+
+.video-card:hover,
+.video-card:focus-visible {
+  border-color: var(--ember);
+  box-shadow: var(--lift-hi);
+}
+
+.video-card:hover::after,
+.video-card:focus-visible::after {
+  opacity: 1;
+}
+
+.photo-grid {
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr));
+}
+
+.photo {
+  display: block;
+  overflow: hidden;
+  border-radius: var(--radius);
+  border: 1px solid var(--rule-light);
+  background: var(--parchment-deep);
+  box-shadow: var(--lift);
+  transition: box-shadow var(--micro) var(--ease), border-color var(--micro) var(--ease);
+}
+
+.photo img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.photo-square img {
+  aspect-ratio: 1 / 1;
+}
+
+.photo:hover {
+  border-color: var(--brass);
+  box-shadow: var(--lift-hi);
+}
+
+/* -------------------------------------------------------------
+   15. Tabs
+   ------------------------------------------------------------- */
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
+  margin: 0 0 2rem;
+  padding: 0;
+}
+
+.tab-btn {
+  min-height: 44px;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--on-light-dim);
+  background: transparent;
+  border: 1px solid var(--rule-light);
+  border-radius: var(--radius);
+  padding: 0.7rem 1.1rem;
+  cursor: pointer;
+  transition: color var(--micro) var(--ease), border-color var(--micro) var(--ease),
+    background var(--micro) var(--ease);
+}
+
+.tab-btn:hover {
+  color: var(--on-light);
+  border-color: var(--brass-soft);
+}
+
+.tab-btn[aria-selected="true"] {
+  /* Dark green on gold. White was fine on the old darker brass but only
+     reaches 2.1:1 on this one. */
+  color: var(--ink);
+  background: var(--brass);
+  border-color: var(--brass);
+}
+
+.tab-panel[hidden] {
+  display: none;
+}
+
+.panel-head {
+  margin-bottom: 1.75rem;
+}
+
+.panel-head h3 {
+  font-size: clamp(1.25rem, 1.1rem + 0.8vw, 1.75rem);
+  margin: 0;
+}
+
+/* -------------------------------------------------------------
+   16. Testimonies
+   ------------------------------------------------------------- */
+.testimony-grid {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr));
+}
+
+.testimony {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  background: var(--paper);
+  border: 1px solid var(--rule-light);
+  border-left: 3px solid var(--brass);
+  border-radius: var(--radius);
+  padding: clamp(1.5rem, 1.2rem + 1vw, 2rem);
+  box-shadow: var(--lift);
+  margin: 0;
+}
+
+.testimony blockquote {
+  font-family: var(--display);
+  font-style: italic;
+  font-size: 1.0625rem;
+  font-variation-settings: "SOFT" 40, "WONK" 1;
+  line-height: 1.55;
+  margin: 0;
+}
+
+.testimony figcaption {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin-top: auto;
+}
+
+.testimony img {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.testimony-name {
+  font-family: var(--body);
+  font-weight: 700;
+  font-size: 0.9375rem;
+  display: block;
+}
+
+.testimony-role {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--on-light-dim);
+}
+
+/* -------------------------------------------------------------
+   17. Books
+   ------------------------------------------------------------- */
+.book-grid {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+}
+
+.book {
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+}
+
+.book-cover {
+  position: relative;
+  display: block;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--lift-hi);
+  transition: box-shadow var(--micro) var(--ease);
+}
+
+.book-cover img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+}
+
+.book-cover::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 0.45rem;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.35), rgba(255, 255, 255, 0.14) 60%, rgba(0, 0, 0, 0.18));
+  z-index: 1;
+}
+
+.book h3 {
+  font-size: 1.125rem;
+  margin: 0 0 0.3rem;
+}
+
+.book p {
+  color: var(--on-light-dim);
+  font-size: 0.925rem;
+  margin: 0;
+}
+
+.book-link {
+  margin-top: 0.6rem;
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 44px;
+}
+
+/* -------------------------------------------------------------
+   18. Map — click to load, the embed is a megabyte
+   ------------------------------------------------------------- */
+.map-shell {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--rule-light);
+  background: var(--parchment-deep);
+  display: grid;
+  place-items: center;
+}
+
+.map-shell iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+.map-load {
+  text-align: center;
+  padding: 2rem;
+}
+
+.map-load i {
+  font-size: 2rem;
+  color: var(--brass);
+}
+
+/* -------------------------------------------------------------
+   19. Footer
+   ------------------------------------------------------------- */
+.site-footer {
+  background: var(--ink);
+  color: var(--on-dark);
+  padding-top: clamp(3rem, 2rem + 3vw, 4.5rem);
+}
+
+.footer-grid {
+  display: grid;
+  gap: 2.5rem;
+  padding-bottom: 2.75rem;
+}
+
+.footer-col h3 {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--brass-lit);
+  margin: 0 0 1.15rem;
+}
+
+.footer-col ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.footer-col a {
+  color: var(--on-dark-dim);
+  font-size: 0.95rem;
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+}
+
+.footer-col a:hover {
+  color: var(--brass-lit);
+}
+
+.footer-col p {
+  color: var(--on-dark-dim);
+  font-size: 0.95rem;
+}
+
+.social {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: 1.15rem;
+}
+
+.social a {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--rule-dark);
+  border-radius: 50%;
+  color: var(--on-dark);
+  font-size: 1.05rem;
+  transition: background var(--micro) var(--ease), border-color var(--micro) var(--ease),
+    color var(--micro) var(--ease);
+}
+
+.social a:hover {
+  background: var(--ember);
+  border-color: var(--ember);
+  color: #fff;
+}
+
+.footer-bottom {
+  border-top: 1px solid var(--rule-dark);
+  padding-block: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 1.5rem;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  color: var(--on-dark-dim);
+}
+
+/* -------------------------------------------------------------
+   20. Sticky action bar — mobile only.
+   Call, WhatsApp and directions always one thumb away.
+   ------------------------------------------------------------- */
+.action-bar {
+  position: fixed;
+  inset: auto 0 0 0;
+  z-index: var(--z-sticky);
+  display: none;
+  background: rgba(14, 42, 34, 0.96);
+  backdrop-filter: blur(12px);
+  border-top: 1px solid var(--rule-light);
+  padding: 0.5rem max(0.5rem, env(safe-area-inset-left))
+    max(0.5rem, env(safe-area-inset-bottom)) max(0.5rem, env(safe-area-inset-right));
+  box-shadow: 0 -2px 20px rgba(0, 0, 0, 0.4);
+}
+
+.action-bar ul {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.4rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.action-bar a {
+  display: grid;
+  justify-items: center;
+  gap: 0.2rem;
+  min-height: 52px;
+  padding: 0.45rem 0.25rem;
+  border-radius: var(--radius);
+  color: var(--on-light);
+  font-family: var(--mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.action-bar a i {
+  font-size: 1.25rem;
+  color: var(--brass);
+}
+
+.action-bar a.is-primary {
+  background: var(--ember);
+  color: #fff;
+}
+
+.action-bar a.is-primary i {
+  color: #fff;
+}
+
+/* -------------------------------------------------------------
+   21. Inner pages
+   ------------------------------------------------------------- */
+.page-head {
+  padding-top: calc(var(--header-h) + clamp(2.5rem, 2rem + 3vw, 4.5rem));
+  padding-bottom: clamp(1.75rem, 1.5rem + 1.5vw, 3rem);
+  border-bottom: 1px solid var(--rule-light);
+  background: var(--paper);
+}
+
+.crumbs {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin: 1rem 0 0;
+  padding: 0;
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--on-light-dim);
+}
+
+.crumbs li + li::before {
+  content: "/";
+  margin-right: 0.45rem;
+  color: var(--rule-light);
+}
+
+.to-top {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: var(--z-sticky);
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  background: var(--ink);
+  color: var(--on-dark);
+  border-radius: 50%;
+  font-size: 1.5rem;
+  opacity: 0;
+  visibility: hidden;
+  box-shadow: var(--lift-hi);
+  transition: opacity var(--micro) var(--ease), visibility var(--micro) var(--ease);
+}
+
+.to-top.is-visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.to-top:hover {
+  background: var(--ember);
+  color: #fff;
+}
+
+/* -------------------------------------------------------------
+   22. Thought cards (As You Think, You Become)
+   ------------------------------------------------------------- */
+.thought-grid {
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 20rem), 1fr));
+  align-items: start;
+}
+
+.thought {
+  position: relative;
+  background: var(--paper);
+  border: 1px solid var(--rule-light);
+  border-radius: var(--radius);
+  padding: 1.6rem;
+  overflow: hidden;
+  box-shadow: var(--lift);
+  transition: box-shadow var(--micro) var(--ease), border-color var(--micro) var(--ease);
+}
+
+.thought[open] {
+  border-color: var(--brass);
+  box-shadow: var(--lift-hi);
+}
+
+.thought summary {
+  list-style: none;
+  cursor: pointer;
+  display: block;
+}
+
+.thought summary::-webkit-details-marker {
+  display: none;
+}
+
+.thought-num {
+  position: absolute;
+  top: 0.4rem;
+  right: 0.9rem;
+  font-family: var(--display);
+  font-size: 3.5rem;
+  font-weight: 700;
+  line-height: 1;
+  color: rgba(238, 242, 234, 0.07);
+  pointer-events: none;
+}
+
+.thought-title {
+  font-family: var(--display);
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.2;
+  margin: 0 0 0.7rem;
+  padding-right: 2.5rem;
+}
+
+.thought-quote {
+  font-family: var(--display);
+  font-style: italic;
+  font-size: 1.0625rem;
+  font-variation-settings: "SOFT" 40, "WONK" 1;
+  line-height: 1.5;
+  color: var(--brass);
+  margin: 0;
+}
+
+.thought-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 1.1rem;
+  min-height: 44px;
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ember);
+}
+
+.thought[open] .thought-more i {
+  transform: rotate(180deg);
+}
+
+.thought[open] .thought-more span::after {
+  content: " less";
+}
+
+.thought:not([open]) .thought-more span::after {
+  content: " more";
+}
+
+.thought-body {
+  margin-top: 1.25rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--rule-light);
+}
+
+.thought-body p {
+  color: var(--on-light-dim);
+  font-size: 0.975rem;
+}
+
+.thought-ref {
+  display: inline-block;
+  margin-top: 0.4rem;
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--brass);
+}
+
+/* -------------------------------------------------------------
+   23. Chapter list + reader
+   ------------------------------------------------------------- */
+.chapter-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--rule-light);
+}
+
+.chapter {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.5rem 1.35rem;
+  padding-block: 1.6rem;
+  border-bottom: 1px solid var(--rule-light);
+}
+
+.chapter-num {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  color: var(--brass);
+  padding-top: 0.35rem;
+}
+
+.chapter h3 {
+  font-size: 1.25rem;
+  margin: 0 0 0.4rem;
+}
+
+.chapter-quote {
+  font-family: var(--display);
+  font-style: italic;
+  color: var(--brass);
+  margin: 0 0 0.6rem;
+}
+
+.chapter p:last-child {
+  color: var(--on-light-dim);
+  margin: 0;
+}
+
+.chapter-pending {
+  display: inline-block;
+  margin-top: 0.6rem;
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--on-light-dim);
+  border: 1px solid var(--rule-light);
+  border-radius: 999px;
+  padding: 0.3rem 0.75rem;
+}
+
+.price-card {
+  background: var(--paper);
+  border: 1px solid var(--rule-light);
+  border-left: 3px solid var(--ember);
+  border-radius: var(--radius);
+  padding: clamp(1.5rem, 1.2rem + 1.5vw, 2.25rem);
+  box-shadow: var(--lift);
+}
+
+.price-figure {
+  font-family: var(--display);
+  font-size: clamp(2rem, 1.5rem + 2vw, 3rem);
+  font-weight: 600;
+  line-height: 1;
+  margin: 0 0 0.3rem;
+}
+
+.reader {
+  display: grid;
+  gap: clamp(2rem, 1.5rem + 2vw, 3rem);
+  align-items: start;
+}
+
+.reader-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.2rem;
+}
+
+.reader-nav button {
+  width: 100%;
+  text-align: left;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.8rem;
+  align-items: baseline;
+  min-height: 44px;
+  background: transparent;
+  border: 0;
+  border-left: 2px solid var(--rule-light);
+  color: var(--on-light-dim);
+  font-family: var(--body);
+  font-size: 0.9375rem;
+  padding: 0.7rem 1rem;
+  cursor: pointer;
+  transition: color var(--micro) var(--ease), border-color var(--micro) var(--ease),
+    background var(--micro) var(--ease);
+}
+
+.reader-nav button:hover {
+  color: var(--on-light);
+  background: rgba(224, 169, 60, 0.08);
+}
+
+.reader-nav button[aria-current="true"] {
+  color: var(--on-light);
+  border-left-color: var(--ember);
+  background: rgba(240, 112, 58, 0.1);
+}
+
+.reader-nav .n {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  color: var(--brass);
+}
+
+.prose {
+  max-width: 38rem;
+}
+
+.prose h2 {
+  font-size: clamp(1.5rem, 1.25rem + 1.2vw, 2.125rem);
+}
+
+.prose p {
+  line-height: 1.75;
+  margin-bottom: 1.15rem;
+}
+
+.prose blockquote {
+  margin: 1.6rem 0;
+  padding-left: 1.15rem;
+  border-left: 2px solid var(--brass);
+  font-family: var(--display);
+  font-style: italic;
+  color: var(--brass);
+}
+
+.reader-empty {
+  border: 1px dashed var(--rule-light);
+  border-radius: var(--radius);
+  padding: clamp(1.75rem, 1.25rem + 2.5vw, 3rem);
+  text-align: center;
+  background: var(--paper);
+}
+
+.reader-empty i {
+  font-size: 2rem;
+  color: var(--brass);
+}
+
+.reader-empty h2 {
+  font-size: 1.3rem;
+  margin: 1rem 0 0.5rem;
+}
+
+.reader-empty p {
+  color: var(--on-light-dim);
+  max-width: 34rem;
+  margin-inline: auto;
+}
+/* -------------------------------------------------------------
+   24. Prophecies page — word cards and the year archives
+
+   Each 2024 word was published as a square graphic, so the words
+   themselves only existed as pixels — unreadable to a screen reader,
+   invisible to search, and a 7.7MB page. Here the word is set as real
+   text and the graphic sits beside it; tapping the graphic opens it
+   full size.
+   ------------------------------------------------------------- */
+.word-grid {
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr));
+  align-items: start;
+}
+
+.word {
+  display: flex;
+  flex-direction: column;
+  background: var(--paper);
+  border: 1px solid var(--rule-light);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--lift);
+  transition: box-shadow var(--micro) var(--ease), border-color var(--micro) var(--ease);
+}
+
+.word:hover,
+.word:focus-within {
+  border-color: var(--brass);
+  box-shadow: var(--lift-hi);
+}
+
+.word-fig {
+  display: block;
+  position: relative;
+  margin: 0;
+  background: var(--parchment-deep);
+}
+
+.word-fig img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+.word-fig::after {
+  content: "\f62c";
+  font-family: "bootstrap-icons";
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: 2rem;
+  color: #fff;
+  background: rgba(7, 26, 21, 0.45);
+  opacity: 0;
+  transition: opacity var(--micro) var(--ease);
+}
+
+.word-fig:hover::after,
+.word-fig:focus-visible::after {
+  opacity: 1;
+}
+
+.word-body {
+  padding: 1.4rem 1.5rem 1.6rem;
+}
+
+.word-n {
+  display: block;
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--brass);
+  margin-bottom: 0.6rem;
+}
+
+.word-title {
+  font-family: var(--display);
+  font-size: 1.1875rem;
+  font-weight: 600;
+  line-height: 1.25;
+  margin: 0;
+}
+
+.word-sub {
+  font-family: var(--display);
+  font-style: italic;
+  font-variation-settings: "SOFT" 40, "WONK" 1;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--brass);
+  margin: 0.7rem 0 0;
+}
+
+.word-list {
+  margin: 0.9rem 0 0;
+  padding-left: 1.15rem;
+  color: var(--on-dark-dim);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+}
+
+.word-list li + li {
+  margin-top: 0.3rem;
+}
+
+.word-ref {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--on-dark-dim);
+  margin: 0.9rem 0 0;
+}
+
+/* The cover plate, shown once above the words rather than as a card
+   in the grid — it is a title page, not a prophecy. */
+.word-cover {
+  display: grid;
+  gap: clamp(1.5rem, 1rem + 2vw, 2.75rem);
+  align-items: center;
+  margin-bottom: clamp(2.5rem, 2rem + 2vw, 4rem);
+}
+
+.word-cover img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--rule-light);
+  border-radius: var(--radius);
+  box-shadow: var(--lift-hi);
+}
+
+@media (min-width: 48em) {
+  .word-cover {
+    grid-template-columns: minmax(0, 18rem) minmax(0, 1fr);
+  }
+}
+
+
+
+
+/* The 2025 and 2026 words were never made into cards — they were preached
+   and posted to YouTube. These blocks carry that year's released words
+   first, then everything else the channel published that year, folded away
+   so the page opens at a readable length. */
+.word-sub-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.35rem 0.9rem;
+  margin: clamp(2.5rem, 2rem + 2vw, 3.75rem) 0 1.5rem;
+}
+
+.word-sub-head h3 {
+  font-family: var(--display);
+  font-size: clamp(1.25rem, 1.1rem + 0.6vw, 1.6rem);
+  font-weight: 600;
+  margin: 0;
+}
+
+.word-sub-head .count {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--on-dark-dim);
+  white-space: nowrap;
+}
+
+/* Shorts are filmed portrait, so they are shown portrait. */
+.shorts-grid {
+  grid-template-columns: repeat(auto-fill, minmax(min(45%, 9.5rem), 1fr));
+}
+
+.short-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.short-card .video-card {
+  aspect-ratio: 9 / 16;
+}
+
+.short-card .message-title {
+  font-size: 0.8125rem;
+  -webkit-line-clamp: 3;
+}
+
+/* The title is a link out to YouTube, but it should read as the title it
+   is, not as a gold link in a wall of four hundred of them. */
+.message-title a {
+  color: inherit;
+}
+
+.message-title a:hover,
+.message-title a:focus-visible {
+  color: var(--ember-lit);
+}
+
+/* Disclosure for the long archives. Collapsed content is never fetched,
+   so a year with 236 shorts costs nothing until someone asks for it. */
+.more-block {
+  border-top: 1px solid var(--rule-light);
+  margin-top: clamp(2rem, 1.5rem + 2vw, 3rem);
+}
+
+.more-block > summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: 48px;
+  padding: 1rem 0;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--brass);
+}
+
+.more-block > summary::-webkit-details-marker {
+  display: none;
+}
+
+.more-block > summary i {
+  transition: transform var(--micro) var(--ease);
+}
+
+.more-block[open] > summary i {
+  transform: rotate(180deg);
+}
+
+.more-block > summary:hover {
+  color: var(--ember-lit);
+}
+
+.more-block .grid {
+  padding-bottom: 1.5rem;
+}
+
+/* -------------------------------------------------------------
+   25. Responsive
+   ------------------------------------------------------------- */
+@media (min-width: 34em) {
+  .form-row {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .stat-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .ladder-row {
+    grid-template-columns: minmax(0, 17rem) minmax(0, 1fr) auto;
+    align-items: center;
+  }
+}
+
+@media (min-width: 48em) {
+  :root {
+    --gutter: 2rem;
+  }
+}
+
+@media (min-width: 62em) {
+  :root {
+    --gutter: 2.5rem;
+  }
+
+  .hero-grid {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  }
+
+  .about-grid {
+    grid-template-columns: 5fr 7fr;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(2rem, 1.5rem + 3vw, 4rem);
+    display: grid;
+    align-items: start;
+  }
+
+  .footer-grid {
+    grid-template-columns: 2fr 1fr 1fr 1.4fr;
+  }
+
+  .ladder-row {
+    grid-template-columns: minmax(0, 21rem) minmax(0, 1fr) 7rem;
+  }
+
+  .reader {
+    grid-template-columns: minmax(0, 16rem) minmax(0, 1fr);
+  }
+
+  .reader-nav {
+    position: sticky;
+    top: calc(var(--header-h) + 1.5rem);
+  }
+}
+
+/* Mobile nav + action bar */
+@media (max-width: 61.99em) {
+  .nav-toggle {
+    display: inline-flex;
+    position: relative;
+    z-index: 2;
+  }
+
+  .brand-sub {
+    display: none;
+  }
+
+  .nav > ul {
+    position: fixed;
+    inset: var(--header-h) 0 auto 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    background: var(--paper);
+    border-bottom: 1px solid var(--rule-light);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
+    padding: 0.5rem var(--gutter) 1.5rem;
+    max-height: calc(100svh - var(--header-h));
+    overflow-y: auto;
+    transform: translateY(-8px);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity var(--micro) var(--ease), transform var(--micro) var(--ease),
+      visibility var(--micro) var(--ease);
+  }
+
+  .nav.is-open > ul {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+
+  .nav > ul > li {
+    border-bottom: 1px solid var(--rule-light);
+  }
+
+  .nav > ul > li:last-child {
+    border-bottom: 0;
+  }
+
+  .nav > ul > li > a {
+    display: flex;
+    width: 100%;
+    min-height: 52px;
+    font-size: 0.8125rem;
+    color: var(--on-light);
+  }
+
+  .nav > ul > li > a::after {
+    display: none;
+  }
+
+  .nav .nav-cta {
+    margin-top: 1rem;
+    justify-content: center;
+  }
+
+  .action-bar {
+    display: block;
+  }
+
+  /* Keep the action bar from covering the footer or the to-top button */
+  body {
+    padding-bottom: 4.75rem;
+  }
+
+  .to-top {
+    bottom: 5.25rem;
+  }
+}
+
+/* -------------------------------------------------------------
+   26. Scroll reveals
+   The hidden state is armed by .js, which inlpm.js sets on <html>.
+   Without JavaScript everything renders as normal.
+   ------------------------------------------------------------- */
+.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity var(--reveal) var(--ease), transform var(--reveal) var(--ease);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.js [data-reveal].is-revealed {
+  opacity: 1;
+  transform: none;
+}
+
+/* -------------------------------------------------------------
+   27. Reduced motion
+   ------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+
+  .js [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
+
+  .ladder-bar {
+    transform: scaleX(1);
+  }
+}
+
+/* -------------------------------------------------------------
+   28. Print
+   ------------------------------------------------------------- */
+@media print {
+  .site-header,
+  .action-bar,
+  .to-top,
+  .nav {
+    display: none !important;
+  }
+
+  body {
+    background: #fff;
+    color: #000;
+    padding-bottom: 0;
+  }
+}
+
+/* Alias kept because the book pages use .muted */
+.muted {
+  color: var(--on-light-dim);
+}
+
+.on-dark .muted {
+  color: var(--on-dark-dim);
+}
+
+/* Inline links inside a sentence are exempt from the 44px target rule,
+   but a little padding makes them easier to hit on a phone. */
+.tick-list a,
+.service-where a {
+  display: inline-block;
+  padding-block: 0.3rem;
+}
+
+/* -------------------------------------------------------------
+   Messages — a featured latest message above the grid.
+   Titles matter: eighteen bare thumbnails told a visitor nothing
+   about what they were about to watch.
+   ------------------------------------------------------------- */
+.feature-message {
+  display: grid;
+  gap: clamp(1.25rem, 1rem + 2vw, 2.5rem);
+  align-items: center;
+  background: var(--paper);
+  border: 1px solid var(--rule-light);
+  border-radius: var(--radius);
+  padding: clamp(1rem, 0.75rem + 1.5vw, 1.5rem);
+  box-shadow: var(--lift);
+  margin-bottom: clamp(2rem, 1.5rem + 2vw, 3rem);
+}
+
+.feature-message .video-card {
+  margin: 0;
+}
+
+.feature-message h3 {
+  font-size: clamp(1.25rem, 1.05rem + 1vw, 1.85rem);
+  margin: 0 0 0.5rem;
+}
+
+.message-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.message-card .video-card {
+  flex-shrink: 0;
+}
+
+.message-title {
+  font-family: var(--body);
+  font-size: 0.975rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--on-light);
+  margin: 0;
+  /* Keep the grid even when titles run long */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.message-card a:hover .message-title {
+  color: var(--ember);
+}
+
+.message-meta {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--on-light-dim);
+}
+
+@media (min-width: 48em) {
+  .feature-message {
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  }
+}
+
+/* -------------------------------------------------------------
+   Intro — the sword is drawn, then the commission is spoken.
+   Shown once per session, the same way the Vybhav entry gate works.
+   Armed by an inline script in <head> that adds .has-intro before
+   first paint, so it never flashes and never appears without JS.
+   ------------------------------------------------------------- */
+.intro {
+  display: none;
+}
+
+.has-intro .intro {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  background: var(--ink);
+  overflow: hidden;
+  animation: intro-out 900ms var(--ease) 3400ms both;
+}
+
+.has-intro body {
+  overflow: hidden;
+}
+
+@keyframes intro-out {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+.intro-blade {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.intro-blade img {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0;
+  /* Drawn from the left, the way a blade leaves a scabbard */
+  transform: translateX(-38%) scale(1.06);
+  animation: blade-draw 1500ms cubic-bezier(0.16, 0.9, 0.25, 1) 150ms both;
+}
+
+@keyframes blade-draw {
+  0% {
+    opacity: 0;
+    transform: translateX(-38%) scale(1.06);
+  }
+  35% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0.62;
+    transform: translateX(0) scale(1);
+  }
+}
+
+/* The glint that runs down the blade as it lands */
+.intro-glint {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 28vw;
+  pointer-events: none;
+  background: linear-gradient(
+    100deg,
+    transparent 0%,
+    rgba(255, 240, 200, 0.05) 35%,
+    rgba(255, 245, 220, 0.5) 50%,
+    rgba(255, 240, 200, 0.05) 65%,
+    transparent 100%
+  );
+  filter: blur(6px);
+  opacity: 0;
+  animation: glint 850ms cubic-bezier(0.3, 0, 0.2, 1) 780ms both;
+}
+
+@keyframes glint {
+  0% {
+    opacity: 0;
+    transform: translateX(-60vw) skewX(-12deg);
+  }
+  25% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(115vw) skewX(-12deg);
+  }
+}
+
+.intro-copy {
+  position: relative;
+  z-index: 1;
+  width: min(46rem, 100% - 3rem);
+  text-align: center;
+}
+
+.intro-verse {
+  font-family: var(--display);
+  font-style: italic;
+  font-size: clamp(1.35rem, 1rem + 2.4vw, 2.6rem);
+  font-variation-settings: "SOFT" 40, "WONK" 1;
+  line-height: 1.35;
+  color: var(--on-dark);
+  margin: 0;
+  max-width: none;
+  text-wrap: balance;
+}
+
+/* Each line rises a beat after the one before it */
+.intro-verse span {
+  display: block;
+  opacity: 0;
+  transform: translateY(18px);
+  animation: line-rise 900ms var(--ease) both;
+}
+
+.intro-verse span:nth-child(1) { animation-delay: 1250ms; }
+.intro-verse span:nth-child(2) { animation-delay: 1500ms; }
+.intro-verse span:nth-child(3) { animation-delay: 1750ms; }
+
+@keyframes line-rise {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.intro-mark {
+  display: block;
+  width: 3.5rem;
+  height: 3.5rem;
+  margin: 0 auto 1.75rem;
+  opacity: 0;
+  animation: line-rise 800ms var(--ease) 1000ms both;
+}
+
+.intro-rule {
+  width: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--brass-lit), transparent);
+  margin: 1.75rem auto 0;
+  animation: rule-open 900ms var(--ease) 2000ms both;
+}
+
+@keyframes rule-open {
+  to {
+    width: 70%;
+  }
+}
+
+.intro-cite {
+  display: block;
+  margin-top: 1.25rem;
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--brass-lit);
+  opacity: 0;
+  animation: line-rise 800ms var(--ease) 2300ms both;
+}
+
+/* Controls sit above everything and are reachable from the first frame */
+.intro-skip,
+.intro-sound {
+  position: absolute;
+  z-index: 2;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1rem;
+  background: rgba(255, 253, 248, 0.08);
+  border: 1px solid var(--rule-dark);
+  border-radius: var(--radius);
+  color: var(--on-dark);
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background var(--micro) var(--ease), border-color var(--micro) var(--ease);
+}
+
+.intro-skip:hover,
+.intro-sound:hover {
+  background: rgba(255, 253, 248, 0.16);
+  border-color: var(--brass-lit);
+  color: var(--on-dark);
+}
+
+.intro-skip {
+  right: 1.25rem;
+  bottom: 1.25rem;
+}
+
+.intro-sound {
+  left: 1.25rem;
+  bottom: 1.25rem;
+  min-width: 44px;
+  justify-content: center;
+}
+
+.intro-sound i {
+  font-size: 1rem;
+}
+
+@media (max-width: 30em) {
+  .intro-sound span {
+    display: none;
+  }
+}
+
+/* Someone who asked for less motion gets the site, not a performance */
+@media (prefers-reduced-motion: reduce) {
+  .has-intro .intro {
+    display: none;
+  }
+
+  .has-intro body {
+    overflow: auto;
+  }
+}
+
+/* -------------------------------------------------------------
+   Bronze crest. It is a relief render rather than a flat mark, so it
+   is given more room than a line logo would need, and the header keeps
+   its natural landscape proportion instead of sitting in a square box.
+   ------------------------------------------------------------- */
+.brand-emblem {
+  width: auto;
+  height: 2.9rem;
+  object-fit: contain;
+}
+
+.footer-crest {
+  width: 6.5rem;
+  height: auto;
+  margin-bottom: 1rem;
+}
+
+.intro-mark {
+  width: 7.5rem;
+  height: auto;
+  margin-bottom: 1.5rem;
+}
+
+@media (max-width: 30em) {
+  .brand-emblem {
+    height: 2.5rem;
+  }
+
+  .intro-mark {
+    width: 5.5rem;
+  }
+}
+
+/* -------------------------------------------------------------
+   Place cards — one cover per location on the homepage, linking
+   into the gallery. The homepage used to carry all 29 meeting
+   photographs; they now live on gallery.html and the homepage
+   shows four covers instead.
+   ------------------------------------------------------------- */
+.place-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--rule-light);
+  border-radius: var(--radius);
+  background: var(--paper);
+  box-shadow: var(--lift);
+  color: var(--on-light);
+  transition: box-shadow var(--micro) var(--ease), border-color var(--micro) var(--ease);
+}
+
+.place-card:hover {
+  box-shadow: var(--lift-hi);
+  border-color: var(--brass);
+  color: var(--on-light);
+}
+
+.place-photo {
+  display: block;
+  overflow: hidden;
+  background: var(--parchment-deep);
+}
+
+.place-photo img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  transition: transform 0.6s var(--ease);
+}
+
+.place-card:hover .place-photo img {
+  transform: scale(1.04);
+}
+
+.place-body {
+  display: block;
+  padding: 1.1rem 1.25rem 1.25rem;
+}
+
+.place-name {
+  display: block;
+  font-family: var(--display);
+  font-size: 1.0625rem;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.place-meta {
+  display: block;
+  margin-top: 0.3rem;
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--on-light-dim);
+}
+
+/* Checkbox row — used by the prayer form's privacy option */
+.check {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.75rem;
+  align-items: start;
+  cursor: pointer;
+  font-size: 0.95rem;
+  color: var(--on-light-dim);
+}
+
+.check input {
+  width: 1.15rem;
+  height: 1.15rem;
+  margin-top: 0.22rem;
+  accent-color: var(--ember);
+  cursor: pointer;
+}
+
+.on-dark .check {
+  color: var(--on-dark-dim);
+}
+
+/* Confirmation shown once a request has been sent */
+.form-sent {
+  background: rgba(255, 253, 248, 0.07);
+  border: 1px solid var(--rule-dark);
+  border-left: 3px solid var(--brass-lit);
+  border-radius: var(--radius);
+  padding: clamp(1.5rem, 1.2rem + 1.5vw, 2.25rem);
+  text-align: center;
+}
+
+.form-sent i {
+  font-size: 2rem;
+  color: var(--brass-lit);
+}
+
+.form-sent h3 {
+  margin: 0.85rem 0 0.5rem;
+  font-size: 1.3rem;
+}
+
+.form-sent p {
+  color: var(--on-dark-dim);
+  margin-inline: auto;
+}
+
+/* -------------------------------------------------------------
+   Simeon — the logistics assistant.
+   Scripted, not generative: every answer here is a fact the ministry
+   has confirmed, so it cannot invent a service time. Anything pastoral
+   is handed to the prayer form or to WhatsApp.
+   ------------------------------------------------------------- */
+.simeon-launch {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: var(--z-sticky);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: 52px;
+  padding: 0.75rem 1.25rem;
+  background: var(--brass);
+  color: var(--ink);
+  border: 0;
+  border-radius: 999px;
+  box-shadow: var(--lift-hi);
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform var(--micro) var(--ease), background var(--micro) var(--ease);
+}
+
+.simeon-launch:hover {
+  background: #eec069;
+  transform: translateY(-2px);
+}
+
+.simeon-launch i {
+  font-size: 1.15rem;
+}
+
+.simeon-panel[hidden] {
+  display: none;
+}
+
+.simeon-panel {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: var(--z-overlay);
+  width: min(23rem, calc(100vw - 2rem));
+  max-height: min(34rem, calc(100svh - 2rem));
+  display: flex;
+  flex-direction: column;
+  background: var(--paper);
+  border: 1px solid var(--rule-light);
+  border-radius: var(--radius);
+  box-shadow: var(--lift-hi);
+  overflow: hidden;
+}
+
+.simeon-head {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.15rem;
+  background: var(--ink);
+  border-bottom: 1px solid var(--rule-dark);
+}
+
+.simeon-head img {
+  width: 2.25rem;
+  height: auto;
+}
+
+.simeon-head strong {
+  display: block;
+  font-family: var(--display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--on-dark);
+}
+
+.simeon-head span {
+  font-family: var(--mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--on-dark-dim);
+}
+
+.simeon-close {
+  margin-left: auto;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  background: none;
+  border: 0;
+  color: var(--on-dark-dim);
+  font-size: 1.25rem;
+  cursor: pointer;
+}
+
+.simeon-close:hover {
+  color: var(--on-dark);
+}
+
+.simeon-log {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1.15rem;
+  display: grid;
+  gap: 0.85rem;
+  align-content: start;
+}
+
+.simeon-msg {
+  max-width: 85%;
+  padding: 0.7rem 0.95rem;
+  border-radius: var(--radius);
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+.simeon-msg.from-bot {
+  background: var(--ink-3);
+  color: var(--on-dark);
+  justify-self: start;
+}
+
+.simeon-msg.from-you {
+  background: var(--brass);
+  color: var(--ink);
+  justify-self: end;
+}
+
+.simeon-msg a {
+  color: var(--brass-lit);
+  text-decoration: underline;
+}
+
+.simeon-msg.from-you a {
+  color: var(--ink);
+}
+
+.simeon-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  padding: 0 1.15rem 0.85rem;
+}
+
+.simeon-chip {
+  min-height: 36px;
+  padding: 0.45rem 0.8rem;
+  background: transparent;
+  border: 1px solid var(--rule-light);
+  border-radius: 999px;
+  color: var(--on-light);
+  font-family: var(--body);
+  font-size: 0.8125rem;
+  cursor: pointer;
+  transition: border-color var(--micro) var(--ease), background var(--micro) var(--ease);
+}
+
+.simeon-chip:hover {
+  border-color: var(--brass);
+  background: rgba(224, 169, 60, 0.1);
+}
+
+.simeon-form {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.85rem 1.15rem 1.15rem;
+  border-top: 1px solid var(--rule-light);
+}
+
+.simeon-form input {
+  flex: 1;
+  min-height: 44px;
+  font-family: var(--body);
+  font-size: 0.95rem;
+  color: var(--on-light);
+  background: var(--parchment);
+  border: 1px solid var(--rule-light);
+  border-radius: var(--radius);
+  padding: 0.6rem 0.8rem;
+}
+
+.simeon-form input:focus {
+  outline: none;
+  border-color: var(--brass);
+}
+
+.simeon-form button {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  background: var(--ember);
+  color: #fff;
+  border: 0;
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+
+/* Keep clear of the mobile action bar and the back-to-top button */
+@media (max-width: 61.99em) {
+  .simeon-launch {
+    bottom: 5.25rem;
+  }
+
+  .simeon-panel {
+    bottom: 5.25rem;
+    max-height: calc(100svh - 7rem);
+  }
+
+  .to-top {
+    bottom: 9.75rem;
+  }
+}
+
+/* Which languages a book is published in */
+.book-langs {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--brass);
+  margin: 0 0 0.45rem;
+}
+
+/* A school tile with no artwork of its own — same frame as the others,
+   carrying an icon instead of a logo, so the grid stays one family. */
+.school-art.is-icon {
+  aspect-ratio: 4 / 3;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(160deg, var(--ink-3), var(--parchment-deep));
+}
+
+.school-art.is-icon i {
+  font-size: 2.75rem;
+  color: var(--brass);
+}
+
+/* A full-width banner shown whole — never cropped, since the artwork
+   carries its own title, verse and strapline. */
+.banner {
+  margin: 0;
+  border: 1px solid var(--rule-dark);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--lift-hi);
+}
+
+.banner img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
