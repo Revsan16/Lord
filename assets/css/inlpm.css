@@ -1928,7 +1928,7 @@ p:last-child {
   margin-inline: auto;
 }
 /* -------------------------------------------------------------
-   24. Prophetic word cards
+   24. Prophecies page — word cards and the year archives
 
    Each 2024 word was published as a square graphic, so the words
    themselves only existed as pixels — unreadable to a screen reader,
@@ -2069,6 +2069,108 @@ p:last-child {
 }
 
 
+
+
+/* The 2025 and 2026 words were never made into cards — they were preached
+   and posted to YouTube. These blocks carry that year's released words
+   first, then everything else the channel published that year, folded away
+   so the page opens at a readable length. */
+.word-sub-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.35rem 0.9rem;
+  margin: clamp(2.5rem, 2rem + 2vw, 3.75rem) 0 1.5rem;
+}
+
+.word-sub-head h3 {
+  font-family: var(--display);
+  font-size: clamp(1.25rem, 1.1rem + 0.6vw, 1.6rem);
+  font-weight: 600;
+  margin: 0;
+}
+
+.word-sub-head .count {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--on-dark-dim);
+  white-space: nowrap;
+}
+
+/* Shorts are filmed portrait, so they are shown portrait. */
+.shorts-grid {
+  grid-template-columns: repeat(auto-fill, minmax(min(45%, 9.5rem), 1fr));
+}
+
+.short-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.short-card .video-card {
+  aspect-ratio: 9 / 16;
+}
+
+.short-card .message-title {
+  font-size: 0.8125rem;
+  -webkit-line-clamp: 3;
+}
+
+/* The title is a link out to YouTube, but it should read as the title it
+   is, not as a gold link in a wall of four hundred of them. */
+.message-title a {
+  color: inherit;
+}
+
+.message-title a:hover,
+.message-title a:focus-visible {
+  color: var(--ember-lit);
+}
+
+/* Disclosure for the long archives. Collapsed content is never fetched,
+   so a year with 236 shorts costs nothing until someone asks for it. */
+.more-block {
+  border-top: 1px solid var(--rule-light);
+  margin-top: clamp(2rem, 1.5rem + 2vw, 3rem);
+}
+
+.more-block > summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: 48px;
+  padding: 1rem 0;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--brass);
+}
+
+.more-block > summary::-webkit-details-marker {
+  display: none;
+}
+
+.more-block > summary i {
+  transition: transform var(--micro) var(--ease);
+}
+
+.more-block[open] > summary i {
+  transform: rotate(180deg);
+}
+
+.more-block > summary:hover {
+  color: var(--ember-lit);
+}
+
+.more-block .grid {
+  padding-bottom: 1.5rem;
+}
 
 /* -------------------------------------------------------------
    25. Responsive
