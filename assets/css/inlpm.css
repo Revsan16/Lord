@@ -2835,3 +2835,19 @@ p:last-child {
   font-size: 2.75rem;
   color: var(--brass);
 }
+
+/* A full-width banner shown whole — never cropped, since the artwork
+   carries its own title, verse and strapline. */
+.banner {
+  margin: 0;
+  border: 1px solid var(--rule-dark);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--lift-hi);
+}
+
+.banner img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
