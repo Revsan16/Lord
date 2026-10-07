@@ -1927,9 +1927,151 @@ p:last-child {
   max-width: 34rem;
   margin-inline: auto;
 }
+/* -------------------------------------------------------------
+   24. Prophetic word cards
+
+   Each 2024 word was published as a square graphic, so the words
+   themselves only existed as pixels — unreadable to a screen reader,
+   invisible to search, and a 7.7MB page. Here the word is set as real
+   text and the graphic sits beside it; tapping the graphic opens it
+   full size.
+   ------------------------------------------------------------- */
+.word-grid {
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr));
+  align-items: start;
+}
+
+.word {
+  display: flex;
+  flex-direction: column;
+  background: var(--paper);
+  border: 1px solid var(--rule-light);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--lift);
+  transition: box-shadow var(--micro) var(--ease), border-color var(--micro) var(--ease);
+}
+
+.word:hover,
+.word:focus-within {
+  border-color: var(--brass);
+  box-shadow: var(--lift-hi);
+}
+
+.word-fig {
+  display: block;
+  position: relative;
+  margin: 0;
+  background: var(--parchment-deep);
+}
+
+.word-fig img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+.word-fig::after {
+  content: "\f62c";
+  font-family: "bootstrap-icons";
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: 2rem;
+  color: #fff;
+  background: rgba(7, 26, 21, 0.45);
+  opacity: 0;
+  transition: opacity var(--micro) var(--ease);
+}
+
+.word-fig:hover::after,
+.word-fig:focus-visible::after {
+  opacity: 1;
+}
+
+.word-body {
+  padding: 1.4rem 1.5rem 1.6rem;
+}
+
+.word-n {
+  display: block;
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--brass);
+  margin-bottom: 0.6rem;
+}
+
+.word-title {
+  font-family: var(--display);
+  font-size: 1.1875rem;
+  font-weight: 600;
+  line-height: 1.25;
+  margin: 0;
+}
+
+.word-sub {
+  font-family: var(--display);
+  font-style: italic;
+  font-variation-settings: "SOFT" 40, "WONK" 1;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--brass);
+  margin: 0.7rem 0 0;
+}
+
+.word-list {
+  margin: 0.9rem 0 0;
+  padding-left: 1.15rem;
+  color: var(--on-dark-dim);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+}
+
+.word-list li + li {
+  margin-top: 0.3rem;
+}
+
+.word-ref {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--on-dark-dim);
+  margin: 0.9rem 0 0;
+}
+
+/* The cover plate, shown once above the words rather than as a card
+   in the grid — it is a title page, not a prophecy. */
+.word-cover {
+  display: grid;
+  gap: clamp(1.5rem, 1rem + 2vw, 2.75rem);
+  align-items: center;
+  margin-bottom: clamp(2.5rem, 2rem + 2vw, 4rem);
+}
+
+.word-cover img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--rule-light);
+  border-radius: var(--radius);
+  box-shadow: var(--lift-hi);
+}
+
+@media (min-width: 48em) {
+  .word-cover {
+    grid-template-columns: minmax(0, 18rem) minmax(0, 1fr);
+  }
+}
+
+
 
 /* -------------------------------------------------------------
-   24. Responsive
+   25. Responsive
    ------------------------------------------------------------- */
 @media (min-width: 34em) {
   .form-row {
@@ -2067,7 +2209,7 @@ p:last-child {
 }
 
 /* -------------------------------------------------------------
-   25. Scroll reveals
+   26. Scroll reveals
    The hidden state is armed by .js, which inlpm.js sets on <html>.
    Without JavaScript everything renders as normal.
    ------------------------------------------------------------- */
@@ -2084,7 +2226,7 @@ p:last-child {
 }
 
 /* -------------------------------------------------------------
-   26. Reduced motion
+   27. Reduced motion
    ------------------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
   html {
@@ -2110,7 +2252,7 @@ p:last-child {
 }
 
 /* -------------------------------------------------------------
-   27. Print
+   28. Print
    ------------------------------------------------------------- */
 @media print {
   .site-header,
