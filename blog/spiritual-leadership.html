@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Spiritual Leadership | INLPM</title>
+<link rel="icon" href="../assets/img/brand/crest-bronze.png?v=25">
+<meta name="description" content="A paraphrased study of spiritual leadership: serving people, teaching, counselling, free will, and raising the next generation of leaders.">
+<style>
+:root{--bg:#faf7f0;--ink:#231f1a;--mute:#6d6458;--gold:#a97b1f;--card:#fff;--line:#e6dfd0;--soft:#f3ecdc}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14120e;--ink:#efe9dc;--mute:#a79d8c;--gold:#d8a94a;--card:#1d1a14;--line:#332e24;--soft:#1a1711}}
+:root[data-theme="dark"]{--bg:#14120e;--ink:#efe9dc;--mute:#a79d8c;--gold:#d8a94a;--card:#1d1a14;--line:#332e24;--soft:#1a1711}
+:root[data-theme="light"]{color-scheme:light}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:19px/1.8 Georgia,"Times New Roman",serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:700px;margin:0 auto;padding:0 22px 90px}
+.mono{font:600 12px/1 ui-monospace,Menlo,monospace;letter-spacing:.18em;text-transform:uppercase}
+header{text-align:center;padding:64px 0 8px}
+header .mono{color:var(--gold)}
+h1{font-size:clamp(38px,8vw,60px);line-height:1.05;margin:16px 0 12px;font-weight:400;letter-spacing:.01em}
+.sub{color:var(--mute);font-style:italic;max-width:30em;margin:0 auto}
+.site{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;max-width:700px;margin:0 auto;padding:16px 22px 0;font:600 12px/1.4 ui-monospace,Menlo,monospace;letter-spacing:.08em;text-transform:uppercase}.site a{color:var(--gold);text-decoration:none;margin-left:14px}.site>a{margin-left:0}.site span a:first-child{margin-left:0}
+.by{margin:20px 0 0;font:600 13px/1 ui-monospace,Menlo,monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}.by strong{color:var(--gold);font-weight:600}
+.rule{width:48px;height:1px;background:var(--gold);margin:28px auto}
+figure{margin:34px 0}
+figure svg{width:100%;height:auto;display:block;border:1px solid var(--line);border-radius:14px;background:var(--card)}
+figcaption{font-size:14px;color:var(--mute);text-align:center;margin-top:9px;font-style:italic}
+nav.toc{background:var(--soft);border:1px solid var(--line);border-radius:14px;padding:22px 26px;margin:34px 0}
+nav.toc .mono{color:var(--gold);display:block;margin-bottom:12px}
+nav.toc ol{margin:0;padding-left:1.4em;font-size:16px;line-height:2}
+nav.toc a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line)}
+nav.toc a:hover{color:var(--gold);border-color:var(--gold)}
+section{margin-top:64px;scroll-margin-top:20px}
+.num{display:block;color:var(--gold);margin-bottom:10px}
+h2{font-size:clamp(27px,5vw,34px);line-height:1.2;font-weight:400;margin:0 0 18px}
+h3{font-size:19px;margin:30px 0 4px;font-style:italic;font-weight:400;color:var(--gold)}
+p{margin:0 0 18px}
+blockquote{margin:34px 0;padding:4px 0 4px 24px;border-left:2px solid var(--gold);font-size:25px;line-height:1.5;font-style:italic}
+.flow{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin:26px 0;font:600 14px ui-monospace,Menlo,monospace;letter-spacing:.1em;text-transform:uppercase}
+.flow span{padding:9px 16px;border:1px solid var(--gold);border-radius:999px}.flow i{color:var(--gold);font-style:normal}
+.refs{list-style:none;margin:0 0 18px;padding:0}.refs li{padding:12px 0;border-bottom:1px solid var(--line)}.refs b{color:var(--gold);font-weight:600}
+footer{margin-top:72px;padding-top:22px;border-top:1px solid var(--line);color:var(--mute);font-size:14px;text-align:center}
+.g{fill:none;stroke:var(--gold);stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.f{fill:var(--gold)}.s{fill:none;stroke:var(--ink);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}.m{fill:var(--mute);font:13px Georgia,serif}.t{fill:var(--ink);font:600 15px Georgia,serif}
+.theme-btn{position:fixed;bottom:18px;right:16px;z-index:50;display:flex;align-items:center;gap:8px;padding:9px 14px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:600 12px/1 ui-monospace,Menlo,monospace;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.12)}.theme-btn:hover{border-color:var(--gold);color:var(--gold)}.theme-btn svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}.theme-btn .sun{display:none}:root[data-theme="dark"] .theme-btn .sun{display:block}:root[data-theme="dark"] .theme-btn .moon{display:none}
+</style></head><body>
+<button class="theme-btn" id="themeBtn" type="button" aria-label="Switch between night and light mode"><svg class="moon" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><svg class="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><span id="themeLbl">Night</span></button>
+<div class="site"><a href="../index.html">&larr; INLPM</a><span><a href="the-power-of-salvation.html">Power of Salvation</a><a href="../index.html#messages">Messages</a><a href="../index.html#prayer">Prayer</a></span></div>
+<div class="wrap">
+
+<header><div class="mono">A study in leadership</div><h1>Spiritual Leadership</h1><p class="sub">Serving, teaching, listening, and raising others to lead</p><p class="by">By <strong>Prophet Vinoth Kumar</strong></p><div class="rule"></div></header>
+
+<figure><svg viewBox="0 0 700 300" role="img" aria-label="A lantern on a winding path toward a hill">
+<path class="s" d="M0 262h700" opacity=".4"/>
+<path class="g" d="M120 262c120-30 140-70 230-70s150-10 230-60"/>
+<path class="s" d="M440 262c0-70 90-120 190-120" opacity=".5"/>
+<rect x="330" y="86" width="40" height="58" rx="6" class="s"/><path class="s" d="M336 86l14-18 14 18M350 144v18"/>
+<path class="f" d="M350 98c10 10 12 22 0 36-12-14-10-26 0-36z"/>
+<path class="g" d="M290 118l-30-12M410 118l30-12M300 150l-28 14M400 150l28 14" opacity=".7"/>
+</svg><figcaption>A leader carries a light for the people who follow.</figcaption></figure>
+
+<nav class="toc"><span class="mono">In this study</span><ol>
+<li><a href="#s1">The foundation: learn, teach, serve</a></li>
+<li><a href="#s2">Vision and character</a></li>
+<li><a href="#s3">Raised to meet a need</a></li>
+<li><a href="#s4">Calling, accountability and vision</a></li>
+<li><a href="#s5">Teaching at the people's level</a></li>
+<li><a href="#s6">Jesus: the model and the bridge</a></li>
+<li><a href="#s7">Leading without control</a></li>
+<li><a href="#s8">The leader as counsellor</a></li>
+<li><a href="#s9">Raising leaders and finishing well</a></li></ol></nav>
+
+<section id="s1"><span class="mono num">01</span><h2>The foundation: learn, teach, serve</h2>
+<p>Never stop learning, and never stop teaching. A spiritual leader keeps his focus on people and works at becoming someone who can teach them well.</p>
+<p>Two things matter most: a good relationship with God and a good relationship with people. The first should show in the second. How a leader treats people reveals how close he really is to God.</p>
+<blockquote>Spiritual leadership guides and serves. It does not control.</blockquote>
+<p>Worldly leadership often rests on control and domination, as the example of Hitler shows. Spiritual leadership takes the opposite road: it walks with people and lifts them up instead of ruling over them.</p></section>
+
+<section id="s2"><span class="mono num">02</span><h2>Vision and character</h2>
+<p>Every leader has to answer two questions: <em>Where am I going?</em> and <em>Where am I taking the people I lead?</em></p>
+<p>A leader must also grow in character: in love, care, faithfulness and righteousness. Gifts may open doors, but character keeps a leader standing.</p>
+<p>Vision gives you clarity about where you are and where you are headed. When you wake up each morning you know what you are there to do. A person without vision is blind in a real sense, even if his eyes work perfectly.</p></section>
+
+<section id="s3"><span class="mono num">03</span><h2>Raised to meet a need</h2>
+<h3>Servant leadership and compassion</h3>
+<p>God heard the cry of the Israelites and raised up Moses to lead them out. That tells us something: people do not exist to serve the leader. The leader is called to serve the people.</p>
+<p>Matthew 9:35–36 describes crowds that were harassed and helpless, like sheep without a shepherd. A good leader takes the time to know and understand the people around him. Jesus then said the harvest is plentiful but the workers are few (Matthew 9:37).</p>
+
+<figure><svg viewBox="0 0 700 260" role="img" aria-label="A basin and a towel">
+<ellipse cx="350" cy="150" rx="120" ry="26" class="g"/><path class="g" d="M230 150c8 62 52 84 120 84s112-22 120-84"/>
+<path class="f" d="M262 156c30 12 146 12 176 0-10 10-30 18-88 18s-78-8-88-18z" opacity=".8"/>
+<path class="s" d="M470 120c26-20 56-20 74-4l-18 40c-22-16-44-14-62 6z"/><path class="s" d="M488 128l-10 20M504 124l-10 22" opacity=".6"/>
+<text class="m" x="350" y="252" text-anchor="middle">the towel and the basin</text></svg><figcaption>The leader stoops to serve.</figcaption></figure>
+
+<h3>Raised to meet a need (Matthew 10:1)</h3>
+<p>Jesus sent out His twelve disciples. God raises and sends leaders because He sees what people are going through. A leader's vision is not there to make him comfortable. It is there to bring answers to people's problems.</p>
+<h3>You are the solution</h3>
+<p>You, and the anointing you carry, are meant to be part of the answer to people's problems. Jesus is the ultimate medicine, and you carry that medicine to others. Your mission is to rescue people from the authority of the devil.</p></section>
+
+<section id="s4"><span class="mono num">04</span><h2>Calling, accountability and vision</h2>
+<p>Your calling has the power to push you forward, but you are accountable for it, and accountable for what you learn. Make this your declaration: <em>“I am not independent; I am accountable.”</em></p>
+<p>Do not hand unreasonable excuses to God or to your leader.</p>
+<h3>Two kinds of leaders</h3>
+<p>Leadership begins in two ways. In the first, God calls a leader directly. In the second, leaders call and appoint other leaders. The Bible shows both: the Father called Jesus, and Jesus appointed the twelve.</p>
+<h3>How vision connects leaders and people</h3>
+<p>When God gives a vision, the leader recognises it, and then the people find both the leader and the vision. In order: vision creates a leader, people find that leader, and people embrace the vision. Every personal vision is tied to the leader's vision, yet each person still has to discover his own path.</p>
+<h3>Discover your path and your gifts</h3>
+<p>Work out your own path and find your spiritual gifts. They may lie in media, evangelism, administration, prophecy, healing, or casting out demons.</p></section>
+
+<section id="s5"><span class="mono num">05</span><h2>Teaching at the people's level</h2>
+<p>You have to build your ability to teach on purpose. Teaching does not always come naturally. Some abilities are inborn; others must be developed and strengthened over time.</p>
+
+<figure><svg viewBox="0 0 700 300" role="img" aria-label="A crow dropping pebbles into a narrow pitcher to raise the water">
+<path class="g" d="M450 70h50M458 70c-20 30-30 50-30 90 0 50 30 78 62 78s62-28 62-78c0-40-10-60-30-90"/>
+<path class="f" d="M436 190c16 6 90 6 108 0 0 30-20 46-54 46s-52-16-54-46z" opacity=".55"/>
+<circle class="f" cx="470" cy="224" r="7"/><circle class="f" cx="496" cy="228" r="7"/><circle class="f" cx="516" cy="220" r="6"/>
+<path class="s" d="M200 160c20-30 60-32 84-8l36-14-26 28c-8 18-30 28-52 22l-10 24-6-28c-18-8-28-18-26-24z"/>
+<circle cx="266" cy="154" r="3" class="f"/><circle cx="330" cy="120" r="7" class="f"/>
+<path class="g" d="M330 128v18" stroke-dasharray="2 8"/>
+<text class="m" x="350" y="285" text-anchor="middle">raise the water within reach</text></svg><figcaption>The crow and the pitcher: adapt to the situation.</figcaption></figure>
+
+<p>In the old story, a thirsty crow cannot reach the water in a narrow-necked pot, so it drops pebbles in one by one until the water rises. A good teacher does the same. He adapts to the situation and comes down to the people's level, so that he can teach them effectively and meet their actual needs.</p>
+<p>Teaching and learning go hand in hand. If you stop adapting and stop learning, you will not be able to teach anyone else.</p></section>
+
+<section id="s6"><span class="mono num">06</span><h2>Jesus: the model and the bridge</h2>
+<p>Jesus had full divinity, yet He humbled Himself and came in human form to reach us. He came to understand humanity from the inside, and He knew the true nature of human beings.</p>
+
+<figure><svg viewBox="0 0 700 260" role="img" aria-label="A bridge between God and people">
+<path class="s" d="M0 210h170M530 210h170" opacity=".5"/>
+<path class="g" d="M170 210c60-90 300-90 360 0M170 210h360"/>
+<path class="g" d="M230 168v42M290 150v60M350 144v66M410 150v60M470 168v42"/>
+<text class="t" x="85" y="190" text-anchor="middle">God</text><text class="t" x="615" y="190" text-anchor="middle">People</text>
+<circle class="f" cx="350" cy="96" r="9"/><text class="m" x="350" y="72" text-anchor="middle">Jesus</text></svg><figcaption>The bridge between God and humanity.</figcaption></figure>
+
+<h3>Why He is the only mediator</h3>
+<p>If Jesus were only divine, there would be no true mediator between God and people. As God, He fully understands divinity. As a man, He fully understands humanity, in both its good and its broken sides. That is why He is the only mediator of the New Covenant.</p>
+<p>Because He knows divinity, He brings God's message to us. Because He has felt human weakness, He carries our needs and struggles to God.</p>
+<h3>He knew our struggle</h3>
+<p>Jesus personally knew hunger, thirst, pain and grief, including deep hurt and betrayal. He understands human pain because He came down to where we are.</p>
+<blockquote>Meet people where they are. Do not wait for them to reach your level first.</blockquote>
+<p>A leader must do the same: step down to the level of the people he leads, so that he understands them truthfully.</p></section>
+
+<section id="s7"><span class="mono num">07</span><h2>Leading without control</h2>
+<p>Spiritual leadership is not dictatorship and does not mean running every detail. A true spiritual leader does not dominate, manipulate or intimidate. A leader is not a manager either. A manager keeps things as they are; a leader moves people forward.</p>
+<h3>Teach, do not control</h3>
+<p>Ministry means keeping the Word of God and teaching people from it. People should be taught, not controlled. Domination, manipulation and intimidation are the tactics of witchcraft, not the nature of God.</p>
+<h3>God honours free will</h3>
+<p>Respect for free will is part of God's own nature. He did not call a committee before creating heaven and earth; He made them out of His own desire and joy. Yet He gives people real choices and does not force obedience. In Eden He set the Tree of Life and the Tree of Death before humanity and let them choose. God takes no delight in anything done by force.</p>
+
+<figure><svg viewBox="0 0 700 280" role="img" aria-label="A path that forks between two trees">
+<path class="g" d="M350 262V190M350 190c-30-30-90-40-140-80M350 190c30-30 90-40 140-80"/>
+<path class="s" d="M210 110v-30M190 80c-20-30 0-56 20-56s40 26 20 56z"/><path class="s" d="M490 110v-30M470 80c-20-30 0-56 20-56s40 26 20 56z"/>
+<circle class="f" cx="200" cy="52" r="4"/><circle class="f" cx="220" cy="60" r="4"/><circle class="f" cx="480" cy="52" r="4" opacity=".35"/><circle class="f" cx="500" cy="60" r="4" opacity=".35"/>
+<text class="m" x="210" y="138" text-anchor="middle">Tree of Life</text><text class="m" x="490" y="138" text-anchor="middle">Tree of Death</text></svg><figcaption>God sets the choice before us and lets us choose.</figcaption></figure>
+
+<h3>Hate sin, not just fear it</h3>
+<p>Do not teach people on the footing that God will punish them. That produces only a passing fear of sin. The goal is not to fear sin but to hate it, and that comes from relationship. As children of God we share His nature, so what He dislikes should become what we dislike. Joseph said it this way: how could he do such a wicked thing and sin against God (Genesis 39:9)? We turn from sin out of love for God, not merely out of fear.</p>
+<h3>Lead by example</h3>
+<p>A leader should be a living example and never force anyone. Do not force people to pray; let them choose to pray. Do not force people to read the Bible; let them choose to read it. God loves those who choose freely to love Him, not those who act under pressure. Loving God, praying, serving and reading the Word should all flow from free will.</p></section>
+
+<section id="s8"><span class="mono num">08</span><h2>The leader as counsellor</h2>
+<p>A leader must become a good counsellor and work on those skills on purpose. Someone who talks endlessly is not a good counsellor. A good counsellor is first of all a good listener.</p>
+
+<figure><svg viewBox="0 0 700 260" role="img" aria-label="Two people sitting facing each other in conversation">
+<circle class="s" cx="230" cy="96" r="26"/><path class="s" d="M196 210c-4-50 6-80 34-80s38 30 34 80M196 210h68"/>
+<circle class="s" cx="470" cy="96" r="26"/><path class="s" d="M436 210c-4-50 6-80 34-80s38 30 34 80M436 210h68"/>
+<path class="g" d="M290 112c20-10 100-10 120 0" stroke-dasharray="1 10"/><path class="g" d="M294 150c24 10 88 10 112 0" opacity=".6"/>
+<text class="m" x="350" y="244" text-anchor="middle">listen first</text></svg><figcaption>Give people your full attention.</figcaption></figure>
+
+<p>You have to understand the condition of the people you lead, and you only learn their problems by listening carefully. Ask yourself: <em>am I just a talker, or am I a listener?</em> The more deeply you listen, the wiser you become. The Spirit of Wisdom rests on those who listen.</p>
+<p>A good leader is also a good counsellor, so ministry should not depend only on a stage and a microphone. Learn to counsel people one to one and give them your full attention, including steady eye contact while you listen.</p>
+<h3>Intentional, like Jesus</h3>
+<p>Jesus did not meet the Samaritan woman by accident. He went there on purpose, knowing she would come, and chose to speak to someone society treated as a nobody. He also held a deep conversation with Nicodemus late at night, and that conversation played a real part in Nicodemus's journey toward Christ.</p>
+<p>The main aim of leaders and counsellors is never to hurt or wound people, but to care for them on purpose and lead them to Jesus.</p>
+<h3>The wise counsellor and personal teacher</h3>
+<p>Jesus is the finest example of a wise counsellor. A good teacher does not ignore a weak or struggling student. He brings the student close, sits down with him, and helps him through his struggles. Jesus did not spend all His time with the crowds. He made room for individuals: the Samaritan woman, Nicodemus, and His own disciples.</p></section>
+
+<section id="s9"><span class="mono num">09</span><h2>Raising leaders and finishing well</h2>
+<h3>The mark of a successful leader</h3>
+<p>A truly successful leader raises other successful leaders. Before your life ends, train and develop the next generation. Even if only ten people are in your care, invest in them and raise at least one leader from among them. Do not let believers stay followers forever without ever moving into leadership.</p>
+
+<div class="flow"><span>Believer</span><i>→</i><span>Disciple</span><i>→</i><span>Leader</span></div>
+
+<p>When someone becomes a leader, that person carries the process on by raising new leaders. This steady multiplication is how a successful leader works.</p>
+
+<figure><svg viewBox="0 0 700 280" role="img" aria-label="One leader raising several leaders, who raise more">
+<circle class="f" cx="350" cy="50" r="16"/>
+<path class="g" d="M350 66v28M350 94h-150M350 94h150M200 94v22M350 94v22M500 94v22"/>
+<circle class="f" cx="200" cy="130" r="13"/><circle class="f" cx="350" cy="130" r="13"/><circle class="f" cx="500" cy="130" r="13"/>
+<path class="g" d="M200 143v22M200 165h-50M200 165h50M350 143v22M350 165h-50M350 165h50M500 143v22M500 165h-50M500 165h50M150 165v18M250 165v18M300 165v18M400 165v18M450 165v18M550 165v18" opacity=".8"/>
+<g class="f" opacity=".7"><circle cx="150" cy="196" r="9"/><circle cx="250" cy="196" r="9"/><circle cx="300" cy="196" r="9"/><circle cx="400" cy="196" r="9"/><circle cx="450" cy="196" r="9"/><circle cx="550" cy="196" r="9"/></g>
+<text class="m" x="350" y="262" text-anchor="middle">leaders raising leaders</text></svg><figcaption>Multiplication is the measure of success.</figcaption></figure>
+
+<h3>Finishing well</h3>
+<p>The end of a person's life and ministry matters more than the beginning. As Ecclesiastes 7:8 says, the end of a matter is better than its beginning. A recommended book on this is <em>God's Generals: The Untold Story</em>.</p>
+<ul class="refs">
+<li><b>1 Timothy 6:12</b> Fight the good fight of faith (compare 2 Timothy 4:7).</li>
+<li><b>2 Timothy 4:7</b> Finish the race and keep the faith.</li>
+<li><b>1 Corinthians 11:1</b> “Follow my example, as I follow the example of Christ.”</li></ul>
+<h3>Inner character and spiritual growth</h3>
+<p>A leader must be trustworthy, reliable and faithful with what God entrusts to him. Give deliberate attention to your inner spiritual life. Real success in ministry is measured by how much you grow in your spirit.</p>
+<h3>The kingly anointing in the marketplace</h3>
+<p>Daniel, Esther, Joseph and David carried a kingly anointing. They served God faithfully in government and in public life while staying devoted to Him. This is marketplace ministry. God also anoints believers for priestly ministry and spiritual service.</p>
+
+<figure><svg viewBox="0 0 700 240" role="img" aria-label="A crown beside a censer"><g transform="translate(-55 0)">
+<path class="g" d="M240 170l-14-80 56 40 34-60 34 60 56-40-14 80zM240 190h138"/>
+<circle class="f" cx="226" cy="88" r="6"/><circle class="f" cx="316" cy="70" r="6"/><circle class="f" cx="406" cy="88" r="6"/>
+<path class="s" d="M500 120c0 40 20 64 52 64s52-24 52-64zM552 120V96M530 96h44M552 184v22M520 206h64" /><path class="g" d="M540 76c-10-14 10-18 0-32M566 76c-10-14 10-18 0-32" opacity=".7"/></g></svg><figcaption>Kings for society, priests for the church.</figcaption></figure>
+
+<p>The church should not only train priests to serve inside its walls. It should also raise up kings who carry God's anointing into society and leadership.</p></section>
+
+<footer>A study of spiritual leadership by Prophet Vinoth Kumar.<br><a href="../index.html" style="color:var(--gold)">Visit www.inlpm.com</a></footer>
+</div><script>
+(function(){var r=document.documentElement,b=document.getElementById('themeBtn'),l=document.getElementById('themeLbl');
+function cur(){return r.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light')}
+function show(){var d=cur()==='dark';l.textContent=d?'Light':'Night';b.setAttribute('aria-pressed',d)}
+try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light')r.setAttribute('data-theme',t)}catch(e){}
+show();
+b.addEventListener('click',function(){var n=cur()==='dark'?'light':'dark';r.setAttribute('data-theme',n);try{localStorage.setItem('theme',n)}catch(e){}show()});
+})();
+</script>
+</body></html>
