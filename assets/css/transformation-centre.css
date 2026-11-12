@@ -1,0 +1,806 @@
+/* =============================================================
+   INLPM Transformation Centre (School of Daniel)
+   Page styles. Loads after inlpm.css and uses its tokens, type,
+   buttons, forms, header and footer; this file only adds what is
+   particular to this page.
+
+   The idea: the page reads like a well-bound book. A framed title
+   plate, a contents page for the six schools, then one chapter per
+   school, each opened by an outlined Roman numeral.
+   ============================================================= */
+
+/* -------------------------------------------------------------
+   1. Title plate
+   ------------------------------------------------------------- */
+.tc-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: var(--ink);
+  color: var(--on-dark);
+  text-align: center;
+  padding: calc(var(--header-h) + clamp(1.5rem, 1rem + 3vw, 3.5rem)) 0
+    clamp(2.5rem, 1.75rem + 3vw, 4.5rem);
+}
+
+.tc-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(ellipse 55% 42% at 50% 24%, rgba(224, 169, 60, 0.2), transparent 70%),
+    radial-gradient(ellipse 90% 55% at 50% 115%, rgba(194, 65, 12, 0.16), transparent 70%),
+    linear-gradient(180deg, #071a15 0%, #0c261f 55%, #071a15 100%);
+}
+
+.tc-frame {
+  position: relative;
+  border: 1px solid rgba(224, 169, 60, 0.34);
+  outline: 1px solid rgba(224, 169, 60, 0.12);
+  outline-offset: 6px;
+  padding: clamp(2.5rem, 1.5rem + 4vw, 4.75rem) clamp(1rem, 0.25rem + 4vw, 4rem);
+}
+
+/* A small brass diamond sits on the frame, top and bottom */
+.tc-frame::before,
+.tc-frame::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  width: 9px;
+  height: 9px;
+  background: var(--brass);
+  transform: translate(-50%, -50%) rotate(45deg);
+  box-shadow: 0 0 0 7px #0a221c;
+}
+
+.tc-frame::before { top: 0; }
+.tc-frame::after { top: 100%; }
+
+.tc-crest {
+  width: clamp(84px, 60px + 6vw, 124px);
+  margin: 0 auto clamp(1.25rem, 1rem + 1vw, 1.75rem);
+  filter: drop-shadow(0 10px 28px rgba(0, 0, 0, 0.55));
+}
+
+.tc-hero .kicker {
+  color: var(--brass);
+  margin: 0 auto 1.5rem;
+}
+
+.tc-title {
+  margin: 0;
+  color: var(--on-dark);
+}
+
+.tc-title-pre {
+  display: block;
+  font-weight: 500;
+  font-size: clamp(0.95rem, 0.8rem + 0.6vw, 1.25rem);
+  letter-spacing: 0.5em;
+  /* the trailing letter-space would push the word off centre */
+  padding-left: 0.5em;
+  color: var(--brass);
+  margin-bottom: 0.75rem;
+}
+
+.tc-title-main {
+  display: block;
+  font-weight: 380;
+  font-size: clamp(2.2rem, 0.9rem + 5.6vw, 5.5rem);
+  font-variation-settings: "opsz" 144, "SOFT" 50, "WONK" 0;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.tc-title-main em {
+  font-style: italic;
+  font-weight: 340;
+  font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
+  color: var(--brass-soft);
+}
+
+/* line, diamond, line */
+.tc-orn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.9rem;
+  margin: clamp(1.5rem, 1.2rem + 1vw, 2.1rem) auto;
+  color: var(--brass);
+}
+
+.tc-orn::before,
+.tc-orn::after {
+  content: "";
+  width: clamp(3rem, 2rem + 6vw, 7rem);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, currentColor);
+}
+
+.tc-orn::after {
+  transform: scaleX(-1);
+}
+
+.tc-orn span {
+  width: 6px;
+  height: 6px;
+  background: currentColor;
+  transform: rotate(45deg);
+}
+
+.tc-sub {
+  font-family: var(--display);
+  font-style: italic;
+  font-size: clamp(1.2rem, 1rem + 0.9vw, 1.6rem);
+  font-variation-settings: "SOFT" 60, "WONK" 1;
+  color: var(--on-dark);
+  margin: 0 auto 0.6rem;
+}
+
+.tc-hero .lede {
+  color: var(--on-dark-dim);
+  margin: 0 auto;
+  max-width: 46ch;
+}
+
+.tc-hero .btn-row {
+  justify-content: center;
+  margin-top: clamp(1.75rem, 1.4rem + 1.5vw, 2.5rem);
+}
+
+.tc-hero .verse {
+  border-left: 0;
+  padding: 0;
+  margin: clamp(2rem, 1.6rem + 2vw, 3rem) auto 0;
+  color: var(--brass-soft);
+  max-width: 34ch;
+}
+
+.tc-hero .crumbs {
+  justify-content: center;
+  margin-top: clamp(1.75rem, 1.4rem + 1.5vw, 2.5rem);
+}
+
+/* -------------------------------------------------------------
+   2. Three facts under the plate
+   ------------------------------------------------------------- */
+.tc-facts {
+  background: var(--ink-solid);
+  border-top: 1px solid var(--rule-dark);
+  border-bottom: 1px solid var(--rule-dark);
+}
+
+.tc-facts ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.tc-facts li {
+  text-align: center;
+  padding: clamp(1.25rem, 1rem + 1vw, 1.75rem) 0.5rem;
+}
+
+.tc-facts li + li {
+  border-left: 1px solid var(--rule-dark);
+}
+
+.tc-facts strong {
+  display: block;
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(1.6rem, 1.2rem + 1.6vw, 2.5rem);
+  font-variation-settings: "opsz" 144;
+  line-height: 1.1;
+  color: var(--brass);
+}
+
+.tc-facts span {
+  display: block;
+  margin-top: 0.35rem;
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--on-dark-dim);
+}
+
+/* -------------------------------------------------------------
+   3. About, vision and mission
+   ------------------------------------------------------------- */
+.tc-about {
+  display: grid;
+  gap: clamp(2rem, 1.5rem + 2vw, 3.5rem);
+  align-items: center;
+}
+
+@media (min-width: 56em) {
+  .tc-about {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  }
+}
+
+.tc-about h2 {
+  margin-bottom: 0.6em;
+}
+
+.tc-about .lede {
+  color: var(--on-light-dim);
+}
+
+.tc-vision {
+  position: relative;
+  margin: 0;
+  background: var(--paper);
+  border: 1px solid var(--rule-light);
+  border-radius: var(--radius);
+  padding: clamp(1.75rem, 1.25rem + 2vw, 3rem);
+  box-shadow: var(--lift);
+}
+
+/* a brass corner, like a book plate */
+.tc-vision::before {
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  border: 1px solid rgba(224, 169, 60, 0.18);
+  border-radius: 2px;
+  pointer-events: none;
+}
+
+.tc-vision blockquote {
+  margin: 0;
+  font-family: var(--display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.35rem, 1.1rem + 1.1vw, 1.9rem);
+  font-variation-settings: "SOFT" 60, "WONK" 1;
+  line-height: 1.35;
+  color: var(--on-light);
+  text-wrap: balance;
+}
+
+.tc-vision blockquote::before {
+  content: "\201C";
+  display: block;
+  font-size: 3.5rem;
+  line-height: 0.6;
+  height: 1.4rem;
+  color: var(--brass);
+}
+
+.tc-mission {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0;
+}
+
+.tc-mission li {
+  display: grid;
+  grid-template-columns: 2.5rem minmax(0, 1fr);
+  gap: 0 1rem;
+  padding: 1.25rem 0;
+  border-top: 1px solid var(--rule-light);
+}
+
+.tc-mission li:last-child {
+  border-bottom: 1px solid var(--rule-light);
+}
+
+.tc-mission-n {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--brass);
+  padding-top: 0.55rem;
+}
+
+.tc-mission h3 {
+  font-size: clamp(1.5rem, 1.3rem + 0.8vw, 1.9rem);
+  font-weight: 400;
+  font-style: italic;
+  font-variation-settings: "SOFT" 60, "WONK" 1;
+  color: var(--brass);
+  margin: 0 0 0.2rem;
+}
+
+.tc-mission p {
+  color: var(--on-light-dim);
+  margin: 0;
+  font-size: 0.975rem;
+}
+
+@media (min-width: 62em) {
+  .tc-mission {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 1.75rem;
+  }
+
+  .tc-mission li,
+  .tc-mission li:last-child {
+    grid-template-columns: 1fr;
+    border-bottom: 0;
+    padding: 1.25rem 0 0;
+  }
+
+  .tc-mission-n {
+    padding-top: 0;
+    margin-bottom: 0.6rem;
+  }
+}
+
+.tc-banner {
+  margin-top: clamp(3rem, 2rem + 4vw, 5.5rem);
+}
+
+/* -------------------------------------------------------------
+   4. Contents: the six schools
+   ------------------------------------------------------------- */
+.tc-contents {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--rule-light);
+}
+
+.tc-contents a {
+  display: grid;
+  grid-template-columns: 3.25rem minmax(0, 1fr);
+  gap: 0.15rem 1rem;
+  padding: 1.35rem 0.25rem;
+  border-bottom: 1px solid var(--rule-light);
+  color: var(--on-light);
+  transition: background var(--micro) var(--ease);
+}
+
+.tc-contents a:hover {
+  background: rgba(224, 169, 60, 0.06);
+  color: var(--on-light);
+}
+
+.tc-contents a:hover .tc-go {
+  color: var(--brass);
+  transform: translateX(4px);
+}
+
+.tc-roman {
+  grid-row: span 2;
+  font-family: var(--display);
+  font-weight: 300;
+  font-size: 1.9rem;
+  font-variation-settings: "opsz" 144;
+  line-height: 1;
+  color: var(--brass);
+}
+
+.tc-contents h3 {
+  font-size: clamp(1.2rem, 1.05rem + 0.6vw, 1.5rem);
+  margin: 0 0 0.25rem;
+}
+
+.tc-contents p {
+  color: var(--on-light-dim);
+  margin: 0;
+  font-size: 0.975rem;
+}
+
+.tc-stage {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 0.6rem;
+  padding: 0.2rem 0.5rem;
+  font-family: var(--mono);
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--brass);
+  border: 1px solid rgba(224, 169, 60, 0.4);
+  border-radius: 2px;
+  position: relative;
+  top: -0.15em;
+}
+
+.tc-dur {
+  grid-column: 2;
+  margin-top: 0.55rem;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--on-light-dim);
+}
+
+.tc-dur .tbc {
+  font-style: normal;
+}
+
+.tc-go {
+  display: none;
+  color: var(--on-light-dim);
+  font-size: 1.15rem;
+  transition: color var(--micro) var(--ease), transform var(--micro) var(--ease);
+}
+
+@media (min-width: 48em) {
+  .tc-contents a {
+    grid-template-columns: 4.5rem minmax(0, 1fr) 11rem 1.5rem;
+    align-items: center;
+    padding: 1.5rem 0.75rem;
+  }
+
+  .tc-roman {
+    grid-row: auto;
+    font-size: 2.25rem;
+  }
+
+  .tc-dur {
+    grid-column: auto;
+    margin: 0;
+    text-align: right;
+  }
+
+  .tc-go {
+    display: block;
+    justify-self: end;
+  }
+}
+
+/* -------------------------------------------------------------
+   5. Chapters: one per school, with a rail on wide screens
+   ------------------------------------------------------------- */
+.tc-chapters {
+  display: grid;
+}
+
+.tc-rail {
+  display: none;
+}
+
+@media (min-width: 64em) {
+  .tc-chapters {
+    grid-template-columns: 12.5rem minmax(0, 1fr);
+    gap: clamp(3rem, 1rem + 4vw, 5rem);
+  }
+
+  .tc-rail {
+    display: block;
+  }
+
+  .tc-rail-inner {
+    position: sticky;
+    top: calc(var(--header-h) + 2.5rem);
+  }
+}
+
+.tc-rail .kicker {
+  margin-bottom: 1.25rem;
+}
+
+.tc-rail ol {
+  list-style: none;
+  margin: 0 0 2rem;
+  padding: 0;
+  border-left: 1px solid var(--rule-light);
+}
+
+.tc-rail a {
+  display: grid;
+  grid-template-columns: 2.1rem minmax(0, 1fr);
+  align-items: baseline;
+  margin-left: -1px;
+  padding: 0.55rem 0 0.55rem 1rem;
+  border-left: 2px solid transparent;
+  color: var(--on-light-dim);
+  font-size: 0.9375rem;
+  line-height: 1.3;
+  transition: color var(--micro) var(--ease), border-color var(--micro) var(--ease);
+}
+
+.tc-rail a span {
+  font-family: var(--display);
+  color: var(--brass);
+  opacity: 0.7;
+}
+
+.tc-rail a:hover {
+  color: var(--on-light);
+}
+
+.tc-rail a.is-current {
+  color: var(--on-light);
+  border-left-color: var(--brass);
+}
+
+.tc-rail a.is-current span {
+  opacity: 1;
+}
+
+.tc-rail .btn {
+  width: 100%;
+  font-size: 0.75rem;
+  padding-inline: 1rem;
+}
+
+.tc-school {
+  padding-block: clamp(3rem, 2rem + 4vw, 5.5rem);
+  border-top: 1px solid var(--rule-light);
+}
+
+.tc-school:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.tc-school:last-child {
+  padding-bottom: 0;
+}
+
+.tc-school-head {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0 clamp(1.1rem, 0.5rem + 2vw, 2.25rem);
+  align-items: start;
+  margin-bottom: 0.5rem;
+}
+
+/* The numeral is drawn in outline: present, but it never shouts */
+.tc-numeral {
+  font-family: var(--display);
+  font-weight: 300;
+  font-size: clamp(3.75rem, 2.5rem + 5vw, 7rem);
+  font-variation-settings: "opsz" 144, "SOFT" 100;
+  line-height: 0.82;
+  color: var(--brass);
+  min-width: 1.1em;
+}
+
+@supports (-webkit-text-stroke: 1px black) {
+  .tc-numeral {
+    color: transparent;
+    -webkit-text-stroke: 1px var(--brass);
+  }
+}
+
+.tc-school-head .kicker {
+  margin-bottom: 0.6rem;
+}
+
+.tc-school h2 {
+  font-size: clamp(1.85rem, 1.35rem + 2vw, 2.75rem);
+  margin: 0;
+}
+
+.tc-school-body {
+  margin-top: clamp(1.25rem, 1rem + 1vw, 1.75rem);
+}
+
+.tc-school-lede {
+  font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.1875rem);
+  max-width: 62ch;
+}
+
+.tc-motto {
+  font-family: var(--display);
+  font-style: italic;
+  font-size: clamp(1.35rem, 1.1rem + 1vw, 1.8rem);
+  font-variation-settings: "SOFT" 60, "WONK" 1;
+  line-height: 1.3;
+  color: var(--brass);
+  margin: 0 0 0.75rem;
+}
+
+.tc-school .verse {
+  margin: 1.75rem 0 0;
+}
+
+.tc-meta {
+  margin: 1.75rem 0 0;
+  border-top: 1px solid var(--rule-light);
+}
+
+.tc-meta div {
+  display: grid;
+  gap: 0.2rem;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid var(--rule-light);
+}
+
+.tc-meta dt {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--on-light-dim);
+  padding-top: 0.2rem;
+}
+
+.tc-meta dd {
+  margin: 0;
+}
+
+@media (min-width: 40em) {
+  .tc-meta div {
+    grid-template-columns: 10.5rem minmax(0, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+.on-dark .tc-meta,
+.on-dark .tc-meta div {
+  border-color: var(--rule-dark);
+}
+
+.on-dark .tc-meta dt {
+  color: var(--on-dark-dim);
+}
+
+.tc-modules-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: clamp(2.25rem, 1.75rem + 1.5vw, 3rem) 0 1rem;
+}
+
+.tc-modules-head h3 {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--brass);
+  margin: 0;
+}
+
+.tc-modules-head span {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--on-light-dim);
+}
+
+/* Hairline grid: the 1px gap shows the ground through as the rule */
+.tc-modules {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 1px;
+  background: var(--rule-light);
+  border: 1px solid var(--rule-light);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+@media (min-width: 48em) {
+  .tc-modules {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.tc-module {
+  display: grid;
+  grid-template-columns: 2rem minmax(0, 1fr);
+  gap: 0 0.75rem;
+  align-content: start;
+  background: var(--paper);
+  padding: 1.35rem 1.4rem 1.45rem 1.15rem;
+  transition: background var(--micro) var(--ease);
+}
+
+.tc-module:hover {
+  background: #183a2f;
+}
+
+.tc-module-n {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--brass);
+  padding-top: 0.3rem;
+}
+
+.tc-module h4 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 0 0 0.35rem;
+}
+
+.tc-module p {
+  color: var(--on-light-dim);
+  font-size: 0.96rem;
+  line-height: 1.55;
+  margin: 0;
+}
+
+.tc-ref {
+  display: block;
+  margin-top: 0.65rem;
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--brass-soft);
+}
+
+.tc-school-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.5rem;
+  margin-top: 1.75rem;
+}
+
+.tc-up {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--on-light-dim);
+}
+
+.tc-up:hover {
+  color: var(--brass);
+}
+
+/* -------------------------------------------------------------
+   6. Enrolment
+   ------------------------------------------------------------- */
+.tc-enrol {
+  display: grid;
+  gap: clamp(2.25rem, 1.5rem + 3vw, 4rem);
+  align-items: start;
+}
+
+@media (min-width: 58em) {
+  .tc-enrol {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+}
+
+.tc-enrol .lede {
+  color: var(--on-dark-dim);
+}
+
+.tc-enrol .tc-meta a {
+  word-break: break-word;
+}
+
+.tc-form-card {
+  background: rgba(255, 253, 248, 0.035);
+  border: 1px solid var(--rule-dark);
+  border-radius: var(--radius);
+  padding: clamp(1.5rem, 1.1rem + 1.6vw, 2.5rem);
+  box-shadow: var(--lift);
+}
+
+.tc-form-card h3 {
+  font-size: clamp(1.35rem, 1.2rem + 0.6vw, 1.65rem);
+  margin-bottom: 0.35rem;
+}
+
+.tc-form-card > p {
+  color: var(--on-dark-dim);
+  margin-bottom: 1.5rem;
+}
+
+@media (min-width: 34em) {
+  .tc-form-card .form-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* The select in a dark band: keep the dropdown legible */
+.on-dark .field select option {
+  background: var(--ink-solid);
+  color: var(--on-dark);
+}
