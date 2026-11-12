@@ -3103,3 +3103,70 @@ p:last-child {
 .salvation-feature .salvation-box a.btn-gold { color: #071a15; font-weight: 700; letter-spacing: .06em; }
 .salvation-actions { display: flex; flex-wrap: wrap; gap: .75rem; justify-content: center; }
 .salvation-feature .salvation-box a.btn-outline { color: #f3e6c4; border-color: rgba(224, 169, 60, .7); font-weight: 700; letter-spacing: .06em; }
+
+/* Metamorphosis banner links to the Transformation Centre. The button sits
+   on a band attached under the artwork, inside the same frame, because the
+   painting carries its own words almost edge to edge. */
+.banner-link {
+  display: block;
+  overflow: hidden;
+}
+
+.banner-link img {
+  transition: transform 700ms var(--ease), filter var(--micro) var(--ease);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .banner-link:hover img {
+    transform: scale(1.015);
+    filter: brightness(1.05);
+  }
+}
+
+.banner-cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem 1.5rem;
+  padding: clamp(1rem, 0.8rem + 1vw, 1.5rem) clamp(1.1rem, 0.8rem + 1.5vw, 2rem);
+  background: linear-gradient(180deg, #0b221c, #071a15);
+  border-top: 1px solid rgba(224, 169, 60, 0.35);
+}
+
+.banner-cta-title {
+  margin: 0;
+  font-family: var(--display);
+  font-size: clamp(1.15rem, 1rem + 0.6vw, 1.45rem);
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--on-dark);
+}
+
+.banner-cta-title span {
+  display: block;
+  margin-top: 0.35rem;
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--brass);
+}
+
+/* .on-dark a would otherwise turn the label gold on a gold button */
+.banner-cta a.btn-gold,
+.banner-cta a.btn-gold:hover {
+  color: var(--ink);
+}
+
+@media (max-width: 40em) {
+  .banner-cta {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .banner-cta .btn {
+    width: 100%;
+  }
+}
