@@ -3160,10 +3160,32 @@ p:last-child {
   color: var(--ink);
 }
 
+.banner-cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.banner-cta a.btn-outline {
+  color: var(--on-dark);
+  border-color: rgba(224, 169, 60, 0.55);
+}
+
+.banner-cta a.btn-outline:hover {
+  color: var(--brass-lit);
+  border-color: var(--brass-lit);
+  background: rgba(224, 169, 60, 0.1);
+}
+
 @media (max-width: 40em) {
   .banner-cta {
     flex-direction: column;
     text-align: center;
+  }
+
+  .banner-cta-actions {
+    width: 100%;
+    flex-direction: column;
   }
 
   .banner-cta .btn {
