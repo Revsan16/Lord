@@ -29,9 +29,9 @@
       grid-template-columns: 1fr;
       align-items: start;
     }
-    @media (min-width: 900px) {
-      .app-grid { grid-template-columns: 1.15fr 0.85fr; }
-    }
+    /* Single, centred column: with the feature list gone there is not
+       enough on the left to balance the download card beside it. */
+    .app-grid { max-width: 30rem; margin-inline: auto; }
 
     .app-get {
       border: 1px solid var(--rule-light);
@@ -85,10 +85,6 @@
       margin-top: 0.75rem;
       letter-spacing: 0.04em;
     }
-
-    .app-list { list-style: none; padding: 0; margin: 1.5rem 0 0; display: grid; gap: 0.95rem; }
-    .app-list li { display: flex; gap: 0.8rem; align-items: start; }
-    .app-list .bi { color: var(--brass); font-size: 1.1rem; margin-top: 0.15rem; }
 
     .app-steps { counter-reset: step; list-style: none; padding: 0; margin: 1.25rem 0 0; display: grid; gap: 0.9rem; }
     .app-steps li { counter-increment: step; display: flex; gap: 0.85rem; align-items: start; }
@@ -148,22 +144,10 @@
         <div class="section-head">
           <p class="kicker">The ministry in your pocket</p>
           <h1 class="display-lg">Get the INLPM app</h1>
-          <p class="lede">
-            A thought from the Prophet&rsquo;s own books each morning, the whole
-            School of Daniel syllabus, the newest messages from the channel, and
-            the books to read.
-          </p>
         </div>
 
         <div class="app-grid">
           <div>
-            <ul class="app-list">
-              <li><i class="bi bi-sunrise"></i><span><strong>A thought for the day</strong> &mdash; drawn from the ministry&rsquo;s eight books, with the book it came from.</span></li>
-              <li><i class="bi bi-mortarboard"></i><span><strong>Six schools, forty-four modules</strong> &mdash; the full School of Daniel syllabus, with the scripture behind each one.</span></li>
-              <li><i class="bi bi-play-btn"></i><span><strong>The latest messages</strong> &mdash; new videos from the channel as they are released.</span></li>
-              <li><i class="bi bi-book"></i><span><strong>The books</strong> &mdash; read a preview of each, then ask for your copy.</span></li>
-              <li><i class="bi bi-heart"></i><span><strong>Prayer</strong> &mdash; send a request and pray for others.</span></li>
-            </ul>
 
             <div class="app-note" id="android-note">
               <p><strong>Android phones.</strong> An iPhone version is in preparation.
