@@ -248,8 +248,14 @@
     // ?platform=ios and ?platform=android force either card for testing.
     (function () {
       var forced = new URLSearchParams(location.search).get('platform');
-      var isApple = forced === 'ios' || (forced !== 'android' && (
-        /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+      var ua = navigator.userAgent;
+      // Android wins outright. The iPad test below keys off a Mac platform
+      // with touch, which is also true of an Android device emulated on a
+      // Mac — without this, such a phone is offered the iPhone card and no
+      // download at all.
+      var isAndroid = /Android/i.test(ua);
+      var isApple = forced === 'ios' || (forced !== 'android' && !isAndroid && (
+        /iPad|iPhone|iPod/.test(ua) ||
         (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)
       ));
 
