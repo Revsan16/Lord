@@ -21,7 +21,16 @@
     /* ---- Download page ------------------------------------------------- */
     /* Only what this one page needs; everything else comes from inlpm.css. */
 
-    .app-hero { padding: clamp(3rem, 8vw, 5.5rem) 0 clamp(2rem, 5vw, 3rem); }
+    /* The header is fixed, so the page starts below it, as the others do. */
+    .app-hero { padding: calc(var(--header-h) + clamp(2rem, 1.5rem + 3vw, 3.5rem)) 0 clamp(2rem, 5vw, 3rem); }
+
+    /* The page is short now; keep the footer at the bottom of the screen
+       rather than floating halfway up it. */
+    body { min-height: 100vh; min-height: 100svh; display: flex; flex-direction: column; }
+    body > main { flex: 1 0 auto; }
+    /* inlpm.css pads the body on phones for the Call/Visit/WhatsApp bar,
+       which this page does not have. */
+    body { padding-bottom: 0; }
 
     .app-grid {
       display: grid;
@@ -101,11 +110,8 @@
       color: var(--brass);
     }
 
-    .app-note {
-      border-left: 2px solid var(--brass);
-      padding: 0.1rem 0 0.1rem 1rem;
-      margin-top: 1.5rem;
-      color: var(--on-dark-dim);
+    @media (hover: none) and (pointer: coarse) {
+      .app-qr-wrap { display: none; }
     }
   </style>
 </head>
@@ -142,74 +148,39 @@
     <section class="section app-hero">
       <div class="wrap">
         <div class="section-head">
-          <p class="kicker">The ministry in your pocket</p>
           <h1 class="display-lg">Get the INLPM app</h1>
         </div>
-
         <div class="app-grid">
-          <div>
-
-            <div class="app-note" id="android-note">
-              <p><strong>Android phones.</strong> An iPhone version is in preparation.
-              Until then, this website works on every phone.</p>
-            </div>
-          </div>
-
           <!-- Shown to iPhone and iPad visitors in place of the download
-               card. The QR scans fine on iOS and the page opens normally, but
-               an .apk cannot be installed there at all — without this they
-               would download an 80 MB file that does nothing. -->
+               card: an .apk cannot be installed there at all. -->
           <div class="app-get" id="ios-card" hidden>
-            <p class="kicker" style="margin-top:0">For iPhone</p>
-            <h2 style="font-size:1.35rem;margin:0.35rem 0 0.75rem;font-family:var(--display)">
+            <h2 style="font-size:1.35rem;margin:0 0 0.75rem;font-family:var(--display)">
               Not yet on iPhone
             </h2>
-            <p>
-              The app is Android-only at the moment. An iPhone version is in
-              preparation &mdash; it has to go through Apple&rsquo;s App Store,
-              which takes longer.
-            </p>
-            <p style="margin-top:0.9rem">
-              Everything in the app is already on this website, and it works
-              well on iPhone: the daily thought, the schools, the messages and
-              the books.
-            </p>
+            <p>The app is for Android phones for now. Everything in it is on this website.</p>
             <a class="app-dl" href="index.html" style="margin-top:1.4rem">
               <i class="bi bi-globe2"></i> Open the website
             </a>
-            <p class="app-meta">Add it to your Home Screen from the Share menu for a quicker way in.</p>
-
-            <hr style="border:0;border-top:1px solid var(--rule-light);margin:1.6rem 0;">
-            <p style="font-size:0.92rem;color:var(--on-dark-dim);margin:0">
-              Want to know when the iPhone version is ready?
-              <a href="https://wa.me/917708915274?text=Please%20tell%20me%20when%20the%20INLPM%20app%20is%20ready%20for%20iPhone"
-                 style="color:var(--brass)">Message us on WhatsApp</a>
-              and we will tell you.
-            </p>
           </div>
-
           <div class="app-get" id="android-card">
             <!-- The QR below encodes this same href, so changing the file
                  name here changes both. -->
-            <a class="app-dl" id="dl" href="app/INLPM-app.apk?v=1.3.1" download>
+            <a class="app-dl" id="dl" href="app/INLPM-app.apk?v=1.3.2" download>
               <i class="bi bi-download"></i> Download for Android
             </a>
-            <p class="app-meta" id="meta">Version 1.3.1 &middot; 84&nbsp;MB &middot; Android 7 and above</p>
-
-            <hr style="border:0;border-top:1px solid var(--rule-light);margin:1.6rem 0;">
-
-            <div class="app-qr" id="qr" aria-label="QR code to download the app"></div>
-            <p class="app-qr-cap">Point your camera here</p>
-
-            <h2 style="font-size:1.05rem;margin:1.8rem 0 0;">Installing it</h2>
+            <p class="app-meta" id="meta">Version 1.3.2 &middot; 84&nbsp;MB &middot; Android 7 and above</p>
             <ol class="app-steps">
-              <li>Tap <strong>Download</strong> above, or scan the code.</li>
-              <li>Open the file when it finishes.</li>
-              <li>Android will ask whether to allow installing from this source &mdash;
-                  this is normal for an app that does not come from the Play Store.
-                  Tap <strong>Settings</strong>, turn it on, then go back.</li>
-              <li>Tap <strong>Install</strong>.</li>
+              <li><span>Open the file once it has downloaded.</span></li>
+              <li><span>If Android asks, allow installs from this source.</span></li>
+              <li><span>Tap <strong>Install</strong>.</span></li>
             </ol>
+            <!-- For visitors on a computer. On the phone itself a QR is no
+                 use, so it is hidden on touch screens. -->
+            <div class="app-qr-wrap">
+              <hr style="border:0;border-top:1px solid var(--rule-light);margin:1.6rem 0;">
+              <div class="app-qr" id="qr" aria-label="QR code to download the app"></div>
+              <p class="app-qr-cap">Scan with your phone</p>
+            </div>
           </div>
         </div>
       </div>
@@ -246,8 +217,6 @@
       if (isApple) {
         document.getElementById('android-card').hidden = true;
         document.getElementById('ios-card').hidden = false;
-        var note = document.getElementById('android-note');
-        if (note) note.hidden = true;
       }
     })();
 
@@ -272,6 +241,6 @@
     })();
   </script>
 
-  <script src="assets/js/inlpm.js?v=50" defer></script>
+  <script src="assets/js/inlpm.js?v=53" defer></script>
 </body>
 </html>

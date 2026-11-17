@@ -642,8 +642,8 @@
         "The prayer meeting day is still being arranged, and the next School of " +
         "Prophets intake is not fixed yet — ask on WhatsApp and the office will tell you.",
       where:
-        "We meet at <b>Second Floor, Murugan Bajaj Showroom, Vadamadurai, Coimbatore</b>." +
-        '<br><a href="https://www.google.com/maps/search/?api=1&query=Murugan+Bajaj+Showroom+Vadamadurai+Coimbatore" target="_blank" rel="noopener">Open in Maps</a>',
+        "We meet at <b>VIP Nagar, Karur Vysya Bank back side, Vadamadurai, Coimbatore</b>." +
+        '<br><a href="https://www.mappls.com/tcgwnu" target="_blank" rel="noopener">Open in Maps</a>',
       first:
         "Come a few minutes early and somebody will show you where to sit. " +
         "There is no dress code. Most of the meeting is in Tamil, with English alongside. " +

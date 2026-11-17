@@ -804,3 +804,31 @@
   background: var(--ink-solid);
   color: var(--on-dark);
 }
+
+/* -------------------------------------------------------------
+   School badges and banners (2026-11)
+   The contents list shows each school's medallion where the
+   numeral was; each school opens under its banner.
+   ------------------------------------------------------------- */
+.tc-contents a {
+  grid-template-columns: 4.5rem minmax(0, 1fr);
+  align-items: center;
+}
+
+.tc-medal {
+  grid-row: span 2;
+  width: 4.5rem;
+  height: auto;
+  filter: drop-shadow(0 4px 9px rgba(14, 42, 34, 0.25));
+}
+
+.tc-school-banner {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1200 / 670;
+  object-fit: cover;
+  border-radius: var(--radius);
+  box-shadow: var(--lift);
+  margin-bottom: clamp(1.5rem, 1rem + 2vw, 2.25rem);
+}
