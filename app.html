@@ -191,10 +191,10 @@
           <div class="app-get" id="android-card">
             <!-- The QR below encodes this same href, so changing the file
                  name here changes both. -->
-            <a class="app-dl" id="dl" href="app/INLPM-app.apk" download>
+            <a class="app-dl" id="dl" href="app/INLPM-app.apk?v=1.1.0" download>
               <i class="bi bi-download"></i> Download for Android
             </a>
-            <p class="app-meta" id="meta">Version 1.0 &middot; 80&nbsp;MB &middot; Android 7 and above</p>
+            <p class="app-meta" id="meta">Version 1.1 &middot; 78&nbsp;MB &middot; Android 7 and above</p>
 
             <hr style="border:0;border-top:1px solid var(--rule-light);margin:1.6rem 0;">
 
@@ -265,7 +265,8 @@
         return;
       }
       var qr = qrcode(0, 'M');
-      qr.addData(location.origin + '/' + url.replace(/^\.?\//, ''));
+      // The QR drops the ?v= so a printed code never goes stale.
+      qr.addData(location.origin + '/' + url.split('?')[0].replace(/^\.?\//, ''));
       qr.make();
       box.innerHTML = qr.createSvgTag({ cellSize: 6, margin: 0, scalable: true });
     })();
